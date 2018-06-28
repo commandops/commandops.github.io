@@ -1,0 +1,6 @@
+---
+exclude: true
+---
+User-agent: * 
+Disallow: 
+Sitemap: {{site.canonical_domain}}{{site.baseurl}}/sitemap.xml

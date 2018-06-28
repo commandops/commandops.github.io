@@ -1,0 +1,42 @@
+<footer class="site-footer">
+<!-- expanded_footer -->
+{% if site.expanded_footer %}
+<div class="footer">
+        <div class="container flex-footer">      
+                <div class="f-about f-item">
+                  <h2>{{site.ef_about.heading}}</h2>
+                  <p>{{site.ef_about.content}}</p>
+                </div>
+                                 
+               <div class="f-links f-item">
+               <h2>{{site.ef_links.heading}}</h2>
+              <ul class="footer-links">
+               {% for link in site.ef_links.links %}
+                <li><a href="{% if link.url %}{{site.baseurl}}{{ link.url }}{% elsif link.external_url %}{{link.external_url}}{% endif %}">{{ link.title }}</a></li>
+               {% endfor %}        
+              
+              </ul>
+               </div>
+                <div class="f-contact f-item">
+                    <!-- Contact Us -->
+                    <h2>{{site.ef_contact.heading}}</h2> 
+                    <address class="footer-address">{{site.ef_contact.content}}</address>
+          
+                </div>
+           
+  </div> 
+</div>
+{% endif %}
+<!-- expanded_footer end -->
+<!-- footer copyright -->
+<div class="copyright">
+      <div class="container">        
+        <span class="copyright-text">
+           &copy; {{ site.time | date: '%Y' }} {{ site.name }} {% if site.show_footer_credit %} <span class="strapless-credit"> | <a href="https://github.com/rdyar/strapless/tree/gh-pages" target="_blank">Strapless Theme</a></span>{% endif %}
+        </span>
+      </div> 
+</div>
+<!-- end footer copyright --> 
+</footer>
+</body>
+</html>
