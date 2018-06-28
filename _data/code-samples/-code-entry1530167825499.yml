@@ -1,0 +1,7 @@
+_id: ac2218d0-7a9d-11e8-b5f4-6170e8cb26a5
+author: whicker Credit to TyphoonFr
+notes: >-
+  Cargo - Here is an example to transform different type of unit units
+  disembarked (Mech, Inf, Armored, Arty)
+code: "s=\"GTIA\" \r\nlocal cargo = ScenEdit_UnitX() \r\nlocal elev = World_GetElevation({latitude=cargo.latitude,longitude=cargo.longitude}) \r\n\r\nScenEdit_DeleteUnit({s,name=cargo.name}) \r\n\r\nif cargo.dbid ==2984 then --a unit Mech Inf becomes a Mech Inf Plt (VBCI) \r\nlocal sgtia = ScenEdit_AddUnit({ \r\nside=s, \r\ntype='Facility', \r\ndbid=2396, \r\nname='92RI', \r\nlatitude=cargo.latitude, \r\nlongitude=cargo.longitude}) \r\n\r\nelseif cargo.dbid ==2990 then --a unit Landed Detachment becomes a Vehicule VBL \r\nlocal sgtia = ScenEdit_AddUnit({ \r\nside=s, \r\ntype='Facility', \r\ndbid=2200, \r\nname='3RICM', \r\nlatitude=cargo.latitude, \r\nlongitude=cargo.longitude}) \r\n\r\nelseif cargo.dbid ==2983 then --a unit Armored Plt Generic becomes a Armored Plt Amx-10RC \r\nlocal sgtia = ScenEdit_AddUnit({ \r\nside=s, \r\ntype='Facility', \r\ndbid=2198, \r\nname='3RICM', \r\nlatitude=cargo.latitude, \r\nlongitude=cargo.longitude}) \r\n\r\nelseif cargo.dbid ==2985 then -- a unit Arty Generic becomes a Arty Bty Caésar \r\nlocal sgtia = ScenEdit_AddUnit({ \r\nside=s, \r\ntype='Facility', \r\ndbid=2401, \r\nname='11RA', \r\nlatitude=cargo.latitude, \r\nlongitude=cargo.longitude}) \r\n\r\nend"
+date: 1530167825
