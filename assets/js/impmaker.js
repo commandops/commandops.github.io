@@ -112,8 +112,7 @@ $(document).ready(function () {
     $("#export").click(function() {
         this.href = 'data:text/plain;charset=utf-8,' +
                     encodeURIComponent(genExport());
-      location.reload();
-    });
+         });
 
     $("#welcome").dialog({
         autoOpen: false,
