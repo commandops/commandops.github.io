@@ -1,0 +1,7 @@
+_id: da56c160-7a93-11e8-b5f4-6170e8cb26a5
+author: whicker
+notes: >-
+  Weather Part 1 - This is the setup for the weather, goes in the `On Scenario
+  Loaded` event
+code: "math.randomseed(os.time());\r\n-- Check and set hour, used to track hour of day\r\nlocal halfHour = 34;\r\nScenEdit_SetWeather(15,0,0,1);\r\nScenEdit_SetKeyValue(\"HalfHour\",  tostring(halfHour));\r\nlocal earlyClouds = math.random(8,10)/10;\r\nScenEdit_SetKeyValue(\"EarlyClouds\", tostring(earlyClouds));\r\nprint(\"Scen loaded halfhour = \" ..halfHour);"
+date: 1530163608
