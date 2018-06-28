@@ -37,6 +37,8 @@ logo_text: CommandOps
 main_nav:
   - title: "inst Designer"
     url: /inst-designer/
+  - title: "About"
+    url: /about/   
 
 # on screens smaller than 600px, what nav do you want to show?
 # Home is not set by default, the logo works as home link so it could be skipped.
@@ -46,6 +48,8 @@ mobile_nav:
     url: /
   - title: "inst Designer"
     url: /inst-designer/
+  - title: "About"
+    url: /about/     
   
 
 
