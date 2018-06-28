@@ -1,8 +1,4 @@
 /*for Rouge code highlighting*/
-
-.highlight td {
-    padding: 8px 15px;
-}
 .gl { 
   background: #fafafa;
   border-right: 1px solid #ddd;
@@ -24,7 +20,7 @@ pre {
   overflow: auto;
  position: relative;
  background: #f8f8f8; }
-.highlight  { background: #ffffff; }
+.highlight  { background: #f8f8f8;padding: 8px 15px; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */

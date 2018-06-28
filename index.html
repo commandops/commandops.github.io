@@ -9,14 +9,28 @@ active: yes
 <h1 class="text-center headline">CommandOps</h1>
 <p class="text-center lead">A player created website for CMANO - Command: Modern Air/Naval Operations
 </p>
-
-
 <section class="section-main">
   <div class="container pad-top"> 
     <h3>Useful Links:</h3>
     {% for item in site.data.links %}
     <span class="cmano-links"> <a href="{{ item.url }}">{{ item.text}}</a> </span>
     {% endfor %}
+<hr>
+{% assign samples = site.data.code-samples | sort %}
+  
+  {% for sample in samples reversed %}
+    {% assign item = sample[1] %}
+  
+ <div class = "code-sample">
+ <p><small> Submitted by {{ item.author }} on  {{ item.date | date: '%B %d, %Y'  }}</small><br>
 
+  {{ item.notes }}</p>
+ {% highlight javascript %}
+   {{ item.code }}
+ {% endhighlight %}
+ </div>
+ <hr>
+
+{% endfor %}
 </div>
 </section> 
