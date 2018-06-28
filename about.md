@@ -1,8 +1,8 @@
 ---
 permalink: /about/
 layout: default
-title: About Commandops
-description: Commandops is a player created website for CMANO 
+title: About CommandOps
+description: CommandOps is a player created website for CMANO 
 ---
 
 Hi, my name is Ron aka Whicker. I created this site to help with writing scenarios for the game Command: Modern Air/Naval Operations (CMANO).

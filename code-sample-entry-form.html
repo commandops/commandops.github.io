@@ -1,0 +1,16 @@
+---
+permalink: /code-sample-entry-form/
+layout: default
+title: Code Sample Entry Form
+description: Got a cool bit of code? submit it here
+---
+
+<form method="POST" action="https://api.staticman.net/v2/entry/commandops/commandops.github.io/master/code-samples">
+  <input name="options[redirect]" type="hidden" value="/thank-you/">
+  <!-- e.g. "2016-01-02-this-is-a-post" -->
+  <label><input name="fields[author]" type="text">Name</label><br>
+  <label><input name="fields[notes]" type="text">Notes</label><br>
+  <label><textarea name="fields[code]"></textarea>Message</label><br>
+  
+  <button type="submit">Submit</button>
+</form>
