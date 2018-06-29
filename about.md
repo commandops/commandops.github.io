@@ -4,7 +4,6 @@ layout: default
 title: About CommandOps
 description: CommandOps is a player created website for CMANO 
 ---
-
 Hi, my name is Ron aka Whicker. I created this site to help with writing scenarios for the game Command: Modern Air/Naval Operations (CMANO).
 
 By day I run a  small business where I have learned a fair amount about web stuff - especially the [Jekyll static site generator](https://jekyllrb.com/) that this site was built with - and of course [https://github.com](https://github.com) where this site is hosted.
