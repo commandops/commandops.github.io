@@ -115,6 +115,7 @@ console.table(markers[i]);
         clearMarkers();
         markers = [];
          document.getElementById("mapName").value = "";
+        document.getElementById("dbid").selectedIndex = 0;
       }
 $(document).ready(function () {
     for (var i in db) {
