@@ -1,0 +1,46 @@
+{
+  "DB_ID": 1, 
+  "ValidUntil": "", 
+  "Name": "Sector Operations Control Centers", 
+  "Comments": "credits to blh42", 
+  "FormatVersion": 0, 
+  "MemberRecords": [
+    {
+      "HostedAircraftRecords": [], 
+      "Orientation": 0.0, 
+      "LoadoutID": 0, 
+      "Member_DBID": 1000283, 
+      "Latitude": 43.2166666666667, 
+      "MemberName": "Rome SOCC", 
+      "ParentGroupName": "Sector Operations Control Centers", 
+      "MemberType": null, 
+      "Member_GUID": "83147d75-55b3-4af5-aea9-80538f7c9626", 
+      "Longitude": -75.4058333333333
+    }, 
+    {
+      "HostedAircraftRecords": [], 
+      "Orientation": 0.0, 
+      "LoadoutID": 0, 
+      "Member_DBID": 1000283, 
+      "Latitude": 30.075, 
+      "MemberName": "Tyndall ROCC", 
+      "ParentGroupName": "Sector Operations Control Centers", 
+      "MemberType": null, 
+      "Member_GUID": "520f3b1f-dda5-4611-9462-a1fd315f47ab", 
+      "Longitude": -85.5941666666667
+    }, 
+    {
+      "HostedAircraftRecords": [], 
+      "Orientation": 0.0, 
+      "LoadoutID": 0, 
+      "Member_DBID": 1000283, 
+      "Latitude": 47.1216666666667, 
+      "MemberName": "McChord SOCC", 
+      "ParentGroupName": "Sector Operations Control Centers", 
+      "MemberType": null, 
+      "Member_GUID": "1e47d712-9093-47cb-bac9-5b78edc5beeb", 
+      "Longitude": -122.503888888889
+    }
+  ], 
+  "ValidFrom": ""
+}

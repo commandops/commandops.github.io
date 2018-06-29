@@ -1,0 +1,528 @@
+{
+  "DB_ID": 1, 
+  "ValidUntil": "", 
+  "Name": "Elmendorf AFB", 
+  "Comments": "credits to blh42", 
+  "FormatVersion": 0, 
+  "MemberRecords": [
+    {
+      "MemberName": "Elmendorf AFB", 
+      "Altitude": 0.0, 
+      "Longitude": -149.806388888889, 
+      "LoadoutID": 0, 
+      "Latitude": 61.2513888888889, 
+      "HostedAircraftRecords": [
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #1", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #2", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #3", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #4", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #5", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #6", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #7", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #8", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #9", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #10", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #11", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "962d Airborne Air Control Squadron #12", 
+          "AC_DBID": 304
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #1", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #2", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #3", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #4", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #5", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #6", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #7", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #8", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #9", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #10", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #11", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #12", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #13", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #14", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #15", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #16", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #17", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #18", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #19", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #20", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #21", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #22", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #23", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Dicemen #24", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #1", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #2", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #3", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #4", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #5", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #6", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #7", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #8", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #9", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #10", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #11", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #12", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #13", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #14", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #15", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #16", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #17", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #18", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #19", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #20", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #21", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #22", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #23", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Red Devils #24", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #1", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #2", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #3", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #4", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #5", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #6", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #7", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #8", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #9", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #10", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #11", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #12", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #13", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #14", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #15", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #16", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #17", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #18", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #19", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #20", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #21", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #22", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #23", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Bull Dogs #24", 
+          "AC_DBID": 2201
+        }
+      ], 
+      "Orientation": 0.0, 
+      "Member_DBID": 1592, 
+      "MemberType": "Facility", 
+      "ParentGroupName": null, 
+      "Member_GUID": "d13cda90-083b-45f1-a4e7-a8c6589c4e54"
+    }
+  ], 
+  "ValidFrom": ""
+}

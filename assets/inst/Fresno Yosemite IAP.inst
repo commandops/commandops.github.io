@@ -1,0 +1,168 @@
+{
+  "DB_ID": 1, 
+  "ValidUntil": "", 
+  "Name": "Fresno Yosemite IAP", 
+  "Comments": "credits to blh42", 
+  "FormatVersion": 0, 
+  "MemberRecords": [
+    {
+      "MemberName": "Fresno Yosemite IAP", 
+      "Altitude": 0.0, 
+      "Longitude": -119.71896, 
+      "LoadoutID": 0, 
+      "Latitude": 36.77093, 
+      "HostedAircraftRecords": [
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #1", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #2", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #3", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #4", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #5", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #6", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #7", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #8", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #9", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #10", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #11", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #12", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #13", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #14", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #15", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #16", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #17", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #18", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #19", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #20", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #21", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #22", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #23", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Griffins #24", 
+          "AC_DBID": 745
+        }
+      ], 
+      "Orientation": 0.0, 
+      "Member_DBID": 1592, 
+      "MemberType": "Facility", 
+      "ParentGroupName": null, 
+      "Member_GUID": "162353aa-8a28-4c5e-a5db-aa5596842e9a"
+    }
+  ], 
+  "ValidFrom": ""
+}

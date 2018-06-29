@@ -1,0 +1,168 @@
+{
+  "DB_ID": 1, 
+  "ValidUntil": "", 
+  "Name": "Homestead ARB", 
+  "Comments": "credits to blh42", 
+  "FormatVersion": 0, 
+  "MemberRecords": [
+    {
+      "MemberName": "Homestead ARB", 
+      "Altitude": 0.0, 
+      "Longitude": -80.3836111111111, 
+      "LoadoutID": 0, 
+      "Latitude": 25.4883333333333, 
+      "HostedAircraftRecords": [
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #1", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #2", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #3", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #4", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #5", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #6", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #7", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #8", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #9", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #10", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #11", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #12", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #13", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #14", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #15", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #16", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #17", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #18", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #19", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #20", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #21", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #22", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #23", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Fighting Makos #24", 
+          "AC_DBID": 1047
+        }
+      ], 
+      "Orientation": 0.0, 
+      "Member_DBID": 1592, 
+      "MemberType": "Facility", 
+      "ParentGroupName": null, 
+      "Member_GUID": "8b0f09e9-f7a5-494a-87d1-3affa9119bb7"
+    }
+  ], 
+  "ValidFrom": ""
+}

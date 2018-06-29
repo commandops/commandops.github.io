@@ -1,0 +1,312 @@
+{
+  "DB_ID": 1, 
+  "ValidUntil": "", 
+  "Name": "Nellis AFB", 
+  "Comments": "credits to blh42", 
+  "FormatVersion": 0, 
+  "MemberRecords": [
+    {
+      "MemberName": "Nellis AFB", 
+      "Altitude": 0.0, 
+      "Longitude": -114.996111111111, 
+      "LoadoutID": 0, 
+      "Latitude": 36.2491666666667, 
+      "HostedAircraftRecords": [
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #1", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #2", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #3", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #4", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #5", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #6", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #7", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #8", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #9", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #10", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #11", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "64th Aggressor Squadron #12", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #1", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #2", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #3", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #4", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #5", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #6", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #7", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #8", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #9", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #10", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #11", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "65th Aggressor Squadron #12", 
+          "AC_DBID": 745
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #1", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #2", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #3", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #4", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #5", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #6", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #7", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #8", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #9", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #10", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #11", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "16th Weapons Squadron #12", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #1", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #2", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #3", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #4", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #5", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #6", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #7", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #8", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #9", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #10", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #11", 
+          "AC_DBID": 956
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "17th Weapons Squadron #12", 
+          "AC_DBID": 956
+        }
+      ], 
+      "Orientation": 0.0, 
+      "Member_DBID": 1592, 
+      "MemberType": "Facility", 
+      "ParentGroupName": null, 
+      "Member_GUID": "eea786d7-e82a-4209-b821-4eaea8f63688"
+    }
+  ], 
+  "ValidFrom": ""
+}

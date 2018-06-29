@@ -1,0 +1,168 @@
+{
+  "DB_ID": 1, 
+  "ValidUntil": "", 
+  "Name": "Andrews AFB", 
+  "Comments": "credits to blh42", 
+  "FormatVersion": 0, 
+  "MemberRecords": [
+    {
+      "MemberName": "Andrews AFB", 
+      "Altitude": 0.0, 
+      "Longitude": -76.8669444444444, 
+      "LoadoutID": 0, 
+      "Latitude": 38.8108333333333, 
+      "HostedAircraftRecords": [
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #1", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #2", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #3", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #4", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #5", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #6", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #7", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #8", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #9", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #10", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #11", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #12", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #13", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #14", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #15", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #16", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #17", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #18", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #19", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #20", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #21", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #22", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #23", 
+          "AC_DBID": 1047
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "Guardians #24", 
+          "AC_DBID": 1047
+        }
+      ], 
+      "Orientation": 0.0, 
+      "Member_DBID": 1592, 
+      "MemberType": "Facility", 
+      "ParentGroupName": null, 
+      "Member_GUID": "4cb3f793-0c15-4358-a953-f2656ba36de5"
+    }
+  ], 
+  "ValidFrom": ""
+}

@@ -1,0 +1,168 @@
+{
+  "DB_ID": 1, 
+  "ValidUntil": "", 
+  "Name": "Hickam AFB", 
+  "Comments": "credits to blh42", 
+  "FormatVersion": 0, 
+  "MemberRecords": [
+    {
+      "MemberName": "Hickam AFB", 
+      "Altitude": 0.0, 
+      "Longitude": -157.9225, 
+      "LoadoutID": 0, 
+      "Latitude": 21.3186111111111, 
+      "HostedAircraftRecords": [
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #1", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #2", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #3", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #4", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #5", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #6", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #7", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #8", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #9", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #10", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #11", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #12", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #13", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #14", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #15", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #16", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #17", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #18", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #19", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #20", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #21", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #22", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #23", 
+          "AC_DBID": 2201
+        }, 
+        {
+          "ReadyTime_Mins": 0, 
+          "Loadout_ID": 0, 
+          "Name": "''''' #24", 
+          "AC_DBID": 2201
+        }
+      ], 
+      "Orientation": 0.0, 
+      "Member_DBID": 1592, 
+      "MemberType": "Facility", 
+      "ParentGroupName": null, 
+      "Member_GUID": "ca0b34d7-ca47-4653-a0f3-a771162697a0"
+    }
+  ], 
+  "ValidFrom": ""
+}

@@ -37,6 +37,8 @@ logo_text: CommandOps
 main_nav:
   - title: "inst Designer"
     url: /inst-designer/
+  - title: inst Files
+    url: /inst-list/  
   - title: "About"
     url: /about/   
 
@@ -48,6 +50,8 @@ mobile_nav:
     url: /
   - title: "inst Designer"
     url: /inst-designer/
+  - title: inst Files
+    url: /inst-list/    
   - title: "About"
     url: /about/     
   
