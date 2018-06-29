@@ -17,18 +17,18 @@ active: yes
     {% endfor %}
 <hr>
 {% assign samples = site.data.code-samples | sort %}
-  
   {% for sample in samples reversed %}
-    {% assign item = sample[1] %}
-  
- <div class = "code-sample">
- <p><small> Submitted by {{ item.author }} on  {{ item.date | date: '%B %d, %Y'  }}</small><br>
+     {% assign item = sample[1] %}
+   
+    <div class = "code-sample">
 
-  {{ item.notes }}</p>
- {% highlight lua %}
-   {{ item.code }}
- {% endhighlight %}
- </div>
+     <span class="code-info"> {{ item.notes }}</span><br>
+         <span class="code-author"> Submitted by {{ item.author }} on  {{ item.date | date: '%B %d, %Y'  }} | <a href="https://github.com/commandops/commandops.github.io/tree/master/_data/code-samples/{{ sample[0]}}.yml">Edit</a></span>
+        {% highlight lua %}
+             {{ item.code }}
+        {% endhighlight %}
+    </div>
+ 
  <hr>
 
 {% endfor %}

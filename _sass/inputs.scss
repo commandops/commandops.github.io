@@ -31,6 +31,15 @@ select {height: 24px;
     margin: 8px 0;
     border: 1px solid #d9d9d9;
 }
+textarea{
+  margin: 0 4px 4px 4px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
 .form-group-modal {
     margin-bottom: 18px;
 }

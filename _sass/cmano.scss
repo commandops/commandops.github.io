@@ -1,6 +1,4 @@
-.cmano-links{
-	display:inline-block;padding: 6px 20px;
-}
+// inst designer
 #cmano-panel{
       position: absolute;
         top: 100px;
@@ -20,6 +18,18 @@
         padding: 0px;
         position:inherit !important;
       }
+// home page
+.cmano-links{
+    display:inline-block;padding: 6px 20px;
+}
 .code-sample{
-    margin:2rem 0;
-}      
+    margin-top:2rem 0;
+    figure{margin-top:1rem;}
+}    
+.code-author{
+    font-size:small;
+    a{text-decoration:none;}
+}  
+.code-info{
+    font-size: 1.25rem;
+    }
