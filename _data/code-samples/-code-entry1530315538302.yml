@@ -1,0 +1,9 @@
+_id: 97da24e0-7bf5-11e8-8b1d-b1f86f4e9ab6
+author: whicker
+notes: >-
+  Set a units course, assumes you know the unit name or guid. This example is
+  for a land unit but I think it would work for a ship or maybe ac if they were
+  airborne? First it gets the current location, and uses that as one end of the
+  course to be set.
+code: "local a =ScenEdit_GetUnit({ unitname='Mech Inf #105'}) \r\na.course = {{ lat =a.latitude, lon=a.longitude}, {lat=19.3874718855336, lon=-81.3869183989322} } \r\nprint (a.course)"
+date: 1530315538
