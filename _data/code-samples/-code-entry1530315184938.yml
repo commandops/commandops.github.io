@@ -1,0 +1,12 @@
+_id: c53b13a0-7bf4-11e8-8b1d-b1f86f4e9ab6
+author: whicker
+notes: >-
+  Unload cargo from unit - requires the name of the port/unit with the cargo as
+  well as the dbid of the cargo you want to unload - and the qty of that unit.
+  So rather than the cargo all unloading into one unit you can control how many
+  get stuck together. The unit unloaded gets a generic name like Mech Inf #100
+  which seems to go in sequence.
+code: >-
+  ScenEdit_UnloadCargo('Port of Grand Cayman', { {2,2380}}) -- unloads 2 units
+  of dbid 2380 (mech inf)
+date: 1530315184
