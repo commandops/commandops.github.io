@@ -11,26 +11,20 @@ active: yes
 </p>
 <section class="section-main">
   <div class="container pad-top"> 
-    <h3>Useful Links:</h3>
+    <h2>Useful Links:</h2>
     {% for item in site.data.links %}
-    <span class="cmano-links"> <a href="{{ item.url }}">{{ item.text}}</a> </span>
+    <span class="cmano-links"> <a target="_blank" href="{{ item.url }}">{{ item.text}}</a> </span>
     {% endfor %}
-<hr>
-{% assign samples = site.data.code-samples | sort %}
-  {% for sample in samples reversed %}
-     {% assign item = sample[1] %}
-   
-    <div class = "code-sample">
-
+    <hr>
+    <h2 class="pad-top">Lua Code Samples</h2>
+    <p>Below are some handy Lua code samples. Please note that they may need some interpretation and may not work perfectly as is due to a variety of reasons, but hopefully they can give you some ideas.</p>
+{% assign samples = site.data.code-samples | sort %}{% for sample in samples reversed %}
+     {% assign item = sample[1] %} 
+   <div class = "code-sample">
      <span class="code-info"> {{ item.notes }}</span><br>
-         <span class="code-author"> Submitted by {{ item.author }} on  {{ item.date | date: '%B %d, %Y'  }} | <a href="https://github.com/commandops/commandops.github.io/tree/master/_data/code-samples/{{ sample[0]}}.yml">Edit</a></span>
+         <span class="code-author"> Submitted by {{ item.author }} on  {{ item.date | date: '%B %d, %Y'  }} | <a target="_blank" href="https://github.com/commandops/commandops.github.io/tree/master/_data/code-samples/{{ sample[0]}}.yml">Edit</a></span>
         {% highlight lua %}
              {{ item.code }}
-        {% endhighlight %}
-    </div>
- 
- <hr>
-
-{% endfor %}
+        {% endhighlight %}</div>{% endfor %}
 </div>
 </section> 

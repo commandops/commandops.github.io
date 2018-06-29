@@ -103,7 +103,19 @@ console.table(markers[i]);
 
     return(JSON.stringify(inst, null, 4));
 }
-
+ function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+ function clearMarkers() {
+        setMapOnAll(null);
+      }
+  function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+         document.getElementById("mapName").value = "";
+      }
 $(document).ready(function () {
     for (var i in db) {
         $("#dbid").append("<option value=" + db[i] + ">" + i + "</option>");
