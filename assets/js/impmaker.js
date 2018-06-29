@@ -22,7 +22,7 @@ console.log("10");
             title: currtitle,
             type: currtitle
       });
-console.log("Code originally crated by georgehedfors.github.io");
+console.log("Code originally created by georgehedfors.github.io");
      console.dir(marker);
       m = markers.push(marker) - 1;
 
