@@ -1,0 +1,26 @@
+"P 161 Oaxaca"
+"301 Huracan"
+"Modelo #1"
+
+"PC 202 Cordova","P 271 Corrientes" --playa mujeres
+
+"F 211 Allende"  --out and about
+
+"P 202 Mareas"  ns veracruz
+"302 Tornado"
+"P 152 Jalisco"
+"F 212 Infinito"
+"Cuervo #1",Cuervo #2" --choppers at ns veracruz
+"Patron #1","Patron #2","Patron #3",
+
+aircraft 
+"Horchata #1","Horchata #2","Horchata #3","Horchata #4" ,"Horchata #5"   --MPA CN 235
+"Jarritos #1" Hermes UAV
+"Tecate #1" EC2
+"Corona #1", "Corona #2" AE EMB145
+"Dos Equis #1","Dos Equis #2","Dos Equis #3","Dos Equis #4",  --f5s
+
+"Pacifico #1","Pacifico #2","Pacifico #3","Pacifico #4","Pacifico #5","Pacifico #6" -- F5
+
+"Bohemia #1","Bohemia #2" Bo-105CBS
+

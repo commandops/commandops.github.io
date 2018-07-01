@@ -1,0 +1,44 @@
+{"HMCS Halifax", "HMCS Toronto", "HMCS Iroquois"} - HMCS FT 1.0
+TF 1.0 also has choppers sleeman 1, moosehead 1 labatt 1 and 2
+
+{"HMCS Athabaskan","HMCS Charlottetown","HMCS Montreal"}
+Molson 1-24
+Northern Oil 1-4
+Puck 1-3
+Stick 1-2
+Canuck Express 1-4
+Canucks 1-2
+Hoser 1-3 and 8
+HoserJr 1-4
+
+"Puck #1","Puck #2","Puck #3"
+
+"Stick #1","Stick #2","Stick #3"
+
+"Canuck #1","Canuck #2","Canuck #3","Canuck #4"
+
+"Canuck Express #1","Canuck Express #2","Canuck Express #3","Canuck Express #4"
+
+"Hoser #1","Hoser #2","Hoser #3","Hoser #4"
+
+"HoserJr #1","HoserJr #2","HoserJr #3","HoserJr #4"
+
+"Northern Oil #1","Northern Oil #2","Northern Oil #3","Northern Oil #4"
+
+"Molson #1","Molson #2","Molson #3","Molson #4","Molson #5","Molson #6","Molson #7","Molson #8","Molson #9","Molson #10","Molson#11","Molson #12","Molson #13","Molson #14","Molson #15","Molson #16","Molson #17","Molson #18","Molson #19","Molson #20","Molson #21","Molson #22","Molson #23","Molson #24"
+
+
+
+"Puck #1","Puck #2","Puck #3","Stick #1","Stick #2","Canucks #1","Canucks #2","Canuck Express #1","Canuck Express #2","Canuck Express #3","Canuck Express #4","Hoser #1","Hoser #2","Hoser #3","Hoser #8","HoserJr #1","HoserJr #2","HoserJr #3","HoserJr #4","Northern Oil #1","Northern Oil #2","Northern Oil #3","Northern Oil #4","Molson #1","Molson #2","Molson #3","Molson #4","Molson #5","Molson #6","Molson #7","Molson #8","Molson #9","Molson #10","Molson #11","Molson #12","Molson #13","Molson #14","Molson #15","Molson #16","Molson #17","Molson #18","Molson #19","Molson #20","Molson #21","Molson #22","Molson #23","Molson #24","HMCS Athabaskan","HMCS Charlottetown","HMCS Montreal","HMCS FT 1.0"
+
+change to us side:
+
+unitsToChange = {"Puck #1","Puck #2","Puck #3","Stick #1","Stick #2","Canucks #1","Canucks #2","Canuck Express #1","Canuck Express #2","Canuck Express #3","Canuck Express #4","Hoser #1","Hoser #2","Hoser #3","Hoser #8","HoserJr #1","HoserJr #2","HoserJr #3","HoserJr #4","Northern Oil #1","Northern Oil #2","Northern Oil #3","Northern Oil #4","Molson #1","Molson #2","Molson #3","Molson #4","Molson #5","Molson #6","Molson #7","Molson #8","Molson #9","Molson #10","Molson #11","Molson #12","Molson #13","Molson #14","Molson #15","Molson #16","Molson #17","Molson #18","Molson #19","Molson #20","Molson #21","Molson #22","Molson #23","Molson #24","HMCS Athabaskan","HMCS Charlottetown","HMCS Montreal","HMCS TF 1.0" }
+for i = 1, #unitsToChange
+do
+if ScenEdit_GetUnit({Side='Canada', Name=unitsToChange[i]}) ~= nil then 
+ScenEdit_SetUnitSide({side="Canada", Name=unitsToChange[i], newside="United States"}); 
+a = ScenEdit_GetUnit({name =unitsToChange[i]})
+print(a.name..',' ..a.side)
+end
+end
