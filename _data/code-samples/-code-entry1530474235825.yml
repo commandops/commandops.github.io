@@ -1,0 +1,11 @@
+_id: 16f2bb30-7d67-11e8-a81e-6fbf56e435fe
+author: whicker
+notes: >-
+  Change current fuel on a unit to a random value around 60-80% of max fuel for
+  that unit. Each unit has a type of fuel for itself, and sometimes other types
+  of fuel for units it hosts. You have to match the correct type of fuel. This
+  example is for an aircraft, with only one type (AviationFuel) which is type
+  2001. The fuel object will tell you max fuel and current fuel, you'll want to
+  change current fuel.
+code: "local a = ScenEdit_GetUnit({guid='1298e86b-a6a8-4bb0-bf94-dd77c6559eaa'})\r\nlocal fuel = a.fuel\r\nprint(fuel) --before change\r\nfuel[2001].current = fuel[2001].max*math.random(600, 800)/1000\r\na.fuel = fuel\r\nprint(fuel) --after change"
+date: 1530474235
