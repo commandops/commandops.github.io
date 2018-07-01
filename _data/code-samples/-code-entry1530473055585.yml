@@ -1,0 +1,7 @@
+_id: 5767c460-7d64-11e8-a81e-6fbf56e435fe
+author: whicker
+notes: >-
+  Rename a unit using their guid - can also use their name but if the name is
+  not unique you'll probably have trouble.
+code: "ScenEdit_SetUnit({side=\"Mexico\", guid='6b937b60-3dce-4b82-8f22-6a1280cdc908', newname=\"Horchata #5\"})\r\na = ScenEdit_GetUnit({guid='6b937b60-3dce-4b82-8f22-6a1280cdc908'})\r\nprint (a.name)"
+date: 1530473055
