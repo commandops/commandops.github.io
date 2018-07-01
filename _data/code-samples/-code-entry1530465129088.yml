@@ -1,0 +1,8 @@
+_id: e2deb7f0-7d51-11e8-a81e-6fbf56e435fe
+author: whicker
+notes: >-
+  Take a list of units and change them from one side to another. If the units
+  are in a group you can just pass in the group name. Doesn't seem to work with
+  bases.
+code: "unitsToChange = {\"HMCS Halifax\", \"HMCS Toronto\", \"HMCS Iroquois\" }\r\nfor i = 1, #unitsToChange\r\ndo\r\nif ScenEdit_GetUnit({Side='Canada', Name=unitsToChange[i]}) ~= nil then --check to make sure it is still in the scenario\r\nScenEdit_SetUnitSide({side=\"Canada\", Name=unitsToChange[i], newside=\"United States\"}); \r\na = ScenEdit_GetUnit({name =unitsToChange[i]})\r\nprint(a.name..',' ..a.side)\r\nend\r\nend"
+date: 1530465129
