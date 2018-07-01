@@ -5,8 +5,13 @@ var currtitle = "Generic marker";
 
 function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    zoom: 2,
-    center: {lat: 0, lng: 0}
+    zoom: 3,
+    center: {lat: 0, lng: 0},
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.LEFT_CENTER
+          },
   });
 console.log("10");
    google.maps.event.addListener(map, 'click', function(event) {
