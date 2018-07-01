@@ -1,0 +1,5 @@
+_id: 635158f0-7d63-11e8-a81e-6fbf56e435fe
+author: whicker
+notes: Get the name and guid of all hosted units.
+code: "local a = ScenEdit_GetUnit({side=\"Mexico\", unitname='NAS Veracruz'})\r\nlocal allHosted = a.hostedUnits.Aircraft\r\n\r\nfor i = 1, #allHosted do\r\nlocal hosted = ScenEdit_GetUnit({guid=allHosted[i]})\r\nprint(hosted.name.. ' , ' ..hosted.guid)\r\nend"
+date: 1530472645
