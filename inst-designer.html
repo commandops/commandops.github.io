@@ -8,18 +8,18 @@ description: Web based designer for building infrastructure in CMANO.
   <script src="/assets/js/data.json"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script src="/assets/js/impmaker.js"></script>
-
 
 
     <div id="cmano-panel">
         Import name: <input id="mapName" type="text">
         Grouped <input id="grouped" type="checkbox"><br>
+        Filter By: <input id="filterByName" type="text"><span>(delete to clear filter)</span><br>
         <select onChange="javascript:currtitle=dbid.options[ dbid.options.selectedIndex ].text;" id="dbid">
-         <option value="">Select a Unit and Click to Place it on the Map</option></select><br>
+         </select><br>
          <a href="" class="btn btn-sm btn-success" id="export" download="generated.inst">Export</a>
          <span class="chromeRec">Chrome Browser Recommended.</span><span class="clearMap"><input onclick="deleteMarkers();" type=button value="Clear Markers"></span>
      </div>
     <div id="welcome"></div>
     <div id="map-canvas"></div>
+      <script src="/assets/js/impmaker.js"></script>
  

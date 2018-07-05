@@ -139,3 +139,27 @@ $(document).ready(function () {
 });
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+var filterBox = document.getElementById("filterByName");
+filterBox.addEventListener('input', function () { filterResults();}, false);
+
+function filteredNames(wordToMatch) {
+ return Object.keys(db).filter(name => {
+  const regex = new RegExp(wordToMatch, 'gi');
+  return name.match(regex)
+  });
+} 
+
+function filterResults(){
+  filterme = filterBox.value;
+  var theSelectBox = document.getElementById("dbid");
+  theSelectBox.options.length = 0;
+  x = filteredNames(filterme);
+  for (var i in x){
+    theSelectBox.options[theSelectBox.options.length] = new Option(x[i], db[x[i]]);
+    // console.log(x[i] +':' + db[x[i]])
+  }
+
+}
+ 
+
