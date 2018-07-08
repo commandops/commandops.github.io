@@ -11,5 +11,3 @@ By day I run a  small business where I have learned a fair amount about web stuf
 All of the code for this site can be [found on GitHub](https://github.com/commandops/commandops.github.io), if you would like to add anything to this feel free to do a pull request, I'd love to have others contribute. Feel free to fork it and build your own version of this as well - especially if I am no longer maintaining it.
 
 Huge credit to georgehedfors.github.io for making the original web based inst tool - his code was not working (I think the API changed) and no one had heard from him so I figured it would be ok if I copied his code and resurrected it here.
-
- {{ page.date | date_to_long_string: "ordinal" }}
