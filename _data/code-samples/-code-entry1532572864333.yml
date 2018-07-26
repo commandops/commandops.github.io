@@ -1,0 +1,5 @@
+_id: 57002860-907d-11e8-b893-719cb4b450cd
+author: whicker
+notes: Set a units loadout and ready time.
+code: "local unit = ScenEdit_GetUnit({name='FedEx #313'})\r\nScenEdit_SetLoadout({UnitName = unit.name, LoadoutID = 8378, TimeToReady_Minutes = 0})\r\n\r\nScenEdit_AssignUnitToMission(unit.name, \"Ferry 11\")\r\nprint(unit)\r\nprint(unit.readytime)\r\n\r\n-- or use with unitx on a trigger of unit remains in area, this example will take a C-17 that lands and change it to the ferry loadout (8378) and set its ready time to 0 so it will launch immediately - well, 2 minutes.\r\n\r\nScenEdit_SetLoadout({UnitName =UnitX().name, LoadoutID = 8378, TimeToReady_Minutes = 0})\r\nScenEdit_AssignUnitToMission(UnitX().name, \"Ferry 11\")"
+date: 1532572864
