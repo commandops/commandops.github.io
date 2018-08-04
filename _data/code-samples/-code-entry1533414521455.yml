@@ -1,0 +1,5 @@
+_id: f9b8c2c0-9824-11e8-895e-cfa8b3c1d787
+author: whicker
+notes: 'Adding a unit to an escort mission, you just have true - no escort = true'
+code: 'ScenEdit_AssignUnitToMission ("F-15I-1", "Strike-Baghdad", true)'
+date: 1533414521
