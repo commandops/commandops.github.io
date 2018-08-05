@@ -1,0 +1,8 @@
+_id: e3adce10-98f8-11e8-a205-6db85de83174
+author: whicker
+notes: >-
+  Mission status reverser - if the mission is active, make it inactive. If it is
+  inactive, make it active. Use this in an event to turn on and off a mission at
+  a regular time.
+code: "local a = ScenEdit_GetMission('Red','Kobler Patrol')\r\nif a.isactive == false then\r\na.isactive = true\r\nelse \r\na.isactive = false\r\nend"
+date: 1533505537
