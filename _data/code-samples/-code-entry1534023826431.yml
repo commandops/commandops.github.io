@@ -1,0 +1,5 @@
+_id: 9fcf22f0-9daf-11e8-9350-71ecef0235bc
+author: whicker
+notes: Get contents of an existing trigger.
+code: "local a = ScenEdit_SetTrigger({mode=\"list\", name=\"triggername\"})\r\nprint(a)"
+date: 1534023826
