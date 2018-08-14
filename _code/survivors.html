@@ -1,0 +1,528 @@
+---
+---
+--------------------------------------------------------------------------------------------------------------------------------
+-- SAR survivors code, belongs in an action triggered on scen load.
+--------------------------------------------------------------------------------------------------------------------------------
+---Original code by angster http://www.matrixgames.com/forums/tm.asp?m=4358405
+-- modified by TyphoonFr http://www.matrixgames.com/forums/tm.asp?m=4476931&mpage=4&key= and Gunner98------------------------------------
+---All Functions
+--------------------------------------------------------------------------------------------------------------------------------
+---Setup
+local maxSuccessScore = 25
+local maxFailureScore = -35
+local successScore = 1 --amount to increase score if survivor picked up, per survivor
+local failureScore = -3 --amount to decrease score if survivor lost, per survivor
+local lostOverLandDBID = 2441 --must be facility
+local lostOverSeaDBID = 2553  -- must be ship
+local survivorSide = "Survivors" --side for survivors, can't be your own or over water they will pick themselves up - must exist
+local maxPickupSpeed = 11
+local maxPickupAltitude = 101
+local crewSurvivalPercentage = 9 -- between 1 and 9, higher is more likely to survive
+local survivorTimeToRescue = 35 -- amount of time in seconds rescuers must remain in the area to recover each survivor - multiplied by the number of survivors
+--------------------------------------------------------------------------------------------------------------------------------
+-- SAR Target GUID Helpers
+--------------------------------------------------------------------------------------------------------------------------------
+function GetSARTargetsGUID()
+    local pilotString = ScenEdit_GetKeyValue("CONST_SAR_TARGET_GUID")
+    if pilotString == nil then
+        pilotString = ""
+    end
+    return split(pilotString,",")
+end
+
+function AddSARTargetGUID(pilotKey)
+    local pilotString = ScenEdit_GetKeyValue("CONST_SAR_TARGET_GUID")
+    if pilotString == nil then
+        pilotString = pilotKey
+    else
+        pilotString = pilotString..","..pilotKey
+    end
+    ScenEdit_SetKeyValue("CONST_SAR_TARGET_GUID",pilotString)
+end
+
+function RemoveSARTargetGUID(pilotKey)
+    local table = GetSARTargetsGUID()
+    local pilotString = nil
+    for k, v in pairs(table) do
+        if guid ~= v then
+            if pilotString then
+                pilotString = pilotString..","..v
+            else
+                pilotString = v
+            end
+        end
+    end
+    ScenEdit_SetKeyValue("CONST_SAR_TARGET_GUID",pilotString)
+end
+
+function SARTargetGUIDExists(guid)
+    local table = GetSARTargetsGUID()
+    for k, v in pairs(table) do
+        if guid == v then
+            return true
+        end
+    end
+    return false
+end
+
+function GetTargetGUIDCloseToSAR(sarUnit)
+    local pilotsTable = GetSARTargetsGUID()
+    for i,v in pairs(pilotsTable) do
+        -- Check In Area
+        if sarUnit:inArea({v.."-1",v.."-2",v.."-3",v.."-4"}) then
+            return v
+        end
+    end
+    return ""
+end
+
+--------------------------------------------------------------------------------------------------------------------------------
+-- Helper
+--------------------------------------------------------------------------------------------------------------------------------
+function split(s, sep)
+    local fields = {}
+    local sep = sep or " "
+    local pattern = string.format("([^%s]+)", sep)
+    string.gsub(s, pattern, function(c) fields[#fields + 1] = c end)
+    return fields
+end
+
+-- Time helper
+function timeFromNowDotNetTime(addSeconds)
+    local time = ScenEdit_CurrentTime()
+    local offSet = 62135596801 --number of seconds from 01-01-0001 to 01-01-1970
+    local newTime = (time + offSet + addSeconds)*10000000
+    local timeToUse = string.format("%18.0f",newTime)
+    return timeToUse
+end
+
+--------------------------------------------------------------------------------------------------------------------------------
+--Score Helper Functions
+--------------------------------------------------------------------------------------------------------------------------------
+function AddScoreToSide(side,score,reason)   
+    local currentScore = ScenEdit_GetScore(side)   
+    currentScore = currentScore + score   
+    ScenEdit_SetScore(side,currentScore,reason)
+end
+
+--------------------------------------------------------------------------------------------------------------------------------
+-- Create Survivor From Trigger Unit
+--------------------------------------------------------------------------------------------------------------------------------
+function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
+    
+    if triggerUnit and not SARTargetGUIDExists(triggerUnit.guid) then
+        print("------create survivors-----")
+        print("Subtype: "..triggerUnit.subtype)
+        if triggerUnit.subtype == '8201' or triggerUnit.subtype == '8202' then --check if it is uav, if so quit, may be more subtypes for uav that need to be added here
+            return
+        end
+        math.randomseed(os.time())
+        --are there survivors?
+        local didAnyoneSurvive = math.random(1,10)
+            if didAnyoneSurvive > crewSurvivalPercentage then--they did not survive, exit
+                  print("no Survivors, percent chance did not work out " ..didAnyoneSurvive)
+                  return
+                   end 
+
+        -- Add Unit, check if over water or land
+        local elevation = World_GetElevation({latitude= triggerUnit.latitude+ 0.001, longitude=triggerUnit.longitude+ 0.001}) --survivor will be offset slightly to avoid blast damage      
+        local unitLostDBID = lostOverSeaDBID --default is lost over sea
+        local unitType = "Ship"
+        if elevation > -1 then 
+        	unitLostDBID = lostOverLandDBID
+        	unitType = "Facility"
+        end
+
+        local numberWhoSurvived = 1
+        local timeToRescue = survivorTimeToRescue
+        local timeToRescueMinutes =  math.ceil((numberWhoSurvived * survivorTimeToRescue)/ 60)
+        if passengers then
+            if passengers == 0 then --if 0 is passed in as the crew count then quit
+                return
+            end
+            print("Passengers: " ..passengers)
+            numberWhoSurvived = math.floor(passengers * (didAnyoneSurvive/10))
+            if numberWhoSurvived < 1 then
+                numberWhoSurvived = 1
+            end
+            print("Survivors "..numberWhoSurvived)
+            timeToRescue  = numberWhoSurvived * survivorTimeToRescue
+            print("Time needed to rescue: "..timeToRescue)
+            timeToRescueMinutes = math.ceil(timeToRescue/ 60)
+            end
+            print(unitType.." "..numberWhoSurvived.." Survivor(s) of "..triggerUnit.name.." dbid: "..unitLostDBID)
+        local downedPilot = ScenEdit_AddUnit({type=unitType, name =numberWhoSurvived.." Survivor(s) of "..triggerUnit.name, side = survivorSide, DBID = unitLostDBID, Latitude=triggerUnit.latitude  + 0.001, Longitude=triggerUnit.longitude + 0.001})
+        print("guid of survivor unit: "..downedPilot.guid)    
+        -- Set Attributes
+        downedPilot.manualSpeed  = 0
+        
+        -- Check Downed Pilot Is Created
+        if downedPilot then
+            -- Create Reference Points Box
+            local referencePointOne = ScenEdit_AddReferencePoint( {side = survivorSide, name = downedPilot.guid.."-1",lat = triggerUnit.latitude - 0.02, lon = triggerUnit.longitude - 0.02, clear=true})
+            local referencePointTwo = ScenEdit_AddReferencePoint( {side = survivorSide, name = downedPilot.guid.."-2",lat = triggerUnit.latitude + 0.02, lon = triggerUnit.longitude - 0.02, clear=true})
+            local referencePointThree = ScenEdit_AddReferencePoint( {side = survivorSide, name = downedPilot.guid.."-3",lat = triggerUnit.latitude + 0.02, lon = triggerUnit.longitude + 0.02, clear=true})
+            local referencePointFour = ScenEdit_AddReferencePoint( {side = survivorSide, name = downedPilot.guid.."-4",lat = triggerUnit.latitude - 0.02, lon = triggerUnit.longitude + 0.02, clear=true})
+
+            -- create triggers, probably could do it with one trigger for any type of unit but targettype =0 doesn't work
+            -- Create Trigger With Reference Points for Aircraft
+            local addedTrigger = ScenEdit_SetTrigger({mode="add",type='UnitRemainsInArea',name="air-"..downedPilot.guid, targetfilter={TargetType = '1' , TargetSide=triggerUnit.side},area={referencePointOne.name,referencePointTwo.name,referencePointThree.name,referencePointFour.name},TD=timeToRescue})
+
+            -- Create Trigger With Reference Points for Ship
+            local addedTrigger = ScenEdit_SetTrigger({mode="add",type='UnitRemainsInArea',name="ship-"..downedPilot.guid, targetfilter={TargetType = '2' , TargetSide=triggerUnit.side},area={referencePointOne.name,referencePointTwo.name,referencePointThree.name,referencePointFour.name},TD=timeToRescue})
+
+            -- Create Trigger With Reference Points for Subs
+            local addedTrigger = ScenEdit_SetTrigger({mode="add",type='UnitRemainsInArea',name="sub-"..downedPilot.guid, targetfilter={TargetType = '3' , TargetSide=triggerUnit.side},area={referencePointOne.name,referencePointTwo.name,referencePointThree.name,referencePointFour.name},TD=timeToRescue})
+
+             -- Create Trigger With Reference Points for Ground Units
+            local addedTrigger = ScenEdit_SetTrigger({mode="add",type='UnitRemainsInArea',name="ground-"..downedPilot.guid, 
+            targetfilter={TargetType = '4' , TargetSide=triggerUnit.side},area={referencePointOne.name,referencePointTwo.name,referencePointThree.name,referencePointFour.name},TD=timeToRescue})
+                      
+            -- Add GUID
+            AddSARTargetGUID(downedPilot.guid)
+
+            -- Set Trigger To SAR Mission
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="add", name="air-"..downedPilot.guid})
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="add", name="ship-"..downedPilot.guid})
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="add", name="sub-"..downedPilot.guid})
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="add", name="ground-"..downedPilot.guid})
+
+
+            -- Create Event For Destruction
+            ScenEdit_SetEvent("Event - Cancel Pilot"..downedPilot.guid, {mode="add",IsRepeatable=0})
+            local cancelEvent = ScenEdit_GetEvent("Event - Cancel Pilot"..downedPilot.guid)
+            SetLongKeyValuePairs(cancelEvent.guid,downedPilot.guid)
+
+            local timeToLive =  math.random(1800,108000) --time to live in seconds
+                if  timeToLive > 50000 then --if it is over 50k then try it again, just trying to give greater chance of it being lower
+                     timeToLive =  math.random(1800,108000)
+                 end
+            local timeToLiveMessage = "Surviving crew members are in fair condition, likely to survive for several hours."
+                if timeToLive < 7200 then
+                    timeToLiveMessage = "Surviving crew members are in poor condition, immediate evacuation required!"
+                elseif timeToLive > 36000 then
+                    timeToLiveMessage = "Surviving crew members are in good condition, likely to survive for at least 10 hours."  
+                end
+            print("Time they will survive in seconds: "..timeToLive)    
+            local randInterval = timeFromNowDotNetTime(timeToLive)
+            -- Add Create Trigger
+            local addedTrigger = ScenEdit_SetTrigger({mode="add", type="Time", name="Trigger - Cancel Pilot"..downedPilot.guid, Time= randInterval})
+
+            -- Add Create Action
+            ScenEdit_SetAction({mode="add", type="LuaScript", name="Action - Cancel Pilot"..downedPilot.guid, scriptText="StartSARFailedTargetPickup(ScenEdit_EventX())"})
+
+            -- Set Triggers And Actions
+            ScenEdit_SetEventTrigger("Event - Cancel Pilot"..downedPilot.guid, {mode="add", name="Trigger - Cancel Pilot"..downedPilot.guid})
+            ScenEdit_SetEventAction("Event - Cancel Pilot"..downedPilot.guid, {mode="add", name="Action - Cancel Pilot"..downedPilot.guid})
+			
+			-- Message Pilot Ejected
+            ScenEdit_SpecialMessage(ScenEdit_PlayerSide(),triggerUnit.name.." has been destroyed but there are survivors!<br><br>Number of Survivors: "..numberWhoSurvived.."<br><br>"..timeToLiveMessage..
+                "<br><br>In order to rescue them you will need to move a unit (sub, ship, AC or ground unit) to their location and remain on site for "..timeToRescueMinutes.." minutes, at an altitude of less than "..maxPickupAltitude.." feet and a speed of less that " ..maxPickupSpeed.." kts. Submarines will need to be on the surface in order to perform a rescue.")
+        print("------end create survivors-----")
+		end
+    end
+end
+
+--------------------------------------------------------------------------------------------------------------------------------
+-- Start SAR Target Pickup
+--------------------------------------------------------------------------------------------------------------------------------
+function StartSARTargetPickup(triggerUnit)
+    local elevation = World_GetElevation({latitude= triggerUnit.latitude, longitude=triggerUnit.longitude}) 
+    if elevation < 0 then 
+        elevation = 0
+        end
+    local altitudeAGL = triggerUnit.altitude - elevation 
+    
+    if triggerUnit and triggerUnit.speed < maxPickupSpeed and altitudeAGL < maxPickupAltitude then
+    --print(maxPickupAltitude)
+    -- print("triggerunit alt: " ..triggerUnit.altitude)
+        -- Get Triggered Areas
+        local triggeredAreas = triggerUnit.areaTriggersFired
+        local triggeredGUID = ""
+
+        -- Get Trigger GUID
+        for k, v in pairs(triggeredAreas) do
+            triggeredGUID = v
+        end
+
+        -- Find Pilot
+        local keyGUID = GetTargetGUIDCloseToSAR(triggerUnit)
+        local unit = ScenEdit_GetUnit({guid=keyGUID})
+
+        -- Scoring
+        if unit then
+            -- Add Score
+            local s = string.gmatch(unit.name, "[^ ]+") -- get first part of name which is the number of survivors
+            local totalSuccessScore = successScore *  s()  --calculate total score
+            print("Total calculated score for " ..unit.name..": " ..totalSuccessScore)
+                if  totalSuccessScore > maxSuccessScore then  totalSuccessScore = maxSuccessScore end -- check to see if score is outside max limits        
+            AddScoreToSide(ScenEdit_PlayerSide(),totalSuccessScore ,"Pilot Saved- "..unit.name.." safely on board of "..triggerUnit.name)
+            print("Total score used (max/min checked): " ..totalSuccessScore)
+            -- Message Pilot Saved
+            ScenEdit_SpecialMessage(ScenEdit_PlayerSide (),unit.name.." safely on board of "..triggerUnit.name..".")
+
+            -- Remove Pilot Unit
+            ScenEdit_DeleteUnit({side=triggerUnit.side, guid=keyGUID})
+
+            -- Remove All Triggers From Events
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="air-"..keyGUID})
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="ship-"..keyGUID})
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="sub-"..keyGUID})
+            ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="ground-"..keyGUID})
+            ScenEdit_SetEventTrigger("Event - Cancel Pilot"..keyGUID, {mode="remove", name="Trigger - Cancel Pilot"..keyGUID})
+
+            -- Remove All Actions From Events
+            ScenEdit_SetEventAction("Event - Cancel Pilot"..keyGUID, {mode="remove", name="Action - Cancel Pilot"..keyGUID})
+
+            -- Remove Actual Trigger
+            ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="air-"..keyGUID})
+            ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="ship-"..keyGUID})
+            ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="sub-"..keyGUID})
+            ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="ground-"..keyGUID})
+            ScenEdit_SetTrigger({mode="remove",type="RegularTime",name="Trigger - Cancel Pilot"..keyGUID})
+
+            -- Remove Actual Action
+            ScenEdit_SetAction({mode="remove", name="Action - Cancel Pilot"..keyGUID})
+
+            -- Remove Actual Event 
+             ScenEdit_SetEvent("Event - Cancel Pilot"..keyGUID, {mode="remove"})
+
+            -- Remove GUID
+            RemoveSARTargetGUID(keyGUID)
+
+            -- Remove All Reference Points
+            ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-1"})
+            ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-2"})
+            ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-3"})
+            ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-4"})
+        end
+    end
+end
+
+--------------------------------------------------------------------------------------------------------------------------------
+-- Start SAR Failed Target Pickup
+--------------------------------------------------------------------------------------------------------------------------------
+function StartSARFailedTargetPickup(triggerEvent)
+    -- Triggered Id
+    local keyGUID = GetLongKeyValuePairs(triggerEvent.guid)
+    local unit = ScenEdit_GetUnit({guid=keyGUID})
+
+    -- Scoring
+    if unit then
+        -- Add Score
+        local s = string.gmatch(unit.name, "[^ ]+") -- get first part of name which is the number of survivors
+        local totalSuccessScore = failureScore *  s()  --calculate total score
+        print("Total calculated score for " ..unit.name..": " ..totalSuccessScore)
+        if  totalSuccessScore < maxFailureScore then  totalSuccessScore = maxFailureScore end
+         print("Total score used (max/min checked): " ..totalSuccessScore)
+        AddScoreToSide(ScenEdit_PlayerSide(),totalSuccessScore,"Survivor Lost-"..unit.name)
+        -- Remove Pilot Unit
+        ScenEdit_DeleteUnit({side=survivorSide , guid=keyGUID})
+        -- Message Lost Pilot
+        ScenEdit_SpecialMessage(ScenEdit_PlayerSide (),"Sorry, we lost contact with "..unit.name)
+    end
+
+    -- Remove All Triggers From Events
+    ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="air-"..keyGUID})
+    ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="ship-"..keyGUID})
+    ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="sub-"..keyGUID})
+    ScenEdit_SetEventTrigger("Event - Start SAR Target Pickup", {mode="remove", name="ground-"..keyGUID})
+    ScenEdit_SetEventTrigger("Event - Cancel Pilot"..keyGUID, {mode="remove", name="Trigger - Cancel Pilot"..keyGUID})
+
+    -- Remove All Actions From Events
+    ScenEdit_SetEventAction("Event - Cancel Pilot"..keyGUID, {mode="remove", name="Action - Cancel Pilot"..keyGUID})
+
+    -- Remove Actual Trigger
+    ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="air-"..keyGUID})
+    ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="ship-"..keyGUID})
+    ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="sub-"..keyGUID})
+    ScenEdit_SetTrigger({mode="remove",type="UnitRemainsInArea",name="ground-"..keyGUID})
+    ScenEdit_SetTrigger({mode="remove",type="RegularTime",name="Trigger - Cancel Pilot"..keyGUID})
+
+    -- Remove Actual Action
+    ScenEdit_SetAction({mode="remove", name="Action - Cancel Pilot"..keyGUID})
+
+    -- Remove Actual Event --
+    ScenEdit_SetEvent("Event - Cancel Pilot"..keyGUID, {mode="remove"}) 
+
+    -- Remove GUID
+    RemoveSARTargetGUID(keyGUID)
+    RemoveLongKeyValuePairs(triggerEvent.guid)
+
+    -- Remove All Reference Points
+    ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-1"})
+    ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-2"})
+    ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-3"})
+    ScenEdit_DeleteReferencePoint({side=survivorSide,name=keyGUID.."-4"})
+end
+
+--------------------------------------------------------------------------------------------------------------------------------
+-- Save Pair Values (Long Keys Cause Errors)
+--------------------------------------------------------------------------------------------------------------------------------
+function GetLongKeyValuePairs(key)
+    -- Local Values
+    local keyValueString = ScenEdit_GetKeyValue("CONST_LONG_KEY_VALUE")
+
+    -- Check Key Value
+    if keyValueString == nil then
+        return ""
+    end
+
+    -- Split 
+    local table = split(keyValueString,",")    
+    for a, b in pairs(table) do
+        -- Split Some More
+        local subTable = split(b,"|")
+        if #subTable == 2 then
+            if subTable[1] == key then
+                return subTable[2]
+            end
+        end
+    end
+end
+
+function SetLongKeyValuePairs(key,value)
+    -- Local Values
+    local keyValueString = ScenEdit_GetKeyValue("CONST_LONG_KEY_VALUE")
+
+    -- Check Key Value
+    if keyValueString == nil then
+        keyValueString = key.."-"..value
+    else
+        keyValueString = keyValueString..","..key.."|"..value
+    end
+
+    -- Adding To Key Value
+    ScenEdit_SetKeyValue("CONST_LONG_KEY_VALUE",keyValueString)
+end
+
+function RemoveLongKeyValuePairs(key)
+    -- Local Values
+    local keyValueString = ScenEdit_GetKeyValue("CONST_LONG_KEY_VALUE")
+    local newKeyValueString = ""
+
+    -- Check Key Value
+    if keyValueString == nil then
+        return ""
+    end
+
+    -- Split 
+    local table = split(keyValueString,",")    
+    for a, b in pairs(table) do
+        -- Split Some More
+        local subTable = split(b,"|")
+        if #subTable == 2 then
+            if subTable[1] ~= key then
+                if newKeyValueString ~= "" then
+                    newKeyValueString = newKeyValueString..","..b
+                else
+                    newKeyValueString = b
+                end
+            end
+        end
+    end
+
+    -- Save To Key Value
+    ScenEdit_SetKeyValue("CONST_LONG_KEY_VALUE",newKeyValueString)
+end
+
+--------------------------------------------------------------------------------------------------------------------------------
+-- michaelm75au's OOB script http://www.matrixgames.com/forums/tm.asp?m=4233608
+-- slightly modified to display subtype, used to get subtype of units to set individual crew counts
+-- run GetOOBWithSubType() in the lua console
+--------------------------------------------------------------------------------------------------------------------------------
+function GetOOBWithSubType()
+    local s = VP_GetSide({name=ScenEdit_PlayerSide()}) 
+    local function split(str, pat) 
+        local t = {} 
+        local fpat = "(.-)" .. pat 
+        local last_end = 1 
+        local s, e, cap = str:find(fpat, 1) 
+        while s do 
+            if s ~= 1 or cap ~= "" then 
+                table.insert(t,cap) 
+            end 
+            last_end = e+1 
+            s, e, cap = str:find(fpat, last_end) 
+        end 
+        if last_end <= #str then 
+        cap = str:sub(last_end) 
+        table.insert(t, cap) 
+    end 
+    return t 
+end 
+local function sortName(a,b) 
+    return(ScenEdit_GetUnit({guid=a}).name<ScenEdit_GetUnit({guid=b}).name) 
+end 
+local function orderedPairs(t,f) 
+    local array = {} 
+    for n in pairs(t) do array[#array +1] = n end 
+    table.sort(array,f) 
+    local index = 0 
+    return function () 
+    index = index + 1 
+    return array[index],t[array[index]] 
+end 
+end 
+-- main logic 
+local base = {} 
+for k,v in pairs(s.units) 
+    do 
+    local unit = ScenEdit_GetUnit({guid=v.guid}) 
+    if unit.base ~= nil then 
+        local b = unit.base 
+        if b.group ~= nil then 
+-- has a parent group; use it rather than the group members 
+if base[b.group.guid] == nil and b.group.guid ~= v.guid then 
+    base[b.group.guid] = v.guid 
+    elseif b.group.guid ~= v.guid then 
+        base[b.group.guid] = base[b.group.guid] .. ',' .. v.guid 
+    end 
+    elseif base[b.guid] == nil and b.guid ~= v.guid then 
+        base[b.guid] = v.guid 
+        elseif b.guid ~= v.guid then 
+            base[b.guid] = base[b.guid] .. ',' .. v.guid 
+        end 
+        elseif unit.group ~= nil then 
+            local b = unit.group 
+            if base[b.guid] == nil and b.guid ~= v.guid then 
+                base[b.guid] = v.guid 
+                elseif b.guid ~= v.guid then 
+                    base[b.guid] = base[b.guid] .. ',' .. v.guid 
+                end 
+            else 
+-- units not based somewhere 
+if base['xindependent'] == nil then 
+base['xindependent'] = v.guid 
+else 
+    base['xindependent'] = base['xindependent'] .. ',' .. v.guid 
+end 
+end 
+end 
+local k,v 
+for k,v in orderedPairs(base) 
+    do 
+    print('\n') 
+    if k == 'xindependent' then 
+    print('Un-based units'); 
+else    
+    print('Base: ' .. ScenEdit_GetUnit({guid=k}).name); 
+end 
+local k1,v1 
+local t = split(v,',') 
+if t ~= nil then 
+-- group like names together 
+table.sort(t, sortName) 
+for k1,v1 in pairs(t) 
+    do 
+    if v1 == k then next(t) end 
+    local unit = ScenEdit_GetUnit({guid=v1}) 
+    if unit.condition ~= nil then 
+        print(string.format(" %s (%s)",unit.name, unit.subtype)); 
+    else 
+        print(string.format(" %s ",unit.name, unit.subtype)); 
+    end 
+end 
+end 
+end 
+end

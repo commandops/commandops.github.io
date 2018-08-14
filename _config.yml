@@ -5,6 +5,9 @@ description: Private project for the game Command Moderan Air Naval Operations (
 # baseurl is used if you are using github pages for a project page - this is the project/repo name, always starts with a /
 baseurl: 
 
+collections:
+  code:
+    output: true
 
 permalink: pretty
 exclude: ["Gemfile.lock","Gemfile","package.json","rakefile.rb","README.md","s3_website.yml","node_modules","gulpfile.js"]
