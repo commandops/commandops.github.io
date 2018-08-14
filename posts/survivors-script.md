@@ -6,6 +6,21 @@ layout: default
 
 I got a little carried away with a downed pilot script made by Angster (and modified by TyphoonFr/Gunner98). I added a bunch of configuration options, and made it so any type of unit can rescue a survivor.
 
+Major changes: 
+
+- survivor instead of pilot as any unit can have a survivor (ships or AC, probably ground units but that is not tested) 
+- configurable number of survivors based on unit subtype (set in event action) 
+- configurable max speed and altitude for pickup - ie rescue unit must be below 100 ft and 10 kts (subs must be surfaced) 
+- configurable success and failure scores, which are multiplied by number of survivors
+- configurable max success/failure scores
+- survivor unit is a life raft if over water, ground unit if on ground (actual dbids are configurable, beware the type). All survivors of a given unit are represented by that one unit 
+- survivor unit is set to a configurable neutral side - which must exist (needed to allow pickup by different types of units) 
+- configurable time it takes to rescue each survivor. 
+- configurable crew survival percent for multi crew units. Can be used in tandem with the trigger firing percentage likelihood 
+- enhanced survivor message 
+- survivor time to live is set to a random time between 30 minutes and 30 hours. Hard coded but could be made more easily configurable 
+
+
 For it to work you need the following:
 
 - an Event to load the main script
