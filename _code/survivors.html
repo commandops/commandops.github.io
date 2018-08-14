@@ -518,9 +518,9 @@ for k1,v1 in pairs(t)
     if v1 == k then next(t) end 
     local unit = ScenEdit_GetUnit({guid=v1}) 
     if unit.condition ~= nil then 
-        print(string.format(" %s (%s)",unit.name, unit.subtype)); 
+          print(string.format(" %s %s (%s)",unit.name, unit.classname, unit.subtype)); 
     else 
-        print(string.format(" %s ",unit.name, unit.subtype)); 
+        print(string.format(" %s ",unit.name, unit.classname, unit.subtype)); 
     end 
 end 
 end 
