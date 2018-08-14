@@ -64,7 +64,7 @@ Nothing has really changed, any AC destroyed will have a potential survivor coun
 
 Now we can start specifying which particular units have a crew that is not 1. The easiest way I have found to do this is to use a units subtype to categorize things. I think subtypes are the same thing as what is in the Unit Lost Trigger under the actual type of say Aircraft... so a subtype is like MPA or AEW or Bomber - so you can get a bunch of units without needing to do anything complicated. So lets say that an AEW unit like an AWACs plane has 0 potential survivors. To do that you need the subtype number for AEW which is 4002. I haven't found an easy way to know what the subtype numbers are so there is a function in the main script that will print out all the units on your side (OOB) with their subtype. You can do this by running `GetOOBWithSubType()` in the lua console.
 
-using lua we can check if the unit that was destroyed - UnitX() has a subtype = '4002' and if it does we'll change the value of out crew variable to 0:  
+Using lua we can check if the unit that was destroyed - UnitX() has a subtype = '4002' and if it does we'll change the value of out crew variable to 0:  
 ```
 local crew = 1 --default
 if 
@@ -120,7 +120,7 @@ The SAR Action is what happens when a unit attempts to rescue a survivor. The tr
 
 ### The Main Script
 
-- Create an Even named Load Scripts, set to repeat.
+- Create an Event named Load Scripts, set to repeat.
 - Use a Trigger of Scenario Loaded (you already have one from one of the above Events)
 - Create an Action called Load Scripts or whatever you like set to lua
 
