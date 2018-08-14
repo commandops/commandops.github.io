@@ -77,22 +77,27 @@ ScenEdit_UnitX().subtype == '4002' then crew = 0 --AEW has no chance of survivor
 end
 ```
 
-We can keep doing this and even chain things with an Or statement if some unit subtypes have the same number of potential survivors:  
+We can keep doing this and even chain things with an Or statement if some unit subtypes have the same number of potential survivors. You can also use unit.classname to clarify even more, as well as use And statements:  
 
 ```
 ---Create Survivor
 local crew = 1 --default
 if 
-ScenEdit_UnitX().subtype == '6001' then crew = 3 --sh60?
+ScenEdit_UnitX().subtype == '6001' or ScenEdit_UnitX().subtype == '8001'  then crew = 3  --sh60 or kc135
 elseif 
  ScenEdit_UnitX().subtype == '6002'  or ScenEdit_UnitX().subtype == '3101'  then crew = 12 --mpa or bomber?
 elseif 
-ScenEdit_UnitX().subtype == '7101' then crew = 75 --C-5 Galaxy
+ScenEdit_UnitX().subtype == '7101' and ScenEdit_UnitX().classname ~= 'C-17A Globemaster III SOLL' then crew = 7 --transport but not c-17s
 elseif 
+ScenEdit_UnitX().classname == 'C-17A Globemaster III SOLL' then crew = 26 --transport c-17s 7101 conflicts with mv-22 and ch53
+elseif
 ScenEdit_UnitX().subtype == '3106' then crew = 350 --CG
 elseif 
-ScenEdit_UnitX().subtype == '4002' then crew = 0 -- E3 Sentry testing 0 crew, should be no survivors
+ScenEdit_UnitX().subtype == '3203' then crew = 150 --DDG
+elseif 
+ScenEdit_UnitX().subtype == '4002' or ScenEdit_UnitX().subtype == '7002'  then crew = 12 -- E3 Sentry Jstars
 end
+
 CreateDownedPilotFromTriggerUnit(ScenEdit_UnitX(),crew)
 ```
 
