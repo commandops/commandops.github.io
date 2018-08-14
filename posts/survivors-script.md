@@ -4,7 +4,11 @@ description: Somewhat complicated script to create survivors when a unit such as
 layout: default
 ---
 
+Last Updated: August 14, 2018
+
 I got a little carried away with a downed pilot script made by Angster (and modified by TyphoonFr/Gunner98). I added a bunch of configuration options, and made it so any type of unit can rescue a survivor.
+
+Example Scenario with units ready to be destroyed: [Survivors Scenario](/assets/scens/search-and-rescue22.scen) (if it opens as a text file, just save it without the .txt extension in your scen folder)
 
 Major changes: 
 
@@ -128,12 +132,30 @@ The top of the main script has a bunch of configurable options. For the most par
 
 Below is the main script code, put this in the lua for the Action.
 
-
+<button onclick="copyFunction()">Copy Code to Clipboard</button>
 {% for item in site.code %}
 {% if item.title == "Survivors" %}
-<pre>
+<pre id="sarCode">
  {{item.content}}
 </pre>
 {% endif %}
 {% endfor %}
  
+ <script>
+ 	function destroyTextArea(){
+  	document.getElementById("hideTA").outerHTML='';
+  }
+ 	function copyFunction() {
+  const copyText = document.getElementById("sarCode").textContent;
+  const textArea = document.createElement('textarea');
+  textArea.id = 'hideTA';
+  textArea.textContent = copyText;
+  document.body.append(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  destroyTextArea()
+  
+}
+
+
+</script>
