@@ -27,6 +27,7 @@ Major changes:
 
 For it to work you need the following:
 
+- A side named Survivors should be neutral to enemy, friendly to player side. Name is configurable.
 - an Event to load the main script
 	- Trigger is scen loaded
 	- Action is lua with the main script
