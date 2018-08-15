@@ -116,6 +116,10 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
         if triggerUnit.subtype == '8201' or triggerUnit.subtype == '8202' then --check if it is uav, if so quit, may be more subtypes for uav that need to be added here
             return
         end
+	print("unit.condition = "..triggerUnit.condition)
+	if triggerUnit.condition ~= 'Underway' and triggerUnit.condition ~='Airborne' then -- AC is on ground or ship is in port?
+		return 
+	end
         math.randomseed(os.time())
         --are there survivors?
         local didAnyoneSurvive = math.random(1,10)
