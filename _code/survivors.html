@@ -110,15 +110,15 @@ end
 --------------------------------------------------------------------------------------------------------------------------------
 function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
     
-    if triggerUnit and not SARTargetGUIDExists(triggerUnit.guid) then
+     if triggerUnit and not SARTargetGUIDExists(triggerUnit.guid) then
         print("------create survivors-----")
         print("Subtype: "..triggerUnit.subtype)
+        print("unit.condition: "..triggerUnit.condition)
         if triggerUnit.subtype == '8201' or triggerUnit.subtype == '8202' then --check if it is uav, if so quit, may be more subtypes for uav that need to be added here
             return
         end
-	print("unit.condition = "..triggerUnit.condition)
-	if triggerUnit.condition ~= 'Underway' and triggerUnit.condition ~='Airborne' then -- AC is on ground or ship is in port?
-		return 
+       if triggerUnit.condition ~= 'Underway' and triggerUnit.condition ~='Airborne' and triggerUnit.condition ~='Manoeuvering to refuel'  and triggerUnit.condition ~='Refuelling'  then 
+		return  -- AC is on ground or ship is in port?
 	end
         math.randomseed(os.time())
         --are there survivors?
