@@ -1,5 +1,3 @@
----
----
 --------------------------------------------------------------------------------------------------------------------------------
 -- SAR survivors code, belongs in an action triggered on scen load.
 --------------------------------------------------------------------------------------------------------------------------------
@@ -117,7 +115,7 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
         if triggerUnit.subtype == '8201' or triggerUnit.subtype == '8202' then --check if it is uav, if so quit, may be more subtypes for uav that need to be added here
             return
         end
-       if triggerUnit.condition ~= 'Underway' and triggerUnit.condition ~='Airborne' and triggerUnit.condition ~='Manoeuvering to refuel'  and triggerUnit.condition ~='Refuelling'  then 
+       if triggerUnit.condition ~= 'Underway' and triggerUnit.condition ~='Airborne' and triggerUnit.condition ~='Manoeuvering to refuel' and triggerUnit.condition ~='On final approach' then 
 		return  -- AC is on ground or ship is in port?
 	end
         math.randomseed(os.time())

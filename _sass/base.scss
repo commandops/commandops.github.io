@@ -168,8 +168,8 @@ body {
 [tabindex="-1"]:focus {
   outline: none !important; }
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: .5rem; }
+  margin-top: 2rem;
+  margin-bottom: 1rem; }
 p {
   margin-top: 0;
   margin-bottom: 1rem; }
@@ -273,7 +273,7 @@ legend {
   display: none !important; }
 h1, h2, h3, h4, h5, h6,{
   font-family: $heading-font-family;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   font-weight: normal;
   line-height: 1.1;
   color: $heading-default-color; }

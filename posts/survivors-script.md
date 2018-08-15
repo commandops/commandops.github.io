@@ -4,11 +4,11 @@ description: Somewhat complicated script to create survivors when a unit such as
 layout: default
 ---
 
-Last Updated: August 14, 2018
+Last Updated: August 15, 2018
 
 I got a little carried away with a downed pilot script made by Angster (and modified by TyphoonFr/Gunner98). I added a bunch of configuration options, and made it so any type of unit can rescue a survivor.
 
-Example Scenario with units ready to be destroyed: [Survivors Scenario](/assets/scens/search-and-rescue22.scen) (if it opens as a text file, just save it without the .txt extension in your scen folder)
+Example Scenario with units ready to be destroyed: [Survivors Scenario](/assets/scens/search-and-rescue23.scen) (if it opens as a text file, just save it without the .txt extension in your scen folder)
 
 Major changes: 
 
@@ -138,30 +138,16 @@ The top of the main script has a bunch of configurable options. For the most par
 
 Below is the main script code, put this in the lua for the Action.
 
-<button onclick="copyFunction()">Copy Code to Clipboard</button>
-{% for item in site.code %}
-{% if item.title == "Survivors" %}
-<pre id="sarCode">
- {{item.content}}
-</pre>
-{% endif %}
-{% endfor %}
- 
- <script>
- 	function destroyTextArea(){
-  	document.getElementById("hideTA").outerHTML='';
-  }
- 	function copyFunction() {
-  const copyText = document.getElementById("sarCode").textContent;
-  const textArea = document.createElement('textarea');
-  textArea.id = 'hideTA';
-  textArea.textContent = copyText;
-  document.body.append(textArea);
-  textArea.select();
-  document.execCommand("copy");
-  destroyTextArea()
-  
-}
+<embed style="background-color: #f6f6f6;" width="100%" height="800px" src="/code/survivors.txt">
+
+### Additional Notes
+
+The script should only create survivors if an AC is airborne, or a ship is at sea/underway. That is done by checking the unit.condition, but there could be other conditions that could have survivors, I just don't have any way to know what they are. Some that I have seen are Docked (ships), Refueling, Manoeuvering to refuel, On final approach and Parked. There may be something like 'Changing Course' that is normal while Airborne/Underway.
+
+UAVs should not trigger survivors, but that depends on them being subtype 8201 or 8202. There may be other subtypes for UAVs.
+
+I've thought of extending this script to handle the unit destroyed scoring... say an AC with 10 potential survivors is shot down, if there are 0 survivors the score could be -25. If there are 10 survivors the score could be -15, then the rescued survivor score could be 0 but the failed rescue could be -10. Seems a little too involved, but could be fairly easily done I think.	
+
+As for unit destroyed scoring, the way this script handles the potential crew/passengers - all in one action - could also work for unit destroyed scoring. Why have 10 different actions/triggers/events to handle 10 different types of units when  they could all be in the same Event set? all you need is the lua with the if/elseif statements and the unit types or names. Seems a lot easier and more robust. 
 
 
-</script>
