@@ -6,6 +6,8 @@ layout: default
 
 Last Updated: August 15, 2018
 
+Status: still in testing but looking good, no known issues
+
 I got a little carried away with a downed pilot script made by Angster (and modified by TyphoonFr/Gunner98). I added a bunch of configuration options, and made it so any type of unit can rescue a survivor.
 
 Example Scenario with units ready to be destroyed: [Survivors Scenario](/assets/scens/search-and-rescue23.scen) (if it opens as a text file, just save it without the .txt extension in your scen folder)
@@ -142,7 +144,7 @@ Below is the main script code, put this in the lua for the Action.
 
 ### Additional Notes
 
-The script should only create survivors if an AC is airborne, or a ship is at sea/underway. That is done by checking the unit.condition, but there could be other conditions that could have survivors, I just don't have any way to know what they are. Some that I have seen are Docked (ships), Refueling, Manoeuvering to refuel, On final approach and Parked. There may be something like 'Changing Course' that is normal while Airborne/Underway.
+The script should only create survivors if an AC is airborne, or a ship is at sea/underway. That is done for ships by checking if the unit.condition is docked - which would be a ship in port, or for AC it is done by checking the world elevation and comparing that to the units altitude - if the difference is less than 5 then there are no survivors - most likely it is parked on the ground.
 
 UAVs should not trigger survivors, but that depends on them being subtype 8201 or 8202. There may be other subtypes for UAVs.
 

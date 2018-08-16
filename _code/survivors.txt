@@ -109,16 +109,20 @@ end
 function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
     
      if triggerUnit and not SARTargetGUIDExists(triggerUnit.guid) then
-        print("------create survivors-----")
+        print("------attempting to create survivors-----")
         print("Subtype: "..triggerUnit.subtype)
         print("unit.condition: "..triggerUnit.condition)
+        local worldElevation = World_GetElevation({latitude= triggerUnit.latitude, longitude=triggerUnit.longitude})
+        if triggerUnit.type == "Aircraft" and (triggerUnit.altitude - worldElevation) < 5 then --check f AC is on the ground
+            return
+        end
         if triggerUnit.subtype == '8201' or triggerUnit.subtype == '8202' then --check if it is uav, if so quit, may be more subtypes for uav that need to be added here
             return
         end
-       if triggerUnit.condition ~= 'Underway' and triggerUnit.condition ~='Airborne' and triggerUnit.condition ~='Manoeuvering to refuel' and triggerUnit.condition ~='On final approach' then 
-		return  -- AC is on ground or ship is in port?
-	end
-        math.randomseed(os.time())
+       if triggerUnit.condition == 'Docked' then --ship is not at sea, no survivors
+		return  
+	   end
+       math.randomseed(os.time())
         --are there survivors?
         local didAnyoneSurvive = math.random(1,10)
             if didAnyoneSurvive > crewSurvivalPercentage then--they did not survive, exit
