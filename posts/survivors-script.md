@@ -6,7 +6,9 @@ layout: default
 
 Last Updated: August 15, 2018
 
-Status: still in testing but mostly looking good. Known issues: subs can pickup at any depth, ships sinking create survivors but can still pick them up themselves until they actually sink. Probably should also limit the types of unit that can pickup survivors, not sure a Cobra gunship should be able to pickup someone.
+Status: still in testing but mostly looking good. 
+
+**Known issues: Subs can pickup at any depth. Ships sinking create survivors but can still pick them up themselves until they actually sink. If the enemy's ROE is set to Free then it may attack a survivor since the survivor will show as unidentified contact (Survivor side is neutral to enemy - have tried friendly but sometimes it doesn't show up to the player side), this could lead to a survivor being attacked by SS-19 shipwreck missles or the like. Probably should also limit the types of unit that can pickup survivors, not sure a Cobra gunship should be able to pickup someone.**
 
 I got a little carried away with a downed pilot script made by Angster (and modified by TyphoonFr/Gunner98). I added a bunch of configuration options, and made it so any type of unit can rescue a survivor.
 
