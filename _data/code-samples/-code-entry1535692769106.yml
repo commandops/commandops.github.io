@@ -1,0 +1,5 @@
+_id: 6f278150-acdd-11e8-b9bb-c1fe95ccb7b6
+author: whicker
+notes: "Lua to see if a string contains a sub string. Works well except for special characters (such as .()[]+-) which have to be escaped by putting a % in front of them. \r\n\r\nThis could be used as a score keeping mechanism - all scoring could be in one bit of lua, comparing the UnitX.classname to things - so if classname contains F-15 then score = 10, or reaper then score = 3. F-15 would need to be F%-15."
+code: "local z = ScenEdit_GetUnit({name='SSN 23 Jimmy Carter [Seawolf Class]', guid='fdb4f976-56b3-4ed7-9787-5ffcd757c213'})\r\nprint(z.classname)\r\n\r\nlocal str = z.classname\r\nlocal zz = \"%[Seawolf\"\r\nif string.match(str, zz) then\r\n  print (\"The word \" ..zz.. \" was found.\")\r\nelse\r\n  print (\"The word \" ..zz.. \"  was not found.\")\r\nend"
+date: 1535692769
