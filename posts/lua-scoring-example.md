@@ -14,7 +14,7 @@ Disadvantages:
 
 Create an event named `Blue Unit Destroyed` or whatever you wish. Keep in mind this name will show in the log (assuming you have that checked) and make sure all 3 boxes are checked and the probablitity is 100%.
 
-Create a Trigger called `Blue Unit Destroyed` or whatever you wish, set to `Unit Destroyed` and just set the top selector for the side you want to keep scored for (Blue in our case). Do not drill down and set anything else.
+Create a Trigger called `Blue Unit Destroyed` or whatever you wish, set to `Unit Destroyed` and just set the top selector for the side you want to keep score for (Blue in our case). Do not drill down and set anything else.
 
 Create an Action, with Lua as the type. This is where all the magic is.
 
