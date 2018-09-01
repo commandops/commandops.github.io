@@ -155,7 +155,7 @@ end
 if unit.name == "Air Force 1" then points = -1000
 	end
 
-if string.match(unit.name, "F%-15") then points = -17
+if string.match(unit.classname, "F%-15") then points = -17
 end
 
 currentScore = currentScore + points
