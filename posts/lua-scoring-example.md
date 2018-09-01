@@ -8,13 +8,14 @@ Rather than setting up numerous scoring events with muliple triggers and actions
 
 Advantages:
 - all scoring for one side is in one Event with a single Action and a single Trigger
-- can be as granular as needed, just like the normal way
+- can be as granular as needed
 - easier to maintain/edit if the scoring needs adjusting
+- more flexible, anything in the unit wrapper could change the score, for example unit is on a specific mission - mission a, score = x, unit is on mission b score = z
 
 Disadvantages:
 - requires a little bit of Lua code knowledge, but not much
 - brittle - if you get the syntax wrong then all scoring might be whacked
-- need to know unit subtypes (number) which can be hard to find (not required but helpful to do bunches of types of units at the same time)
+- might need to know unit subtypes (number) which can be hard to find (not required but helpful to do bunches of types of units at the same time)
 	- subtypes are not always the best way to bunch up units, for example a C-17 and an UH-60 may have the same subtype (transport?) but you may not want the score to be the same.
 
 ## Event Setup
