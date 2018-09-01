@@ -1,7 +1,7 @@
 Rather than setting up numerous scoring events with muliple triggers and actions, you can use a single Lua based event to do the same thing and have it all be in one place.
 
 Advantages:
-- all scoring for one side is in one Event with a single action and a single trigger
+- all scoring for one side is in one Event with a single Action and a single Trigger
 - can be as granular as needed, just like the normal way
 - easier to maintain/edit if the scoring needs adjusting
 
