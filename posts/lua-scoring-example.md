@@ -6,7 +6,7 @@ layout: default
 
 Rather than setting up numerous scoring events with muliple triggers and actions, you can use a single Lua based event to do the same thing and have it all be in one place.
 
-** I've had some trouble using this script at the same time as a downed pilot/survivors script, seems to not always run. To fix it I have combined the action that fires the createsurvivors() function with this action that sets the score. Seemed like the survivors script would run but then the score script would be passed over, but not always. I think maybe it is too much lua to execute all at the same time. Combining them seems to work well.**
+**I've had some trouble using this script at the same time as a downed pilot/survivors script, seems to not always run. To fix it I have combined the action that fires the createsurvivors() function with this action that sets the score. Seemed like the survivors script would run but then the score script would be passed over, but not always. I think maybe it is too much lua to execute all at the same time. Combining them seems to work well.**
 
 Advantages:
 - all scoring for one side is in one Event with a single Action and a single Trigger
