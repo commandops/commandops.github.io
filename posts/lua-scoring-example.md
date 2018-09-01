@@ -6,6 +6,8 @@ layout: default
 
 Rather than setting up numerous scoring events with muliple triggers and actions, you can use a single Lua based event to do the same thing and have it all be in one place.
 
+** I've had some trouble using this script at the same time as a downed pilot/survivors script, seems to not always run. To fix it I have combined the action that fires the createsurvivors() function with this action that sets the score. Seemed like the survivors script would run but then the score script would be passed over, but not always. I think maybe it is too much lua to execute all at the same time. Combining them seems to work well.**
+
 Advantages:
 - all scoring for one side is in one Event with a single Action and a single Trigger
 - can be as granular as needed
@@ -14,7 +16,7 @@ Advantages:
 
 Disadvantages:
 - requires a little bit of Lua code knowledge, but not much
-- brittle - if you get the syntax wrong then all scoring might be whacked
+- brittle - if you get the syntax wrong then all scoring might be whacked, might not play well will other Unit Destroyed scripts
 - might need to know unit subtypes (number) which can be hard to find (not required but helpful to do bunches of types of units at the same time)
 	- subtypes are not always the best way to bunch up units, for example a C-17 and an UH-60 may have the same subtype (transport?) but you may not want the score to be the same.
 
@@ -89,10 +91,10 @@ if unit.name == "Air Force 1" then points = -1000
 	end
 ```
 
-Don't know the entire exact name? we can use string.match to see if a unit name contains a partial string - so say you want to cover all F-15s. You can do it, but you need to watch out for special characters, of which a dash is one. If there is a special character you need to put a percent sign in front to escape it. So instead of F-15 it would be F%-15.
+Don't know the entire exact name? we can use string.match to see if a unit classname contains a partial string - so say you want to cover all F-15s. You can do it, but you need to watch out for special characters, of which a dash is one. If there is a special character you need to put a percent sign in front to escape it. So instead of F-15 it would be F%-15.
 
 ```
-if string.match(unit.name, "F%-15") then points = -17
+if string.match(unit.classname, "F%-15") then points = -17
 end
 ```
 
