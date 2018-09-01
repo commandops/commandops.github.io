@@ -1,6 +1,6 @@
 ---
 title: CMANO Lua Scoring Event
-description: An example of hoe to use a single Lua event to handle all scoring for a side.
+description: An example of how to use a single Lua Event to handle all scoring for a side.
 layout: default
 ---
 
