@@ -101,6 +101,7 @@ The SetScore function takes in 2 or 3 arguments, the 3rd one is optional - the r
 
 The print function is not required, but will show in the luahistory log which is quite handy.
 
+If you are not at all familiar with code, the main confusion here could be the use of the equal sign - there are 2 uses of the = sign, one where you want to set a variable to a particular value: so if you want to set x to 5 it would be x = 5. You are explicitly saying that x is equal to 5. If you want to check if x is currently equal to 5 then in some sort of comparison you would see if x == 5. So one equal sign is to set a value, 2 equal signs is to compare a value.
 
 Full code example:
 
