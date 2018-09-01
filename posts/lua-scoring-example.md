@@ -1,3 +1,9 @@
+---
+title: CMANO Lua Scoring Event
+description: An example of hoe to use a single Lua event to handle all scoring for a side.
+layout: default
+---
+
 Rather than setting up numerous scoring events with muliple triggers and actions, you can use a single Lua based event to do the same thing and have it all be in one place.
 
 Advantages:
