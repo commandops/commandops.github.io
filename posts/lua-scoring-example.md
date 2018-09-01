@@ -9,6 +9,7 @@ Disadvantages:
 - requires a little bit of Lua code knowledge, but not much
 - brittle - if you get the syntax wrong then all scoring might be whacked
 - need to know unit subtypes (number) which can be hard to find (not required but helpful to do bunches of types of units at the same time)
+	- subtypes are not always the best way to bunch up units, for example a C-17 and an UH-60 may have the same subtype (transport?) but you may not want the score to be the same.
 
 ## Event Setup
 
@@ -88,7 +89,7 @@ if string.match(unit.name, "F%-15") then points = -17
 end
 ```
 
-you can keep doing this as much as you like, and once you have covered all the scoring options you need you just need to wrap it up byt adding the points value to the current score and passing that in with the SetScore function:
+you can keep doing this as much as you like, and once you have covered all the scoring options you need, you just need to wrap it up by adding the points value to the current score and passing that in with the SetScore function:
 
 ```
 currentScore = currentScore + points
