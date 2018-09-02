@@ -6,16 +6,16 @@
 ---All Functions
 --------------------------------------------------------------------------------------------------------------------------------
 ---Setup
-local maxSuccessScore = 25
-local maxFailureScore = -35
+local maxSuccessScore = 8
+local maxFailureScore = -25
 local successScore = 1 --amount to increase score if survivor picked up, per survivor
-local failureScore = -3 --amount to decrease score if survivor lost, per survivor
+local failureScore = -2 --amount to decrease score if survivor lost, per survivor
 local lostOverLandDBID = 2441 --must be facility
 local lostOverSeaDBID = 2553  -- must be ship
 local survivorSide = "Survivors" --side for survivors, can't be your own or over water they will pick themselves up - must exist
-local maxPickupSpeed = 11
+local maxPickupSpeed = 56
 local maxPickupAltitude = 101
-local crewSurvivalPercentage = 9 -- between 1 and 9, higher is more likely to survive
+local crewSurvivalPercentage = 6 -- between 1 and 9, higher is more likely to survive
 local survivorTimeToRescue = 35 -- amount of time in seconds rescuers must remain in the area to recover each survivor - multiplied by the number of survivors
 --------------------------------------------------------------------------------------------------------------------------------
 -- SAR Target GUID Helpers
@@ -120,8 +120,8 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
             return
         end
        if triggerUnit.condition == 'Docked' then --ship is not at sea, no survivors
-		return  
-	   end
+        return  
+       end
        math.randomseed(os.time())
         --are there survivors?
         local didAnyoneSurvive = math.random(1,10)
@@ -135,8 +135,8 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
         local unitLostDBID = lostOverSeaDBID --default is lost over sea
         local unitType = "Ship"
         if elevation > -1 then 
-        	unitLostDBID = lostOverLandDBID
-        	unitType = "Facility"
+            unitLostDBID = lostOverLandDBID
+            unitType = "Facility"
         end
 
         local numberWhoSurvived = 1
@@ -220,12 +220,12 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
             -- Set Triggers And Actions
             ScenEdit_SetEventTrigger("Event - Cancel Pilot"..downedPilot.guid, {mode="add", name="Trigger - Cancel Pilot"..downedPilot.guid})
             ScenEdit_SetEventAction("Event - Cancel Pilot"..downedPilot.guid, {mode="add", name="Action - Cancel Pilot"..downedPilot.guid})
-			
-			-- Message Pilot Ejected
+            
+            -- Message Pilot Ejected
             ScenEdit_SpecialMessage(ScenEdit_PlayerSide(),triggerUnit.name.." has been destroyed but there are survivors!<br><br>Number of Survivors: "..numberWhoSurvived.."<br><br>"..timeToLiveMessage..
                 "<br><br>In order to rescue them you will need to move a unit (sub, ship, AC or ground unit) to their location and remain on site for "..timeToRescueMinutes.." minutes, at an altitude of less than "..maxPickupAltitude.." feet and a speed of less that " ..maxPickupSpeed.." kts. Submarines will need to be on the surface in order to perform a rescue.")
         print("------end create survivors-----")
-		end
+        end
     end
 end
 
@@ -238,6 +238,13 @@ function StartSARTargetPickup(triggerUnit)
         elevation = 0
         end
     local altitudeAGL = triggerUnit.altitude - elevation 
+
+    if triggerUnit.altitude < -5 then --if sub is submerged don't let it pickup survivor
+        return
+    end
+     if  triggerUnit.type == "Ship" and triggerUnit.damage.dp < 1 then --if ship is sinking don't let it pickup survivors. Weird cause ground units seem to have dp =0
+        return
+    end
     
     if triggerUnit and triggerUnit.speed < maxPickupSpeed and altitudeAGL < maxPickupAltitude then
     --print(maxPickupAltitude)
