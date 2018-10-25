@@ -16,9 +16,10 @@ Advantages:
 
 Disadvantages:
 - requires a little bit of Lua code knowledge, but not much
-- brittle - if you get the syntax wrong then all scoring might be whacked, might not play well will other Unit Destroyed scripts
+- brittle - if you get the syntax wrong then all scoring might be whacked, might not play well with other Unit Destroyed scripts
 - might need to know unit subtypes (number) which can be hard to find (not required but helpful to do bunches of types of units at the same time)
 	- subtypes are not always the best way to bunch up units, for example a C-17 and an UH-60 may have the same subtype (transport?) but you may not want the score to be the same.
+	- subtypes may also be conflicted between the different types? for instance the same subtype number might be a facility and a ship? not sure but I think this might be the case.
 
 ## Event Setup
 
