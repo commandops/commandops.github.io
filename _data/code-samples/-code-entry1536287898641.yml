@@ -1,5 +1,5 @@
 _id: 14011ec0-b247-11e8-afd3-cbef5b601756
 author: whicker
-notes: "Check if unit a unit is damaged and set to Unavailable loadout if it is. Could use this on a trigger of Unit enters Area around an Airfield, then when the unit lands if it is damaged set it to Unavailable rather than let it be repaired.\r\n\r\nNot 100% sure about this as sometimes the startdp seems to be 0?"
+notes: "Check if a unit is damaged and set to Unavailable loadout if it is. Could use this on a trigger of Unit enters Area around an Airfield, then when the unit lands if it is damaged set it to Unavailable rather than let it be repaired.\r\n\r\nNot 100% sure about this as sometimes the startdp seems to be 0?"
 code: "local u = ScenEdit_GetUnit({name=\"DHL #2\"})\r\nprint(u.damage.startdp)\r\nprint(u.damage.dp)\r\nif tonumber(u.damage.dp) ~= tonumber(u.damage.startdp) then\r\nScenEdit_SetLoadout({UnitName =u.name, LoadoutID =4}) --if damaged set to unavailable loadout\r\nelse\r\nprint(\"unit is not damaged\")\r\nend"
 date: 1536287898
