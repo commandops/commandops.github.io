@@ -1,0 +1,10 @@
+_id: 02ae3100-db35-11e8-b894-45edb9c88c19
+author: whicker
+notes: >-
+  Get total number of units for a side, and break down of how many
+  ships/subs/AC/facilities. This is a memory hog if there are a lot of units,
+  game restart may be needed afterwards. For me 1100 units sucks up 300 or so
+  MB, so after running it a couple times I need to restart the game to free the
+  memory.
+code: "local a = VP_GetSide({Side =\"Republic of Azure\"})  -- put your side name here\r\nprint(\"Total Number of Units: \"..#a.units)\r\nlocal Ships = {} --create empty array(table) to store group guids\r\nlocal AC = {}\r\nlocal Subs = {}\r\nlocal Facilities = {}\r\nfor i = 1, #a.units do -- loops thru all units on the side\r\nlocal u = ScenEdit_GetUnit({guid = a.units[i].guid}) --convert VP guid to Unit wrapper\r\nif u.type == 'Ship' then -- check if group, if so add the group guid to the table\r\ntable.insert(Ships, u.guid) \r\nelseif u.type == 'Aircraft' then -- check if group, if so add the group guid to the table\r\ntable.insert(AC, u.guid) \r\nelseif u.type == 'Submarine' then -- check if group, if so add the group guid to the table\r\ntable.insert(Subs, u.guid) \r\nelseif u.type == 'Facility' then -- check if group, if so add the group guid to the table\r\ntable.insert(Facilities, u.guid) \r\nend\r\nend\r\nprint(\"Ships: \"..#Ships..\" - Aircraft: \"..#AC..\" - Submarines: \"..#Subs..\" - Facilities: \"..#Facilities)"
+date: 1540788136
