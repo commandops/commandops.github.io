@@ -1,0 +1,7 @@
+_id: dd0b16d0-e49d-11e8-83ca-9de4535f5dea
+author: whicker
+notes: >-
+  Print damaged unit info to lua log. Create triggers for each side you want to
+  show in the log. Use snaketail log viewer as supplemental log viewer.
+code: "local unit = ScenEdit_UnitX()\r\nif unit.type ~= 'Weapon' then\r\nlocal TimeVar = ScenEdit_CurrentTime() \r\nprint('[Damaged Unit] [' ..unit.side.. '] ' ..unit.name.. ', Type:  ' ..unit.classname.. ' on ' ..os.date(\"!%A %B %d %H%M\",TimeVar).. 'Z')\r\nend"
+date: 1541822730
