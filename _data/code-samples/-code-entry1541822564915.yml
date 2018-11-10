@@ -1,0 +1,7 @@
+_id: 7a32fb40-e49d-11e8-83ca-9de4535f5dea
+author: whicker
+notes: >-
+  Print destroyed unit info to lua log - [Red] <<-- change to side name it is
+  for. Also prints current score.
+code: "print(\"[**Unit Destroyed**] [Red] \"..unit.name.. \" (\"..UnitX().classname..\" Sub Type: \"..unit.subtype..\" ) Points:  \"..points)\r\nScenEdit_SetScore(side, currentScore, unit.name.. \" (\"..unit.classname..\" Sub Type: \"..unit.subtype..\" ) Destroyed, Points:  \"..points)\r\nprint(\"Current Score: \" ..currentScore)"
+date: 1541822564
