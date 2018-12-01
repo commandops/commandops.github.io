@@ -66,6 +66,10 @@ Next we can drill down as much as we want, this next section is using the unit.s
 
 Unit subtype as used here is a number, though you need to enclose it in quotes. This can be hard to find as far as a long list all in one place, but you can find it in any units wrapper, or there is a cool script by michaelm75au that creates an OOB that can be modified to show this (look at the Survivors script for an example).
 
+<blockquote class="blockquote-danger">
+   <p>Sub Type is a bad idea here, as it looks like the same sub type number can conflict with other types - so a facility and a ship may share the same sub type sometimes. If you have limited number of units it is probably ok. It is better to just use something from the units name like the examples below (F-15)</p>
+ </blockquote>
+
 ```
 if unit.subtype == '4015' or unit.subtype == '4013' or unit.subtype == '4010' then points = -250 -- lha/lpd/lsd
 elseif
