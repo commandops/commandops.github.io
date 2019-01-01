@@ -1,0 +1,8 @@
+_id: f490c030-0df0-11e9-a200-d171ea9efec1
+author: whicker
+notes: >-
+  Set a subs diesel engine to medium damage. Just need the last line, first part
+  is to see what components there are. 2 apparently means medium damage. Could
+  also be "none" for no damage.
+code: "local unit = ScenEdit_GetUnit({guid='24c5dd8d-c54b-4904-9262-417e39781f6b'})\r\nprint(unit)\r\nprint(unit.components)\r\n\r\nScenEdit_SetUnitDamage({guid='24c5dd8d-c54b-4904-9262-417e39781f6b',  components={{\"Diesels\",2}}})"
+date: 1546366416
