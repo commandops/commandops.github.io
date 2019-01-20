@@ -116,7 +116,9 @@ The print function is not required, but will show in the luahistory log which is
 If you are not at all familiar with code, the main confusion here could be the use of the equal sign - there are 2 uses of the = sign, one where you want to set a variable to a particular value: so if you want to set x to 5 it would be x = 5. You are explicitly saying that x is equal to 5. If you want to check if x is currently equal to 5 then in some sort of comparison you would see if x == 5. So one equal sign is to set a value, 2 equal signs is to compare a value.
 
 Full code example (this is just for losing points, would need to do the same thing for adding points on unit destroyed - red):
-
+<blockquote class="blockquote-danger">
+   <p>Sub Type is a bad idea here, as it looks like the same sub type number can conflict with other types - so a facility and a ship may share the same sub type sometimes. If you have limited number of units it is probably ok. It is better to just use something from the units name like the examples below (F-15). I'm leaving it as an example of the code, but it you probably should not use it, use the string match part below to choose units.</p>
+ </blockquote>
 ```
 -- blue unit destroyed
 local side = "Blue"
@@ -163,5 +165,75 @@ end
 
 currentScore = currentScore + points
 print(unit.name.. " ("..UnitX().classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
+ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
+```
+
+Here is another example, smaller scenario with less units to worry about (no ships or subs).  
+This is the Blue side points for losing units:
+
+```
+local side = "Blue" -- put the side that you are keeping track of scoring for here
+local currentScore = ScenEdit_GetScore(side) -- get the current score
+local points = 0 --default amount of points to award, set to zero so only explicitly set scores are used
+local unit = ScenEdit_UnitX() --get the unit wrapper for the unit that was destroyed
+
+if unit.type == "Weapon" then
+return --exit if destroyed unit is really a weapon
+end
+
+if -- initial score setup, defaults, blue only has ac and seals to lose
+unit.type == "Aircraft" then points = -200
+elseif 
+unit.type == "Facility" then points = -50 --seal will be 50 points
+end
+
+--blue ac in game - B-1B, B-2A, B-52H,F-35A,F-22A. Raptors and 35s will be default -200 so they are not below. 
+-- % sign is there because a dash is a special character, the % tells it to not use it as a special character
+if string.match(unit.classname, "B%-1B") then points = -400
+end
+if string.match(unit.classname, "B%-52H") then points = -250
+end
+if string.match(unit.classname, "B%-2A") then points = -1000
+end
+
+currentScore = currentScore + points
+print("["..unit.side.."] "..unit.name.. " ("..UnitX().classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
+ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
+```
+
+Blue side scoring action for killing Red units:
+
+```
+local side = "Blue" -- put the side that you are keeping track of scoring for here
+local currentScore = ScenEdit_GetScore(side) -- get the current score
+local points = 0 --default amount of points to award, set to zero so only explicitly set scores are used
+local unit = ScenEdit_UnitX() --get the unit wrapper for the unit that was destroyed
+
+if unit.type == "Weapon" then
+return --exit if destroyed unit is really a weapon
+end
+
+if -- initial score setup, defaults, red only has ac and facilities
+unit.type == "Aircraft" then points = 30
+elseif 
+unit.type == "Facility" then points = 50
+end
+
+--red ac in game all worth 30, only modifers are for facilities and inf
+if unit.name == "Sector Control Station" then points = 500
+	end 
+if unit.name == "COMINT Station" then points = 400
+	end
+if unit.name == "C3M Bunker" then points = 900
+	end
+if unit.name == "Mech Inf Plt (VTT-323 M1973 Sinhung) APC x 3)" then points = 5
+	end
+if unit.name == "Inf Plt (Syrian Army)" then points = 1
+	end
+if unit.name == "Hospital" then points = -500
+	end
+
+currentScore = currentScore + points
+print("["..unit.side.."] "..unit.name.. " ("..UnitX().classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
 ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
 ```
