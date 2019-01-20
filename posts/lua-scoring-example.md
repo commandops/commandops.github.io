@@ -17,9 +17,7 @@ Advantages:
 Disadvantages:
 - requires a little bit of Lua code knowledge, but not much
 - brittle - if you get the syntax wrong then all scoring might be whacked, might not play well with other Unit Destroyed scripts
-- might need to know unit subtypes (number) which can be hard to find (not required but helpful to do bunches of types of units at the same time)
-	- subtypes are not always the best way to bunch up units, for example a C-17 and an UH-60 may have the same subtype (transport?) but you may not want the score to be the same.
-	- subtypes may also be conflicted between the different types? for instance the same subtype number might be a facility and a ship? not sure but I think this might be the case.
+
 
 ## Event Setup
 
@@ -38,7 +36,7 @@ local points = 0 --default amount of points to award, set to zero so only explic
 local unit = ScenEdit_UnitX() --get the unit wrapper for the unit that was destroyed
 ```
 
-Next we will check if the unit destroyed is a weapon, and if so we will exit the code (return).
+Next we will check if the unit destroyed is a weapon, and if so we will exit the code (return) cause weapons aren't part of the scoring normally. `Return` stops the code from running any further.
 
 ```
 if unit.type == "Weapon" then
@@ -67,7 +65,7 @@ Next we can drill down as much as we want, this next section is using the unit.s
 Unit subtype as used here is a number, though you need to enclose it in quotes. This can be hard to find as far as a long list all in one place, but you can find it in any units wrapper, or there is a cool script by michaelm75au that creates an OOB that can be modified to show this (look at the Survivors script for an example).
 
 <blockquote class="blockquote-danger">
-   <p>Sub Type is a bad idea here, as it looks like the same sub type number can conflict with other types - so a facility and a ship may share the same sub type sometimes. If you have limited number of units it is probably ok. It is better to just use something from the units name like the examples below (F-15)</p>
+   <p>Sub Type is a bad idea here, as it looks like the same sub type number can conflict with other types - so a facility and a ship may share the same sub type sometimes. If you have limited number of units it is probably ok. It is better to just use something from the units name like the examples below (F-15). I'm leaving it as an example of the code, but it you probably should not use it, use the string match part below to choose units.</p>
  </blockquote>
 
 ```
@@ -117,7 +115,7 @@ The print function is not required, but will show in the luahistory log which is
 
 If you are not at all familiar with code, the main confusion here could be the use of the equal sign - there are 2 uses of the = sign, one where you want to set a variable to a particular value: so if you want to set x to 5 it would be x = 5. You are explicitly saying that x is equal to 5. If you want to check if x is currently equal to 5 then in some sort of comparison you would see if x == 5. So one equal sign is to set a value, 2 equal signs is to compare a value.
 
-Full code example:
+Full code example (this is just for losing points, would need to do the same thing for adding points on unit destroyed - red):
 
 ```
 -- blue unit destroyed
