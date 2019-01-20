@@ -62,7 +62,7 @@ end
 
 So now if a unit is one of those types, say a Sub, we will override the original value of `points` (which we just set to 0 at the top) and set it to something we want like -50. It is a negative amount as we are penalizing the side for losing a unit.
 
-Next we can drill down as much as we want, this next section is using the unit.subtype to bunch some things up - so if there are 4 ddgs in the scen, and all will incur the same penalty we can set that by using the 3203 subtype. If there are multuple subtypes that will have the same amount of points we can chain them together with an `or` statement.
+Next we can drill down as much as we want, this next section is using the unit.subtype to bunch some things up - so if there are 4 ddgs in the scen, and all will incur the same penalty we can set that by using the 3203 subtype. If there are multiple subtypes that will have the same amount of points we can chain them together with an `or` statement.
 
 Unit subtype as used here is a number, though you need to enclose it in quotes. This can be hard to find as far as a long list all in one place, but you can find it in any units wrapper, or there is a cool script by michaelm75au that creates an OOB that can be modified to show this (look at the Survivors script for an example).
 
