@@ -9,7 +9,7 @@ Rather than setting up numerous scoring events with muliple triggers and actions
 **I've had some trouble using this script at the same time as a downed pilot/survivors script, seems to not always run. To fix it I have combined the action that fires the createsurvivors() function with this action that sets the score. Seemed like the survivors script would run but then the score script would be passed over, but not always. I think maybe it is too much lua to execute all at the same time. Combining them seems to work well.**
 
 Advantages:
-- all scoring for one side is in one Event with a single Action and a single Trigger
+- all scoring for one side is in one Event with a single Action and a single Trigger (probably best to separate scoring for gaining points and losing points so maybe 2 Events if there are 2 sides)
 - can be as granular as needed
 - easier to maintain/edit if the scoring needs adjusting
 - more flexible, anything in the unit wrapper could change the score, for example unit is on a specific mission - mission a, score = x, unit is on mission b score = z
@@ -27,7 +27,8 @@ Create a Trigger called `Blue Unit Destroyed` or whatever you wish, set to `Unit
 
 Create an Action, with Lua as the type. This is where all the magic is.
 
-Top part is just some basics:
+Top part is just some basics:  
+(LUA allows you to embed comments by putting 2 dashes in front so if you see -- and then some text that is a comment)
 
 ```
 local side = "Blue" -- put the side that you are keeping track of scoring for here
@@ -58,7 +59,7 @@ unit.type == "Facility" then points = -5
 end
 ```
 
-So now if a unit is one of those types, say a Sub, we will override the original value of `points` and set it to something we want like -50. It is a negative amount as we are penalizing the side for losing a unit.
+So now if a unit is one of those types, say a Sub, we will override the original value of `points` (which we just set to 0 at the top) and set it to something we want like -50. It is a negative amount as we are penalizing the side for losing a unit.
 
 Next we can drill down as much as we want, this next section is using the unit.subtype to bunch some things up - so if there are 4 ddgs in the scen, and all will incur the same penalty we can set that by using the 3203 subtype. If there are multuple subtypes that will have the same amount of points we can chain them together with an `or` statement.
 
@@ -109,7 +110,7 @@ print(unit.name.. " ("..UnitX().classname.." Sub Type: "..unit.subtype.." ) Dest
 ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
 ```
 
-The SetScore function takes in 2 or 3 arguments, the 3rd one is optional - the reason for the score change, above I have that showing some extra info about the unit causing the score change.
+The SetScore function takes in 2 or 3 arguments, the 3rd one is optional (the reason for the score change) above I have that showing some extra info about the unit causing the score change.
 
 The print function is not required, but will show in the luahistory log which is quite handy.
 
@@ -168,7 +169,7 @@ print(unit.name.. " ("..UnitX().classname.." Sub Type: "..unit.subtype.." ) Dest
 ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
 ```
 
-Here is another example, smaller scenario with less units to worry about (no ships or subs).  
+Here is another example (Scenario: 1,2 52), smaller scenario with less units to worry about (no ships or subs).  
 This is the Blue side points for losing units:
 
 ```
