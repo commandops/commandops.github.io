@@ -16,7 +16,8 @@ Advantages:
 
 Disadvantages:
 - requires a little bit of Lua code knowledge, but not much
-- brittle - if you get the syntax wrong then all scoring might be whacked, might not play well with other Unit Destroyed scripts
+- brittle - if you get the syntax wrong then all scoring might be whacked
+- might not play well with other Unit Destroyed scripts (one or the other may time out?)
 
 
 ## Event Setup
