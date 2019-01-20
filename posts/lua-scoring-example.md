@@ -113,6 +113,8 @@ ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Ty
 
 The SetScore function takes in 2 or 3 arguments, the 3rd one is optional (the reason for the score change) above I have that showing some extra info about the unit causing the score change.
 
+Note the .. syntax, this is needed when placing a variable like currentScore next to a String, like where I want to enclose the unit info in parenthesis. You need .. on either side of a variable that is next to a string. You also have to enclose Strings inside quotes so you end up with some odd looking code.
+
 The print function is not required, but will show in the luahistory log which is quite handy.
 
 If you are not at all familiar with code, the main confusion here could be the use of the equal sign - there are 2 uses of the = sign, one where you want to set a variable to a particular value: so if you want to set x to 5 it would be x = 5. You are explicitly saying that x is equal to 5. If you want to check if x is currently equal to 5 then in some sort of comparison you would see if x == 5. So one equal sign is to set a value, 2 equal signs is to compare a value.
@@ -171,7 +173,7 @@ ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Ty
 ```
 
 Here is another example (Scenario: 1,2 52), smaller scenario with less units to worry about (no ships or subs).  
-This is the Blue side points for losing units:
+This is the Blue side points for losing units - Trigger is Blue Unit Destroyed:
 
 ```
 local side = "Blue" -- put the side that you are keeping track of scoring for here
@@ -203,7 +205,7 @@ print("["..unit.side.."] "..unit.name.. " ("..UnitX().classname.." Sub Type: "..
 ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed - Points:  "..points)
 ```
 
-Blue side scoring action for killing Red units:
+Blue side scoring Action for killing Red units - Trigger is Red Unit Destroyed:
 
 ```
 local side = "Blue" -- put the side that you are keeping track of scoring for here
