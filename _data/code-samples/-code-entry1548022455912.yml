@@ -1,0 +1,5 @@
+_id: b9319270-1d00-11e9-b5b3-99db271ab69b
+author: whicker
+notes: If all 8 Orel bombers are dead then change sub to nuke strike mission.
+code: "Tool_EmulateNoConsole(true) --used so it works in the console\r\nlocal Orels =0\r\nfor i=1,8 do \r\n\r\nif ScenEdit_GetUnit({Side='Russian Federation', Name=\"Orel #\"..i,}) == nil then --counts if it does not exist\r\nOrels = Orels + 1\r\nprint(Orels)\r\n\r\nend\r\nend\r\nprint(Orels)\r\nif Orels == 8 then -- all Orels dead, activate sub strike\r\nprint(\" no more orels\")\r\nif ScenEdit_GetUnit({Side='Russian Federation', Name='PLARB-955 A [Borey II]',}) ~= nil then\r\nprint(\"Sub still alive\")\r\nScenEdit_AssignUnitToMission('PLARB-955 A [Borey II]', 'Borey II Nuclear Strike on Chitose AB')\r\nend\r\nprint(\"Sub is dead - end scenario?\")\r\nend"
+date: 1548022455
