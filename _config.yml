@@ -8,7 +8,9 @@ baseurl:
 collections:
   code:
     output: true
-
+  videos:
+    output: true
+    
 permalink: pretty
 exclude: ["Gemfile.lock","Gemfile","package.json","rakefile.rb","README.md","s3_website.yml","node_modules","gulpfile.js"]
 highlighter: rouge
