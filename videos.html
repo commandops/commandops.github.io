@@ -8,7 +8,7 @@ description: Some videos on CMANO
      {% assign items = site.videos | sort: 'sortnum' %}
      {% for vid in items %}
      <h3 class="vid-title"><a href="{{vid.url}}">{{ vid.title }}</a></h3>
-<br><small>Posted on: {{vid.posted-on}}</small>
+<small>Posted on: {{vid.posted-on}}</small>
     <br>{{vid.description}}
 <hr>
       {% endfor%}
