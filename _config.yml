@@ -40,6 +40,8 @@ logo_text: CommandOps
 # Main nav is for screens wider than 600px
 # Home link is hard coded by default
 main_nav:
+  - title: Videos
+    url: /videos/
   - title: "inst Designer"
     url: /inst-designer/
   - title: inst Files
@@ -55,8 +57,8 @@ mobile_nav:
     url: /
   - title: "inst Designer"
     url: /inst-designer/
-  - title: inst Files
-    url: /inst-list/    
+  - title: Videos
+    url: /videos/
   - title: "About"
     url: /about/     
   
