@@ -11,4 +11,9 @@ exclude: true
     <loc>{{site.canonical_domain}}{{site.baseurl}}{{ item.url }}</loc>
     <priority>0.8</priority>
   </url>{% endif %}{% endfor %}
+      {% for page in site.videos %}{% if page.exclude != true %}
+  <url>
+    <loc>{{site.canonical_domain}}{{site.baseurl}}{{ page.url }}</loc>
+    <priority>0.8</priority>
+  </url>{% endif %}{% endfor %}
 </urlset>
