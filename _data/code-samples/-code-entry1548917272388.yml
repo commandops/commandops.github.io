@@ -1,0 +1,5 @@
+_id: 21415190-2524-11e9-8373-bb00b160a353
+author: whicker
+notes: Get table of guids for units in a given group.
+code: "local u = ScenEdit_GetUnit({name='Group 106'})\r\nprint(u.group.unitlist)\r\n\r\n-- { [1] = 'b566a8cd-4b8d-44c6-bcd4-bd9196d811e5', [2] = 'a75c47e9-0cc9-4589-afb2-3058e47cb0eb', [3] = '0ca6edaa-0998-4135-b10b-29e5881b4946' }"
+date: 1548917272
