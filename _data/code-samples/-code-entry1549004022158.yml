@@ -1,0 +1,10 @@
+_id: 1c219d80-25ee-11e9-a796-41e91da33698
+author: whicker
+notes: >-
+  Function to place a ship/sub/group at a random distance from its current
+  location. You can set the minimum acceptable depth as well as a bearing range
+  to control which direction - if it is 1 and 360 then it can be anywhere
+  around. If it is 180 and 270 then it would be anywhere southwest of the
+  current location.
+code: "function placeShipRandomly(side,unit,distance,bMin,bMax,depth)\r\nlocal u = ScenEdit_GetUnit({name=unit})\r\nif u ~= nil then\r\n  for i = 1,20 do\r\n    local m = math.random(1,distance)\r\n    local b = math.random(bMin, bMax)\r\n    local point = ScenEdit_AddReferencePoint( {side=side, name=\"possible\"..i, RelativeTo=unit, bearing=b ,distance=m})\r\n    ScenEdit_DeleteReferencePoint({side=side, name =\"possible\"..i}) \r\n    local elevation = World_GetElevation({latitude = point.latitude, longitude= point.longitude})\r\n    print(elevation) \r\n        if elevation < depth then\r\n        u.latitude =  point.latitude\r\n        u.longitude = point.longitude\r\n        return --exit, we mare done\r\n        end\r\n  end\r\n print('no suitable location found, unit not moved')\r\nelse \r\nprint('unit does not exist')\r\nend\r\nend\r\n\r\nplaceShipRandomly('Blue','Group 106',155,1,359,-3010) -- call the function"
+date: 1549004022
