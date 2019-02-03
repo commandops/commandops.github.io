@@ -47,7 +47,7 @@ For it to work you need the following:
 
 -----
 
-### Event - Create Survivors
+### Event - Create Survivors (you can roll this into a Lua Scoring Event)
 
 - Create a new Event, named: Create Survivors - or whatever you like
 - Create a Trigger - type is Unit Lost, set to what type of unit lost you want to create a survivor, for instance Aircraft or Ships. You don't need to be specific as that can be handled in the Action. So choosing the player side and setting it to Aircraft is perfect and we will use that as the example.
@@ -152,6 +152,6 @@ UAVs should not trigger survivors, but that depends on them being subtype 8201 o
 
 I've thought of extending this script to handle the unit destroyed scoring... say an AC with 10 potential survivors is shot down, if there are 0 survivors the score could be -25. If there are 10 survivors the score could be -15, then the rescued survivor score could be 0 but the failed rescue could be -10. Seems a little too involved, but could be fairly easily done I think.	
 
-As for unit destroyed scoring, the way this script handles the potential crew/passengers - all in one action - could also work for unit destroyed scoring. Why have 10 different actions/triggers/events to handle 10 different types of units when  they could all be in the same Event set? all you need is the lua with the if/elseif statements and the unit types or names. Seems a lot easier and more robust. 
+As for unit destroyed scoring, the way this script handles the potential crew/passengers - all in one action - could also work for unit destroyed scoring. Why have 10 different actions/triggers/events to handle 10 different types of units when  they could all be in the same Event set? all you need is the lua with the if/elseif statements and the unit types or names. Seems a lot easier and more robust. (this has been done and works well) 
 
 
