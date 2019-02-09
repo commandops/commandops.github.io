@@ -1,0 +1,5 @@
+_id: 487e6320-2cc6-11e9-891b-b1621402c175
+author: whicker
+notes: Get all properties from unit wrapper
+code: "local u = ScenEdit_GetUnit({name='LPD 17 San Antonio', guid='63917afb-6cdb-47b5-9f2a-ffd3e9e86224'})\r\nlocal tables = {}\r\nfor k,v in pairs(u.fields) do\r\n    local t = string.find(v,\" , \")\r\n    local t2 = (string.sub(v,2,t-1))\r\n    if type(u[t2]) ~= 'table' then\r\n    print(t2..': '..tostring(u[t2]))\r\n    else\r\n    table.insert(tables, t2)\r\n    end --end check type\r\nend -- end main pairs loop\r\nprint'==================== Table Data ======================'\r\nfor k,v in pairs(tables) do\r\n    print(v..': ')\r\n    for k,v in pairs(u[v]) do\r\n    print(k)\r\n    print(v)\r\n    end --inner table\r\nprint('---------- End '..v..' table data ------------------')\r\nprint('----------------------------------------------------')\r\nend --end tables loop\r\nprint(u.hostedUnits)"
+date: 1549756574
