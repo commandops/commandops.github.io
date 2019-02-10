@@ -1,0 +1,8 @@
+_id: 5350ec20-2cf6-11e9-891b-b1621402c175
+author: whicker
+notes: >-
+  Same - Get all properties from unit wrapper - except as a function, can pass
+  in either just the name as a string or the unit id with the name and guid as a
+  table.
+code: "function GetUnitProperties(unitName)\r\nif unitName == nil then \r\nprint(\"You did not pass a unit name in\")\r\nend\r\nprint(type(unitName))\r\nprint(unitName)\r\nlocal u\r\nif (type(unitName)) == 'table' then\r\nu = ScenEdit_GetUnit(unitName)\r\nelse\r\nu = ScenEdit_GetUnit({name=unitName})\r\nend\r\nlocal tables = {}\r\nfor k,v in pairs(u.fields) do\r\n    local t = string.find(v,\" , \")\r\n    local t2 = (string.sub(v,2,t-1))\r\n    if type(u[t2]) ~= 'table' then\r\n    print(t2..': '..tostring(u[t2]))\r\n    else\r\n    table.insert(tables, t2)\r\n    end --end check type\r\n\r\nend -- end main pairs loop\r\n\r\nprint'==================== Table Data ======================'\r\nfor k,v in pairs(tables) do\r\n    print(v..': ')\r\n    for k,v in pairs(u[v]) do\r\n    print(k)\r\n    print(v)\r\n    end --inner table\r\n\r\nprint('---------- End '..v..' table data ------------------')\r\nprint('----------------------------------------------------')\r\nend --end tables loop\r\nend --function\r\n\r\n-- either way should work:\r\n--GetUnitProperties({name='F-14D Tomcat', guid='78407e18-3841-4f63-bcc2-df202cc3dc3c'})\r\n--GetUnitProperties('F-14D Tomcat')"
+date: 1549777208
