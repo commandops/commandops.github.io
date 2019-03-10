@@ -1,0 +1,10 @@
+_id: fe5c7450-42d5-11e9-af7b-ed5bf7f3c023
+author: whicker
+notes: >-
+  Exception: [string "ScenLoadOverlays"]:1: unexpected symbol near char(145)  -
+  of you see something like this where you copied code from somewhere it is
+  possible the Quote mark is an illegal character - it is very hard to see, but
+  some quotes are curly and these are not actual quotes as far as lua is
+  concerned.
+code: "ScenEdit_UseAttachment('76856ec9-d23c-4a1c-baf7-599afdf7054a')  --good quotes\r\n\r\nScenEdit_UseAttachment(‘5083bee2-7d99-4e40-a17c-29dd97e75f07’) --bad curly quotes but very hard to tell"
+date: 1552182247
