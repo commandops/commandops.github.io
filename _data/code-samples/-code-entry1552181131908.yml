@@ -1,0 +1,11 @@
+_id: 652ad7b0-42d3-11e9-af7b-ed5bf7f3c023
+author: whicker
+notes: >-
+  Example of changing path of AI ship to get it out of a land locked port. You
+  would need to change the course to the actual course needed to get out. Use
+  this as the lua part of an action with a trigger of unit enters area that is
+  set around a port but not including the port (ships in port are already in the
+  area I think). You also need to change the ignore plotted course to no or else
+  it may go off on its own if it is engaged offensive.
+code: "local u = ScenEdit_UnitX ()\r\nif u.condition == 'Returning to base' then\r\n\tprint(u.name.. ' is returning to base')\r\n\telse\r\n\t\tprint(u.name.. ' is leaving port, assigning new course')\r\n\tu.course = { [1] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 29.511367359561, latitude = 40.7534711752442 }, [2] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 29.2849350470461, latitude = 40.708544893319 }, [3] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 28.946962290674, latitude = 40.9060242141018 }, [4] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 29.0087148482458, latitude = 41.0104256921841 }, [5] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 29.0139878489167, latitude = 41.0400486033816 }, [6] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 29.0679263467765, latitude = 41.0953141495635 }, [7] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 29.077122962378, latitude = 41.161667121539 }, [8] = { TypeOf = 'ManualPlottedCourseWaypoint', longitude = 29.1744302883196, latitude = 41.2669619417466 } }\r\n\r\n\tScenEdit_SetDoctrine({side=\"NATO\", unitname=u.name}, {ignore_plotted_course= \"no\" })\r\nend"
+date: 1552181131
