@@ -1,0 +1,7 @@
+_id: cf1829f0-4794-11e9-b781-f3cf519148e3
+author: whicker
+notes: >-
+  Playing around with creating a table of weather in lua. This is basically how
+  to make a table of tables programatically.
+code: "weatherTable = {}\r\n\r\nfor i = 1,15 do\r\nlocal t=math.random(10,38)\r\nlocal r=math.random(0,51)\r\nlocal u=math.random(0,10)/10\r\nlocal s=math.random(0,9)\r\n\r\nlocal ww = {}\r\nww.t=t\r\nww.r=r\r\nww.u=u\r\nww.s=s\r\n--print(ww)\r\ntable.insert(weatherTable,ww )\r\nend\r\n--print(weatherTable)"
+date: 1552704007
