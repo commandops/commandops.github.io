@@ -1,0 +1,5 @@
+_id: af6d8a10-664c-11e9-8f14-a9df6274d864
+author: whicker
+notes: 'Playing with the Sin function, working on a weather model.'
+code: "function round(num, numDecimalPlaces)\r\n  if numDecimalPlaces and numDecimalPlaces>0 then\r\n    local mult = 10^numDecimalPlaces\r\n    return math.floor(num * mult + 0.5) / mult\r\n  end\r\n  return math.floor(num + 0.5)\r\nend\r\n\r\nlocal angle =0\r\nlocal weatherStart = .2\r\nlocal weatherMax = .5\r\nlocal weatherStartTime =29 --in hours\r\nlocal weatherTime = 36\r\nlocal increment = round(math.pi/weatherTime,2)\r\nlocal angle = weatherStartTime*increment\r\n\r\nfor i=1,60 do\r\n--print(\"angle: \"..angle)\r\nlocal sin = math.sin(angle)\r\nprint(i..') sin: '..sin..'  angle: '..angle)\r\nangle=angle + increment\r\nend\r\nprint '--------------------------------------------'"
+date: 1556081516
