@@ -74,62 +74,62 @@ The potential number of survivors can be controlled by the number of crew passed
 -- W_PlaceUnitRandomly('Blue', 'CG 16 Leahy', 125, 30, 230, -100)   
 -- W_PlaceUnitRandomly('Blue', 'F-14D Tomcat', 125,1,33,0,true)  
 
-function W_GetUnitProps(unitName)
+###### function W_GetUnitProps(unitName)
 --prints full unit wrapper    
 --W_GetUnitProps({name='F-14D Tomcat', guid='78407e18-3841-4f63-bcc2-df202cc3dc3c'})
 --W_GetUnitProps('F-14D Tomcat')
 
-function W_GetSideProps(sideName)  
+###### function W_GetSideProps(sideName)  
 --prints full Side wrapper wrapper, may be memory hog  
 --W_GetSideProps('Red')  
 
-function W_GetSideUnitTotals(sideName)  
+###### function W_GetSideUnitTotals(sideName)  
 --prints the number of ships, subs, AC and facilities on a side, may be memory hog  
 --W_GetSideUnitTotals('Red')  
 
-function W_GetTableCount(table)  
+###### function W_GetTableCount(table)  
 -- Count the number of items in a table regardless of table type.   
 
-function W_PathOffset()  
+###### function W_PathOffset()  
  -- calculates a small number like .002 to be used as an offset to a course (Escape from port uses this)  
 --  offset = W_PathOffset() or print(W_PathOffset)  
 
-function W_GetCourse(side,unitname)  
+###### function W_GetCourse(side,unitname)  
  -- prints the course of the unit passed in, use this to get a course to escape from a port (also returns it)  
 --  W_GetCourse('Blue','F-14D Tomcat')  
 
-function W_EscapeFromPort(unitx,newCourse)  
+###### function W_EscapeFromPort(unitx,newCourse)  
  -- used to help ships escape a port. Create an Event with trigger of unit enters area (around port but not including it)  
 --  You need to create a course that will work, then assign that to a variable (NOT local) and pass it in along with unitx   
 You can also use it with a specific unit by passing in a table with the guid - name is optional but it comes along with it when you right click and choose get Unit ID. This also works if you pass in the function for W_GetCourse with a unit specified in that.  
 -- W_EscapeFromPort({name='CG 16 Leahy', guid='cde0f12a-3eec-4613-8527-fa9fc92ec98f'},course)  
 -- W_EscapeFromPort({name='CG 16 Leahy', guid='cde0f12a-3eec-4613-8527-fa9fc92ec98f'}, W_GetCourse('Blue','F-14D Tomcat'))  
 
-function W_OverWater(latitude, longitude)  
+###### function W_OverWater(latitude, longitude)  
 -- check if location is over water, returns true/yes if over water  
 -- print(W_OverWater('26.7837580250281','-72.7095962123351'))  
 
-function W_RandomLetter()  
+###### function W_RandomLetter()  
 -- returns a random uppercase letter. Used to modify a unit name  
 -- print(W_RandomLetter())  
 
-function W_DrawRPCircleAroundUnit(sidename, unit_name, radius, numpts, nameprefix, firstindex)  
+###### function W_DrawRPCircleAroundUnit(sidename, unit_name, radius, numpts, nameprefix, firstindex)  
  -- Draw 5nmi radius circle around "US" unit named "My Ship" with 12 points labeled B-1 to B-12  
 --  W_DrawRPCircleAroundUnit("Blue", "F-14D Tomcat", 5, 12, "B-", 1)  
 
-function W_DrawRPCircle(sidename, location, radius, numpts, nameprefix, firstindex)  
+###### function W_DrawRPCircle(sidename, location, radius, numpts, nameprefix, firstindex)  
 -- Draw a 30nmi radius circle for side "Blue" around Atlanta with 12 points labeled ATL-1 through ATL-12 like a clock.  
 -- W_DrawRPCircle("Blue", {latitude='33.761939187143', longitude='-84.3825536773889'}, 30, 12, "ATL-", 1)    
 -- Last three arguments are optional and have default values if not specified.  
 -- W_DrawRPCircle("Blue", {latitude='33.761939187143', longitude='-84.3825536773889'}, 30)  
 
-function W_DeleteReferencePointsByPrefix(sidename, prefix, firstindex, lastindex)  
+###### function W_DeleteReferencePointsByPrefix(sidename, prefix, firstindex, lastindex)  
 -- Delete all reference points for a side with a given prefix and a given range of numbers after the prefix.  
 -- Does not return true/false Example usage:  
 -- Delete all reference points for "Blue" named B-1 through B-12.  
 -- W_DeleteReferencePointsByPrefix("Blue", "B-", 1, 12)  
 
-function W_AssignUnitsToMission(nameprefix, startcount, endcount, missioname)  
+###### function W_AssignUnitsToMission(nameprefix, startcount, endcount, missioname)  
 -- Assign Units to Mission by name prefix  
 -- Written by Kevin Kinscherf (2016-12-9)  
 -- "Functionized" by NimrodX  
@@ -137,22 +137,22 @@ function W_AssignUnitsToMission(nameprefix, startcount, endcount, missioname)
 -- W_AssignUnitsToMission("Hawk #", 1, 3, "test") assigns Hawk #'s 1-3 to mission test 
 
 
-function W_TimeFromNow(MinutesFromNow)  
+###### function W_TimeFromNow(MinutesFromNow)  
 -- returns the time x minutes from now in a format that can be used to set a mission start time, or a trigger time. Used by W_SetMissionStartTime  
 -- currentMission.starttime =W_TimeFromNow(60)  
 -- print(W_TimeFromNow(120))  
 
-function W_SetMissionStartTime(sideName,missionName,minutesFromNow)  
+###### function W_SetMissionStartTime(sideName,missionName,minutesFromNow)  
 -- Set mission to start x minutes from current game time "now"  
 -- W_SetMissionStartTime('Blue','test',120)  
 
-function W_ActivateMission(sideName,missionName)  
+###### function W_ActivateMission(sideName,missionName)  
 -- Set a mission active by side,name.  
  
-function W_DeactivateMission(sideName,missionName)  
+###### function W_DeactivateMission(sideName,missionName)  
 -- Set mission inactive by side,name.   
 
-function W_RefuelUnitIfLow(side, name, minfuel, fueltype)  
+###### function W_RefuelUnitIfLow(side, name, minfuel, fueltype)  
 -- Refuel Unit if Low  
 -- This will change the onboard fuel for an aircraft depending upon some condition.  
 -- If the fuel level goes below 'minfuel' it will be reset to the maximum allowed for the aircraft.  
@@ -162,5 +162,5 @@ function W_RefuelUnitIfLow(side, name, minfuel, fueltype)
 -- W_RefuelUnitIfLow("Civilian", "Jumbo Jet", 22000) -- refuel to max if fuel gets below 22,000  
 -- Defaults to airplane fuel but a different fuel type can be set as the 4th argument.   
 
-function W_ConfirmSpecialAction(actionDescription)  
+###### function W_ConfirmSpecialAction(actionDescription)  
 -- pops up a special mesage box to confirm you want to execute a special action  
