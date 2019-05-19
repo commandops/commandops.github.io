@@ -1,0 +1,13 @@
+_id: fb6b1b10-79db-11e9-b4f4-634ae1af6d00
+author: whicker
+notes: >-
+  Working on AI ground units that return to an area when they are out of ammo. 
+  Would use this with a trigger of every x minutes once the cargo drop takes
+  place? and maybe checking an area for the units? not sure how to get UnitX
+  yet. Could build a table as the units are dropped off but you wouldn't be able
+  to save it as a key value.  Or could maybe rename the unit as it is dropped
+  off by the cargo mission - that gives you unitX, then the name could have a
+  specific part to it which would allow you to loop thru all land units using
+  sting.match to single out the land units you want to control in this way.
+code: "local returnCourse = { [1] = { longitude = -77.2684808114843, TypeOf = 'ManualPlottedCourseWaypoint', latitude = 17.8398961272957 }, [2] = { longitude = -77.2207384588076, TypeOf = 'ManualPlottedCourseWaypoint', latitude = 17.7514818092388 }, [3] = { longitude = -77.1871543567516, TypeOf = 'ManualPlottedCourseWaypoint', latitude = 17.7304140641624 } }\r\nlocal u = ScenEdit_GetUnit({name='Mech Inf #459', guid='ed2a5ff4-3e9e-4ee4-94d3-f63f01641ae5'})\r\nlocal ammo =0\r\nfor k,v in pairs(u.mounts) do --outer mounts loop\r\n\r\nfor k,v in pairs(u.mounts[k].mount_weapons) do --loop thru each mounts weapons\r\nprint(v.wpn_name..' '.. v.wpn_current)\r\nammo = ammo + v.wpn_current\r\nprint(\"total ammo: \"..ammo)\r\nend\r\nend\r\nif ammo == 0 then\r\nprint('unit is out of ammo, should send back to LZ')\r\nScenEdit_AssignUnitToMission(u.name, 'NONE')\r\nu.course = returnCourse\r\nelse\r\nprint('unit still has ammo')\r\nend\r\nprint('-------------------')"
+date: 1558232133
