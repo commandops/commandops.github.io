@@ -57,7 +57,7 @@ There are additional configuration options for the Survivors Script located in t
 
 The potential number of survivors can be controlled by the number of crew passed in. This can be done in the same manner and in the same elseif section as the Lua scoring.
 
-function W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter, addMoreColumns, addMoreRows)  
+`function W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter, addMoreColumns, addMoreRows)`  
 -- requires 4 Reference points (should be a rectangle)  
 -- requires Tool_EmulateNoConsole(true) if running from the console or you get a mission error    
 -- ex: W_RandomBios('Biologics','RP-1','RP-2','RP-3','RP-4',37,-40,10,10,2,2)  
@@ -65,7 +65,7 @@ function W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLef
 -- the more jitter (angle or distance) the more random  
 
 
-function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)  
+**function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)**  
 -- side and ship are only required parameters, if you need one at the end then you have to set all previous ones  
 -- bmin and bmax default to 1 and 360, used to control bearing of where unit can move to ex bmin=90, bmax=180 unit will be placed south east of current location if possible.  
 -- distance defaults to 100 miles  
