@@ -65,7 +65,7 @@ The potential number of survivors can be controlled by the number of crew passed
 -- the more jitter (angle or distance) the more random  
 
 
-**function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)**  
+###### function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)  
 -- side and ship are only required parameters, if you need one at the end then you have to set all previous ones  
 -- bmin and bmax default to 1 and 360, used to control bearing of where unit can move to ex bmin=90, bmax=180 unit will be placed south east of current location if possible.  
 -- distance defaults to 100 miles  
