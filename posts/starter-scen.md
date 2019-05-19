@@ -43,11 +43,11 @@ Below is a list of functions already loaded into this scenario via on Scenario L
 
 There are 5 Lua actions loading functions on scen load.
 
-1) SAR - Downed Pilot - Survivors Script (via angster/TyphoonFr modified by Whicker) - (Actually 2 Actions for these)
-2) Create Random Bios (via Whicker)
-3) Place Unit Randomly (via Whicker / KnightHawk75)
-4) Deploy Recon team from subs/ships
-5) Misc Helpers (via https://github.com/rjstone/cmano-lua-helpers)
+1) SAR - Downed Pilot - Survivors Script (via angster/TyphoonFr modified by Whicker) - (Actually 2 Actions for these)  
+2) Create Random Bios (via Whicker)  
+3) Place Unit Randomly (via Whicker / KnightHawk75)  
+4) Deploy Recon team from subs/ships  
+5) Misc Helpers (via https://github.com/rjstone/cmano-lua-helpers)  
 
 #### Survivors Script
 
