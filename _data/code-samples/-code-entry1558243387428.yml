@@ -1,0 +1,7 @@
+_id: 2f082750-79f6-11e9-b4f4-634ae1af6d00
+author: whicker
+notes: >-
+  World_GetPointFromBearing example. Can add a ref point there, or use to set
+  course waypoint.
+code: "local p =World_GetPointFromBearing ({latitude='17.9157389252343', longitude='-77.1091624293097',bearing=90, distance=1})\r\nScenEdit_AddReferencePoint( {side=\"red\", name=\"new ref point\", lat=p.latitude, lon=p.longitude, highlighted=true})"
+date: 1558243387
