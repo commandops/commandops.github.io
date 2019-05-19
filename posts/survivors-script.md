@@ -6,7 +6,7 @@ layout: default
 
 Last Updated: September 1, 2018
 
-Status: still in testing but mostly looking good. 
+Status: mostly looking good. 
 
 **Known issues: ~~Subs can pickup at any depth~~[fixed]. ~~Ships sinking create survivors but can still pick them up themselves until they actually sink~~[fixed I think]. If the enemy's ROE is set to Free then it may attack a survivor since the survivor will show as unidentified contact (Survivor side is neutral to enemy - have tried friendly but sometimes it doesn't show up to the player side), this could lead to a survivor being attacked by SS-19 shipwreck missles or the like. Probably should also limit the types of unit that can pickup survivors, not sure a Cobra gunship should be able to pickup someone.**
 
