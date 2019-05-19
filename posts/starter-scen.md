@@ -76,8 +76,8 @@ The potential number of survivors can be controlled by the number of crew passed
 
 ###### function W_GetUnitProps(unitName)
 --prints full unit wrapper    
---W_GetUnitProps({name='F-14D Tomcat', guid='78407e18-3841-4f63-bcc2-df202cc3dc3c'})
---W_GetUnitProps('F-14D Tomcat')
+--W_GetUnitProps({name='F-14D Tomcat', guid='78407e18-3841-4f63-bcc2-df202cc3dc3c'})  
+--W_GetUnitProps('F-14D Tomcat')  
 
 ###### function W_GetSideProps(sideName)  
 --prints full Side wrapper wrapper, may be memory hog  
