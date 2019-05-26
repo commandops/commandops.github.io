@@ -1,0 +1,7 @@
+_id: 72d77aa0-7f7b-11e9-9ca8-7370f48231eb
+author: whicker
+notes: >-
+  After cargo drop off, assign units to go to certain co-ordinates - assuming
+  they are recon units.
+code: "local t ={{latitude='-0.765117507753304', longitude='-91.1350164860851'},\r\n{latitude='-0.786440951539722', longitude='-91.1723105640674'},\r\n{latitude='-0.898615248793162', longitude='-91.4113109884621'},\r\n{latitude='-0.940265113997278', longitude='-91.4156491636998'},\r\n{latitude='-0.440303719004694', longitude='-91.1648090615147'},\r\n{latitude='0.00588535114367335', longitude='-91.3635273233471'},\r\n{latitude='-0.954108155701674', longitude='-91.3866590642809'},\r\n{latitude='-0.855716297836393', longitude='-91.1322275574939'},\r\n{latitude='-0.452922251700375', longitude='-91.1384572006042'},\r\n{latitude='-0.160841638087961', longitude='-91.3026679234585'},\r\n{latitude='0.0105327932462405', longitude='-91.3680814974655'},\r\n{latitude='-0.0106982805829027', longitude='-91.5495894731476'}\r\n}\r\nlocal u = ScenEdit_UnitX ()\r\nlocal counter = ScenEdit_GetKeyValue('recon-counter')\r\nprint('counter equals '..counter)\r\nif counter == '' then counter =1\r\nprint('counter was not set')\r\nelse\r\n\tcounter=tonumber(counter)\r\nprint('must be set to '..counter)\r\nend\r\nlocal newCourse = { [1] = { longitude = t[counter].longitude, latitude = t[counter].latitude, TypeOf = 'ManualPlottedCourseWaypoint' }}\r\nu.course = newCourse\r\ncounter = counter +1\r\nif counter >12 then counter = 1 end\r\nScenEdit_SetKeyValue('recon-counter',tostring(counter))"
+date: 1558850380
