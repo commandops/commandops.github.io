@@ -1,0 +1,7 @@
+_id: 9e24cb90-803e-11e9-b6ca-89a0381f8b48
+author: whicker
+notes: >-
+  Check to see if an AC is on the ground and if so change its mission and
+  loadout. Airbornetime is a string for some reason.
+code: "local tmp; \r\nfor i = 1,10 do \r\ntmp = ScenEdit_GetUnit({name =\"Harrier #\".. i}) \r\nif tmp ~= nil and tmp.airbornetime == '0' then \r\nScenEdit_SetLoadout({UnitName =tmp.name, LoadoutID =4695})\r\nScenEdit_AssignUnitToMission(tmp.name, 'Harrier Attack'); \r\nprint('Harrier #' .. i .. ' Added to  Harrier Attack Mission.'); \r\nelse \r\nprint('Harrier #' .. i .. ' does not exist or is airborne, skipping.')\r\nprint(tmp.airbornetime)\r\nend \r\nend"
+date: 1558934204
