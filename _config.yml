@@ -16,6 +16,7 @@ exclude: ["Gemfile.lock","Gemfile","package.json","rakefile.rb","README.md","s3_
 highlighter: rouge
 markdown: kramdown
 kramdown:
+  smart_quotes: ["apos", "apos", "quot", "quot"]
   input: GFM
   hard_wrap: false
   syntax_highlighter: rouge
