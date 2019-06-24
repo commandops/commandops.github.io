@@ -1,0 +1,7 @@
+_id: bc6a7100-963b-11e9-a446-09fb93086f5b
+author: whicker
+notes: >-
+  Function to take a group - like an air base - and change all or some of the
+  units detect-ability.
+code: "function WW_SetGroupAutodetable(groupName, trueOrFalse, onlyUnitsWithName)\r\nlocal u = ScenEdit_GetUnit({name=groupName})\r\nunitsToChange = u.group.unitlist\r\nfor i = 1, #unitsToChange\r\ndo\r\nlocal uu = SE_GetUnit({guid=unitsToChange[i]}) \r\nif onlyUnitsWithName == nil or string.match(uu.name, onlyUnitsWithName) then\r\nuu.autodetectable = trueOrFalse\r\nprint(uu.name..' is it autodectable? '..tostring(uu.autodetectable))\r\nelse\r\nprint(uu.name..' is it autodectable? '..tostring(uu.autodetectable))\r\nend --if name used\r\nend --loop\r\nend --function end\r\n\r\nWW_SetGroupAutodetable('Tanete Field', true, 'Runway') -- if the group is already undetectable set the runway stuff to detectable\r\n--WW_SetGroupAutodetable('Tanete Field', false) -- make all units in the group not detectable\r\n-- careful with aircraft - probably would be bad if you made all units detectable and there were AC or ships at the base"
+date: 1561351892
