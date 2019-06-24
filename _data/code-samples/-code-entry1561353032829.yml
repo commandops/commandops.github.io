@@ -1,0 +1,5 @@
+_id: 6444a5b0-963e-11e9-a446-09fb93086f5b
+author: whicker
+notes: Change a group/base to a different side.
+code: "function WW_SetGroupSide(groupName, newSide)\r\nlocal u = ScenEdit_GetUnit({name=groupName})\r\nunitsToChange = u.group.unitlist\r\nfor i = 1, #unitsToChange\r\ndo\r\nlocal uu = SE_GetUnit({guid=unitsToChange[i]}) \r\nScenEdit_SetUnitSide({side=uu.side, Name=unitsToChange[i], newside=newSide})\r\nuu.group = groupName\r\nend --loop\r\nend --function end\r\n\r\nWW_SetGroupSide('Group 632', 'Abandoned')"
+date: 1561353032
