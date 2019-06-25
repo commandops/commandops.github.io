@@ -1,0 +1,5 @@
+_id: 9a807aa0-9706-11e9-8f6f-a1998fa55b00
+author: whicker
+notes: Print out unit name and dbid of units in a group.
+code: "local u = SE_GetUnit({name='Tanete Feild', guid='d2677f47-9c8f-41ae-8564-4f77fc9a5e72'})\r\nunitsToCheck = u.group.unitlist\r\nfor i = 1, #unitsToCheck do\r\nlocal uu = SE_GetUnit({guid=unitsToCheck[i]}) \r\nprint(uu.name..' dbid: '..uu.dbid)\r\nend"
+date: 1561439023
