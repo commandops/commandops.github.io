@@ -1,0 +1,7 @@
+_id: de19ae80-97c4-11e9-a7e3-717941eb3c30
+author: whicker
+notes: >-
+  Check a group of units detectability - can optionally only change some units
+  based on their name like 'runway'.
+code: "function WW_SetGroupAutodetectable(side,groupName, trueOrFalse, onlyUnitsWithName)\r\nlocal u = ScenEdit_GetUnit({name=groupName, side=side})\r\nunitsToChange = u.group.unitlist\r\nfor i = 1, #unitsToChange\r\ndo\r\nlocal uu = SE_GetUnit({guid=unitsToChange[i]}) \r\nif onlyUnitsWithName == nil or string.match(uu.name, onlyUnitsWithName) then\r\nuu.autodetectable = trueOrFalse\r\nprint(uu.name..' is it autodetectable? '..tostring(uu.autodetectable))\r\nelse\r\nprint(uu.name..' is it autodetectable? '..tostring(uu.autodetectable))\r\nend --if name used\r\nend --loop\r\nend --function end\r\n\r\nWW_SetGroupAutodetectable('Abandoned','Kantorpos Field', true, 'Runway')"
+date: 1561520740
