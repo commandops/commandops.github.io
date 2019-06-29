@@ -181,5 +181,5 @@ You can also use it with a specific unit by passing in a table with the guid - n
 -- W_SetGroupAutodetectable('blue','Group 355', true,'Leahy')  
 
 ###### function W_SetGroupSide(oldSide, groupName, newSide)  
--- change a group and its units from one side to another
--- W_SetGroupSide('red','Group 355', 'blue')
+-- change a group and its units from one side to another  
+-- W_SetGroupSide('red','Group 355', 'blue')  
