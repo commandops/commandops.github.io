@@ -179,3 +179,7 @@ You can also use it with a specific unit by passing in a table with the guid - n
 -- change a groups autodetectability, could be ships or air base  
 -- you can specifiy a particular unit, like runways, or a specific ship (optional)  
 -- W_SetGroupAutodetectable('blue','Group 355', true,'Leahy')  
+
+###### function W_SetGroupSide(oldSide, groupName, newSide)  
+-- change a group and its units from one side to another
+-- W_SetGroupSide('red','Group 355', 'blue')
