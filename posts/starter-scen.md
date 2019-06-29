@@ -168,3 +168,12 @@ You can also use it with a specific unit by passing in a table with the guid - n
 
 ###### function W_ConfirmSpecialAction(actionDescription)  
 -- pops up a special mesage box to confirm you want to execute a special action  
+
+###### function W_UnitAltitudeAboveGround(side, unitguid)  
+-- returns altitude above ground in meters, should only be used on AC  
+-- print(W_UnitAltitudeAboveGround('blue','78407e18-3841-4f63-bcc2-df202cc3dc3c'))
+
+###### function W_SetGroupAutodetectable(side,groupName, trueOrFalse, onlyUnitsWithName)  
+-- change a groups autodetectability, could be ships or air base
+-- you can specifiy a particular unit, like runways, or a specific ship (optional)
+-- W_SetGroupAutodetectable('blue','Group 355', true,'Leahy')
