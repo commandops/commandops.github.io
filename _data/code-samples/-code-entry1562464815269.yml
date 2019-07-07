@@ -1,0 +1,7 @@
+_id: f63f5fc0-a05a-11e9-8193-17034b4db44c
+author: whicker
+notes: >-
+  Move 2 ref points a random number of miles from where they are, in this case
+  only changing the latitude.
+code: "math.randomseed(os.clock())\r\nlocal d=math.random(1,350)\r\nlocal p =World_GetPointFromBearing({latitude='13.984442921467', longitude='109.05782487399',bearing=180, distance=d})\r\nScenEdit_SetReferencePoint({side=\"USSR\", name=\"Holding-1\", lat=p.latitude})\r\nScenEdit_SetReferencePoint({side=\"USSR\", name=\"Holding-2\", lat=p.latitude})"
+date: 1562464815
