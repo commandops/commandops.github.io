@@ -1,0 +1,7 @@
+_id: 9a9eb270-a527-11e9-ad0e-e9b8777c0db4
+author: whicker
+notes: >-
+  Simple OOB of enemy contacts - just listing AC and SAMs so far. Could make
+  this a special action.
+code: "local vp = VP_GetSide({name = \"USN\"})\r\nlocal cp = vp.contacts --List Of contacts\r\nlocal ac={}\r\nlocal sams = {}\r\nfor k,v in ipairs(cp) do\r\nlocal u = ScenEdit_GetContact({side='USN', guid=cp[k].guid })\r\nif u.type == 'Air' then\r\n--print(v)\r\ntable.insert(ac,v)\r\nend --if AC\r\nif u.type == 'Fixed Facility' then\r\nif string.match(u.name,'SAM') then\r\n--print(u.name)\r\ntable.insert(sams,v)\r\nelse -- not sam, do somethign with them at bottom\r\nend --if fixed facility\r\nend --if AC\r\nend\r\nprint('------ Air Contacts ---------------------------------------')\r\nfor k,v in ipairs(ac) do\r\nprint(v.name)\r\nend -- ac table\r\n\r\nprint('------ SAM Contacts ---------------------------------------')\r\nfor k,v in ipairs(sams) do\r\nprint(v.name)\r\nend -- ac table"
+date: 1562992513
