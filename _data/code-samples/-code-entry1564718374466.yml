@@ -1,0 +1,8 @@
+_id: f028a810-b4d9-11e9-b0e1-5713ab9a9981
+author: whicker
+notes: >-
+  loop thru cargo on a pier and unload it. Unloads all of one type into one
+  unit. If you have something like a SA-10 it doesn't have radar, somehow need
+  to have that in the cargo and then pair it together so it could work?
+code: "local u = SE_GetUnit({name='Structure (Pier [Extra Large, 200-500m])', guid='921183c8-8a56-499b-8024-3f74eadf6806'})\r\nprint(u.cargo[1].cargo)\r\n\r\nfor k,v in pairs (u.cargo[1].cargo) do\r\nprint(v.dbid)\r\nScenEdit_UnloadCargo(u.name, { {v.quantity,v.dbid}})\r\nend"
+date: 1564718374
