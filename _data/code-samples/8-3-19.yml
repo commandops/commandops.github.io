@@ -8,25 +8,44 @@ notes: >-
 
 code: >-
   --sam site
+  
   ScenEdit_AddUnit({side='Crimson Commonwealth', type='Facility', name='SAM Site 1', dbid=399, autodetectable=false, latitude='17.9755369694901', longitude='-76.805865481985'})
+  
   --203mm arty
+  
   local lat='17.9775500173216'
+  
   local lon='-76.8068606459053'
+  
   for i=1,6 do
+  
   local u = ScenEdit_AddUnit({side='Crimson Commonwealth', type='Facility', name='Arty 203 #'..i, dbid=2392, autodetectable=false, Lat=lat, Lon=lon})
+  
   u.holdposition =true
+  
   ScenEdit_SetDoctrine({side="Crimson Commonwealth", unitname=u.name}, {engage_opportunity_targets= "yes" })
+  
   lat=lat +.0005
+  
   end --arty
+  
   --Manpads
+  
   local lat='17.9767240346245'
+  
   local lon='-76.8068606459053'
+  
   for i=1,6 do
+  
   local u = ScenEdit_AddUnit({side='Crimson Commonwealth', type='Facility', name='SA-7 #'..i, dbid=426, autodetectable=false, Lat=lat, Lon=lon})
+  
   lat=lat +.0005
+  
   end --sa-7s
+  
 
   local u = ScenEdit_AddUnit({side='Crimson Commonwealth', type='Facility', name='Radar - Manly', dbid=1455, autodetectable=false, Lat='17.9802486954862', Lon='-76.8039160521666'})
+  
   ScenEdit_SetEMCON('Unit', u.name, 'Radar=Active')
 
 date: 1564886025299
