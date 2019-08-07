@@ -1,0 +1,8 @@
+_id: 87a1aec0-b93b-11e9-8d43-a9affe6acf06
+author: whicker
+notes: >-
+  Get units from a particular mission and change their speed. For instance to
+  stop manpads so they can actually shoot. Probably need to turn their speed on
+  and off at an interval, otherwise they never stop and can never shoot.
+code: "local m = ScenEdit_GetMission ('Blue', 'Manpads')\r\nprint(#m.unitlist)\r\n\r\nfor i =1,#m.unitlist do\r\nlocal u = SE_GetUnit({guid=m.unitlist[i]})\r\nu.manualSpeed=0\r\nend --loop"
+date: 1565200096
