@@ -1,0 +1,7 @@
+_id: 4b27cb30-b942-11e9-8d43-a9affe6acf06
+author: whicker
+notes: >-
+  Manpads on mission - stop every minute (40% of the time), stay stopped if
+  firing at something.
+code: "math.randomseed(os.clock())\r\n\r\nlocal m = ScenEdit_GetMission ('A', 'AAW')\r\n--print(#m.unitlist)\r\n\r\nfor i =1,#m.unitlist do\r\nlocal r = math.random(0,10)\r\nprint(r)\r\nlocal u = SE_GetUnit({guid=m.unitlist[i]})\r\nif u.speed ~= 0 and r > 6 then\r\nu.manualSpeed=0\r\nelseif\r\nu.firingAt ~=nil then\r\nu.manualSpeed=0\r\nprint('firing at something, stay at stop')\r\nelse\r\nu.manualSpeed=20\r\nend\r\nend --loop"
+date: 1565202999
