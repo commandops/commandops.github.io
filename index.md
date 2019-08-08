@@ -6,7 +6,8 @@ active: yes
 ---
 {% include home-top.html %} 
 
-Check land units on a mission to see if they still have ammo - if not return them to a specific location.
+Check `land` units on a mission to see if they still have ammo - if not return them to a specific location.
+
 
 ```
 local returnCourse = { [1] = { latitude='20.0176142061058', longitude='-75.9143283023575', TypeOf = 'ManualPlottedCourseWaypoint'} }
