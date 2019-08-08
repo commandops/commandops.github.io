@@ -1,0 +1,8 @@
+    {% assign samples = site.data.code-samples | sort %}{% for sample in samples reversed %}
+     {% assign item = sample[1] %} 
+   <div class = "code-sample">
+     <span class="code-info"> {{ item.notes }}</span><br>
+         <span class="code-author"> Submitted by {{ item.author }} on  {{ item.date | date: '%B %d, %Y'  }} | <a target="_blank" href="https://github.com/commandops/commandops.github.io/tree/master/_data/code-samples/{{ sample[0]}}.yml">Edit</a>
+         </span>{%highlight lua%}{{item.code}}{% endhighlight %}</div>{% endfor %}
+</div>
+</section> 
