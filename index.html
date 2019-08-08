@@ -4,22 +4,9 @@ title: Commandops CMANO Stuff
 description: Just some random CMANO stuff
 active: yes
 ---
+{% include home-top.html %} 
 
-  <img class="img-responsive-full" src="{{site.baseurl}}/assets/images/cmano-map.jpg" alt="CMANO map">
-<h1 class="text-center headline">CommandOps</h1>
-<p class="text-center lead">A player created website for CMANO - Command: Modern Air/Naval Operations
-</p>
-<section class="section-main">
-  <div class="container pad-top"> 
-    <h2>Useful Links:</h2>
-    {% for item in site.data.links %}
-    <span class="cmano-links"> <a target="_blank" href="{{ item.url }}">{{ item.text}}</a> </span>
-    {% endfor %}
-    <hr>
-    <h2 class="pad-top">Lua Code Samples</h2>
-    <p>Below are some handy Lua code samples. Please note that they may need some interpretation and may not work perfectly as is due to a variety of reasons, but hopefully they can give you some ideas.</p>
-  {{site.code.samples.content}}
-    
+
     {% assign samples = site.data.code-samples | sort %}{% for sample in samples reversed %}
      {% assign item = sample[1] %} 
    <div class = "code-sample">
