@@ -1,0 +1,7 @@
+_id: e36ad790-b990-11e9-8877-cd438f83f435
+author: whicker
+notes: >-
+  Check land units on a mission to see if they still have ammo - if not return
+  them to a specific location.
+code: "local returnCourse = { [1] = { latitude='20.0176142061058', longitude='-75.9143283023575', TypeOf = 'ManualPlottedCourseWaypoint'} }\r\n\r\nlocal m = ScenEdit_GetMission ('Crimson Commonwealth', 'Assault - Industrial')\r\n--print(#m.unitlist)\r\n\r\nfor i =1,#m.unitlist do\r\nlocal u = SE_GetUnit({guid=m.unitlist[i]})\r\nprint(u.name)\r\nlocal ammo =0\r\nfor k,v in pairs(u.mounts) do --outer mounts loop\r\nfor k,v in pairs(u.mounts[k].mount_weapons) do --loop thru each mounts weapons\r\nprint(v.wpn_name..' '.. v.wpn_current)\r\nammo = ammo + v.wpn_current\r\nprint(\"total ammo: \"..ammo)\r\nend\r\nend\r\nif ammo == 0 then\r\nprint('unit is out of ammo, should send back to LZ')\r\nScenEdit_AssignUnitToMission(u.name, 'NONE')\r\nu.course = returnCourse\r\nelse\r\nprint('unit still has ammo')\r\nend\r\nprint('-------------------')\r\nend"
+date: 1565236755
