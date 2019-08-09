@@ -6,6 +6,4 @@ active: yes
 ---
 {% include home-top.html %} 
 
-
-
 {% include home-bottom.html %} 
