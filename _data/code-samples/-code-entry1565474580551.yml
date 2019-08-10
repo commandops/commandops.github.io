@@ -1,0 +1,7 @@
+_id: 9e1e5550-bbba-11e9-8f5e-3f2fca5c9739
+author: whicker
+notes: >-
+  Add weapon/ammo to an ammo pad. Trick is that the ID listed in the add weapon
+  UI is not the DBID - you need to search for Weapons in the Weapons DB.
+code: "local u = SE_GetUnit({name='Ammo Pad', guid='01563bf0-12c5-4ce4-bdd7-e370c449c77f'})\r\nprint(u.magazines)\r\nScenEdit_AddWeaponToUnitMagazine({unitname=u.name, wpn_dbid=2983, number=12, w_max=48})"
+date: 1565474580
