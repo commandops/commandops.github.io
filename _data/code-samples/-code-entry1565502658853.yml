@@ -1,0 +1,8 @@
+_id: fe1a1b60-bbfb-11e9-9336-2903a99b793a
+author: whicker
+notes: >-
+  Better logic for returning ground units when they run out of ammo. If unit is
+  armor or artillery ignore small arms in ammo count. Return if total ammo is
+  less than 5.
+code: "local returnCourseLat =20.0792774513933\r\nlocal returnCourseLon =-75.9280542142649\r\n\r\nlocal m = ScenEdit_GetMission ('Crimson Commonwealth', 'Assault - Industrial')\r\nprint(m.unitlist)\r\nfor i =1,#m.unitlist do\r\nlocal u = SE_GetUnit({guid=m.unitlist[i]})\r\nprint(u.name)\r\n--print(u.mounts)\r\nlocal ammo =0\r\nfor k,v in pairs(u.mounts) do --outer mounts loop\r\nfor k,v in pairs(u.mounts[k].mount_weapons) do --loop thru each mounts weapons\r\nprint(v.wpn_name..' '.. v.wpn_current)\r\nif string.match(u.name,'Arty') and (string.match(v.wpn_name,'7.62') or string.match(v.wpn_name,'30mm') or string.match(v.wpn_name,'12.7mm')) then\r\nammo=ammo --if arty dont count 7.62 \r\nelseif string.match(u.name,'Armor') and (string.match(v.wpn_name,'7.62') or string.match(v.wpn_name,'30mm') or string.match(v.wpn_name,'12.7mm')) then\r\nammo=ammo\r\nelse \r\nammo = ammo + v.wpn_current\r\nprint(\"total ammo: \"..ammo)\r\nend --if arty\r\nend --inner loop\r\nend --outer loop\r\nif ammo <5 then\r\nprint('unit is running out of ammo, should send back to LZ')\r\nScenEdit_AssignUnitToMission(u.name, 'NONE')\r\nu.course = { [1] = {latitude=returnCourseLat, longitude=returnCourseLon, TypeOf = 'ManualPlottedCourseWaypoint'} }\r\nreturnCourseLat=returnCourseLat + W_PathOffset()\r\nreturnCourseLon=returnCourseLon + W_PathOffset()\r\nelse\r\nprint('unit still has ammo')\r\nend\r\nprint('-------------------')\r\nend"
+date: 1565502658
