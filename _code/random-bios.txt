@@ -1,24 +1,31 @@
-bio_DBIDs = { 92,355,354,93,94,95 } --list of units to choose from - fish and false contacts 
+--bio_DBIDs = { 92,354,355,93,94,95 } --DB3000 list of units to choose from - fish and false contacts 
+bio_DBIDs = { 92,220,221,93,94,95 } --CWDB
+W_biosPlaceHolderUnit = 645 -- use 645 for CWDB, 1571 for DB3000
+W_biosPlaceHolderUnitLoadout = 2765 --use 2765 for CWDB, 8397 for DB3000
 
-function W_PlaceRandomBiologic(side,unit,distance,distanceJitter,angle,angleJitter,minDepth, mission) -- main code to create the unit, called at the bottom
+function W_PlaceRandomBiologic(side,unit,distance,distanceJitter,angle,angleJitter,minDepth, mission,chance) -- main code to create the unit, called at the bottom
+local rc = math.random()
+if rc < chance then chance = true end  
+if minDepth > 0 then minDepth = -minDepth end --make sure depth is negative
 local u = ScenEdit_GetUnit({guid=unit})
 --print(u)
 if u ~= nil then
   local m = math.random(distance-distanceJitter,distance+distanceJitter) -- get random distance based on jitter
   local b = math.random(angle-angleJitter,angle+angleJitter) -- get random angle based on jitter
-  local point = ScenEdit_AddReferencePoint( {side=side, name="possible", RelativeTo=unit, bearing=b ,distance=m}) -- create a reference point relative to unit passed in
+  local point = ScenEdit_AddReferencePoint({side=side, name="possible", RelativeTo=unit, bearing=b ,distance=m}) -- create a reference point relative to unit passed in
   ScenEdit_DeleteReferencePoint({side=side, name ="possible"})  --delete the point itself, we just need the corridinates
   local elevation = World_GetElevation({latitude = point.latitude, longitude= point.longitude}) --get the elevation of the point
   --print(elevation) 
-        if elevation < minDepth then -- check to see if we passed the check, can repurpose elevation if so
+        if elevation < minDepth and chance == true then -- check to see if we passed the check, can repurpose elevation if so
             if elevation < -300 then elevation = -300 --don't go too deep, want to use this for random depth as well so changing it to -300m if it is deeper
-            end
+            end    
         rDepth = math.random(40,-elevation) --choose random depth between 40 and the elevation (which is limited to -300) to use for new units depth
         --print(rDepth)
         DBID = bio_DBIDs[math.random( 1, #bio_DBIDs)] --choose a random unit from the list
-        local new_bio = ScenEdit_AddUnit({side='Biologics', type='Submarine',name='Biologic/False Contact', dbid=DBID,latitude=point.latitude,longitude=point.longitude, 
+        local new_bio = ScenEdit_AddUnit({side=side, type='Submarine',name='Biologic/False Contact', dbid=DBID,latitude=point.latitude,longitude=point.longitude, 
         manualAltitude= -rDepth, depth = rDepth}) --create new unit
-            if DBID == 92 or DBID == 355 or DBID == 354 then --if it is bio then assign to mission and give random speed
+            if DBID == 92 or DBID == 355 or DBID == 354 or DBID == 220 or DBID == 221 then --if it is bio then assign to mission and give random speed 
+              new_bio.manualSpeed=math.random(0, 4)
               new_bio.manualSpeed=math.random(0, 4)
               ScenEdit_AssignUnitToMission( new_bio.guid, mission)   
             --print(DBID)
@@ -26,7 +33,7 @@ if u ~= nil then
         return new_bio--exit, we are done, passback unit wrapper to where it was called to use on next iteration
 
         else --if not deep enough then place an AC as a marker so we have something to return for next pass
-          local unitToDelete = ScenEdit_AddUnit({side='Biologics', type='Aircraft',name='AC Holder to be deleted', dbid=1571, loadoutid = 8397,latitude=point.latitude,longitude=point.longitude, altitude = 5000}) 
+          local unitToDelete = ScenEdit_AddUnit({side=side, type='Aircraft',name='AC Holder to be deleted', dbid=W_biosPlaceHolderUnit, loadoutid = W_biosPlaceHolderUnitLoadout,latitude=point.latitude,longitude=point.longitude, altitude = 5000}) 
         table.insert(bioUnitsToDelete, unitToDelete.guid) -- add the unitToDelete to the list of units to delete, will delete at the end      
         return unitToDelete --exit, we are done, passback unit wrapper to where it was called to use on next iteration  
         end --end elevation if
@@ -37,14 +44,20 @@ end --end unit check
 end --end function
 
 -- this is the function you actually call (below - functions always load first)
-function W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter, addMoreColumns, addMoreRows)
+function W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter, chance)
 --math.randomseed(os.time()) --should uncomment this if it is in an event? doesn't seem to matter.
+if side ~= ScenEdit_PlayerSide() then 
+ScenEdit_MsgBox('You need to be on the side the bios will be on',1)
+return
+end
 bioUnitsToDelete = {} -- create an empty table to store placeholders
 local mission = ScenEdit_GetMission(side, 'Biologics '..topLeftPoint..'-'..topRightPoint) -- first check to see if mission exists
+
 if mission == nil then --if mission does not exist create it
   mission = ScenEdit_AddMission(side, 'Biologics '..topLeftPoint..'-'..topRightPoint, 'patrol', {type= 'SEA'})
-  mission = ScenEdit_SetMission('Biologics', 'Biologics '..topLeftPoint..'-'..topRightPoint, {patrolzone={topLeftPoint,topRightPoint, bottomRightPoint, bottomLeftPoint}, onethirdrule=false })
+  mission = ScenEdit_SetMission(side, 'Biologics '..topLeftPoint..'-'..topRightPoint, {patrolzone={topLeftPoint,topRightPoint, bottomRightPoint, bottomLeftPoint}, onethirdrule=false })
 end -- end mission check
+--print(mission)
 local spacingInMiles1 = 0 --first time thru you don't offset
 local rowAngle =  90 --angle to use for bearing of new unit
 local rowAngleReverse = 180 -- each row reverses the angle so this will be added to 90 = 270
@@ -56,20 +69,20 @@ local width = Tool_Range({latitude = topLeftPoint.latitude, longitude=topLeftPoi
 local height = Tool_Range({latitude = topLeftPoint.latitude, longitude=topLeftPoint.longitude},{latitude =bottomLeftPoint.latitude, longitude=bottomLeftPoint.longitude})
 --print(width)
 --print(height)
-local rows = math.floor(height/spacingInMiles) + addMoreRows --divide height by spacing specified in setup, this gives us the number of iterations to do in one loop
+local rows = math.floor(height/spacingInMiles) --divide height by spacing specified in setup, this gives us the number of iterations to do in one loop
 --print('Rows: '..rows)
-local columns = math.floor(width/spacingInMiles) + addMoreColumns --divide width by spacing specified in setup, this gives us the number of iterations to do in the other loop
+local columns = math.floor(width/spacingInMiles) --divide width by spacing specified in setup, this gives us the number of iterations to do in the other loop
 --print('Columns: '..columns)
-local unit = ScenEdit_AddUnit({side=side, type='Aircraft',name='AC Holder to be deleted', dbid=1571, loadoutid = 8397,latitude=topLeftPoint.latitude,longitude=topLeftPoint.longitude, altitude = 5000, mission.name}) 
+local unit = ScenEdit_AddUnit({side=side, type='Aircraft',name='AC Holder to be deleted', dbid=W_biosPlaceHolderUnit, loadoutid = W_biosPlaceHolderUnitLoadout,latitude=topLeftPoint.latitude,longitude=topLeftPoint.longitude, altitude = 5000, mission.name}) --CWDB use dbid 645, loadout #2765
         table.insert(bioUnitsToDelete, unit.guid) --need an initial unit to start process, using a Cessna, will delete later
         local unitguid = unit.guid 
 --unitguid is what we use to create every unit, so we set it to the previous unit after every iteration, so that the next unit can use the previous units position as a starting point
 for i = 1,rows do --this gets complicated, we have an outer loop to go across (?)
-   local newBio = W_PlaceRandomBiologic('Biologics',unitguid,spacingInMiles1, distanceJitter, 180, angleJitter, minDepth, mission.name) --call the function, will return the created unit
+   local newBio = W_PlaceRandomBiologic(side,unitguid,spacingInMiles1, distanceJitter, 180, angleJitter, minDepth, mission.name,chance) --call the function, will return the created unit
     unitguid = newBio.guid --change unitguid to newly created unit for next pass
     spacingInMiles1 = spacingInMiles --after first use, reset the spacing to what it should be (was 0 on first unit)
     for i = 1,columns do --inner loop to go down
-        local newBio = W_PlaceRandomBiologic('Biologics',unitguid,spacingInMiles, distanceJitter, rowAngle, angleJitter, minDepth, mission.name) -- call the function, will return the created units
+        local newBio = W_PlaceRandomBiologic(side,unitguid,spacingInMiles, distanceJitter, rowAngle, angleJitter, minDepth, mission.name,chance) -- call the function, will return the created units
         unitguid = newBio.guid --change unitguid to newly created unit for next pass
     end -- rows loop
       rowAngle = rowAngle + rowAngleReverse --we are done with one row (?) which was going to the right, now we need to come back and go to the left, otherwise it just keeps going to the right 
@@ -83,4 +96,17 @@ end --end loop to delete
 --print(bioUnitsToDelete)
 end --end function
 
--- randomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter, addMoreColumns, addMoreRows)
+--example:
+--Tool_EmulateNoConsole(true) --needed if running in console
+--local side = 'Biologics'
+--local topLeftPoint = 'RP-5'
+--local topRightPoint = 'RP-6'
+--local bottomRightPoint = 'RP-7'
+--local bottomLeftPoint = 'RP-8'
+--local spacingInMiles = 20
+--local minDepth = 1500 --in meters
+--local distanceJitter = 5
+--local angleJitter = 5
+--local chance = .5 --between 0 and 1, likelihood of any one bio being created
+-- W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter,chance)
+

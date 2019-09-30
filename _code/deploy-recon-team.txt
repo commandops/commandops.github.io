@@ -1,8 +1,11 @@
-diveTeamDBID = 1910 --1910 US Navy SEAL reco with laser designator, change as needed. 1947 is spetsnaz w laser, 885 SEAL saboteurs, 2957 SEAL w laser and saboteur
+diveTeamDBID = 1910 --db3000 - 1910 US Navy SEAL reco with laser designator, change as needed. 1947 is spetsnaz w laser, 885 SEAL saboteurs, 2957 SEAL w laser 
+and saboteur
+--diveTeamDBID = 1663 -- CWDB Inf Sec SAS Recon with designator. Or use 1562 generic with binoculars but not designator
 diveTeamName = 'SEAL Recon Unit ' -- change as needed, will have random number and letter appended to it below
 
 --for helo drops
 reconTeamDBID = 1910 --1910 US Navy SEAL reco with laser designator, change as needed. 1947 is spetsnaz w laser, 885 SEAL saboteurs, 2957 SEAL w laser and saboteur
+--reconTeamDBID = 1663 --CWDB
 reconTeamName = 'Recon Unit ' -- change as needed, will have random number and letter appended to it below
 
 function W_GetPointOnLandWithinRange(subGUID,rangeInt,bearing)

@@ -4,7 +4,8 @@ description: The starter scenario has some basic things preset, such as a bunch 
 layout: default
 ---
 
-Link to [Starter Scen for DB3000](/assets/scens/StarterScenario-1.14.scen)
+Link to [Starter Scen for DB3000](/assets/scens/StarterScenario-DB3000.scen)  
+Link to [Starter Scen for CWDB](/assets/scens/StarterScen-CWDB-Version.scen)
 
 (CWDB Scen not ready yet, you cannot change the DB from one to the other)
 
@@ -70,12 +71,28 @@ The potential number of survivors can be controlled by the number of crew passed
 -- local u = ww({name='F-14D Tomcat', guid='78407e18-3841-4f63-bcc2-df202cc3dc3c'})
 -- print(u.name)
 
-###### function W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter, addMoreColumns, addMoreRows)  
+###### function W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter,chance)  
 -- requires 4 Reference points (should be a rectangle)  
 -- requires Tool_EmulateNoConsole(true) if running from the console or you get a mission error    
--- ex: W_RandomBios('Biologics','RP-1','RP-2','RP-3','RP-4',37,-40,10,10,2,2)  
--- minDepth should be negative  
+-- ex: W_RandomBios('Biologics','RP-1','RP-2','RP-3','RP-4',37,-40,10,10,.2)  
+-- minDepth is in meters and should be negative  
 -- the more jitter (angle or distance) the more random
+
+Make sure you are on the bios side when you run it.  
+It is best to use the random bios by doing everything as variables so it is easier to read like:
+
+Tool_EmulateNoConsole(true) --needed if running in console, ideally you should run it as a script loaded at Scen load but not repeated, that way they are always random.
+local side = 'Biologics'
+local topLeftPoint = 'RP-5'
+local topRightPoint = 'RP-6'
+local bottomRightPoint = 'RP-7'
+local bottomLeftPoint = 'RP-8'
+local spacingInMiles = 20
+local minDepth = 1500 --ok to be positive, will be switched to negative
+local distanceJitter = 5
+local angleJitter = 5
+local chance = .5 --between 0 and 1, likelihood of any one bio being created
+W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter,chance)
 
 ###### function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)  
 -- side and ship are only required parameters, if you need one at the end then you have to set all previous ones  
