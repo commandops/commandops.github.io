@@ -4,13 +4,15 @@ description: The starter scenario has some basic things preset, such as a bunch 
 layout: default
 ---
 
-I try to keep the Starter Scen up to date in the [Matrix forum](http://www.matrixgames.com/forums/tm.asp?m=4588613).
+Link to [Starter Scen for DB3000](/assets/scens/StarterScenario-1.14.scen)
+
+(CWDB Scen not ready yet, you cannot change the DB from one to the other)
 
 Reference for what is included:
 
 ## Before You Do Anything Else:
 
-- Update the DB version to the most recent one you want to use
+- Update the DB version to the most recent one you want to use **DO Not *Change Database* - You Must *Upgrade to Latest* or you will lose everything**
 - Turn on Scenario Features (Cargo, AC damage etc)
 - Delete the handful of units in the Atlantic (9 total between Red and Blue)
 - Set the time to whatever you need it to be
@@ -32,6 +34,8 @@ The % is to escape the dash which is an illegal character in string.match. To us
 
 ### Available Special Actions
 
+See post on [Special Actions](/posts/special-actions/) for more info.
+
 1) In Game Timer - all needed code is in the Special Action.
 
 
@@ -49,7 +53,7 @@ There are 5 Lua actions loading functions on scen load.
 2) Create Random Bios (via Whicker)  
 3) Place Unit Randomly (via Whicker / KnightHawk75)  
 4) Deploy Recon team from subs/ships  
-5) Misc Helpers (via https://github.com/rjstone/cmano-lua-helpers)  
+5) Misc Helpers (some from [https://github.com/rjstone/cmano-lua-helpers](https://github.com/rjstone/cmano-lua-helpers))  
 
 #### Survivors Script
 
@@ -58,6 +62,8 @@ The Survivors Script is loaded but not enabled. You can enable it by going to th
 There are additional configuration options for the Survivors Script located in the main script located under actions - Lua - Load SAR Script.
 
 The potential number of survivors can be controlled by the number of crew passed in. This can be done in the same manner and in the same elseif section as the Lua scoring.
+
+#### Misc Functions
 
 ###### function ww(unitTable)  
 -- same thing as ScenEdit_GetUnit(unitTable) just easier to right  
@@ -183,3 +189,78 @@ You can also use it with a specific unit by passing in a table with the guid - n
 ###### function W_SetGroupSide(oldSide, groupName, newSide)  
 -- change a group and its units from one side to another  
 -- W_SetGroupSide('red','Group 355', 'blue')  
+
+###### function W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangers, ammopads,detectable)
+-- create an airbase by passing in some stuff
+-- W_CreateAirBase('Big Base','Blue',{latitude='30.2702990404277', longitude='-82.9672648214299'}, 2, 2, 6, 12, 3, 5,true)
+
+###### function W_ProficiencyIncrement(proficiency,increment)
+-- use this to change a units proficiency up or down 1 increment (use 1 or -1 for increment)
+-- returns a number that corresponds to a proficiency
+
+----
+
+## Actual LUA Code
+
+Each of the items below is an Action (Type: LUA) that is part of an Event that has a trigger of Scen Loaded - set to Repeat.
+
+
+**Action Name:** Lua - Load Functions - Misc  
+[Click here for code](/code/misc-functions.txt)
+
+**Action Name:** Lua - Load Function to Create Random Bios  
+[Click here for code](/code/random-bios.txt)
+
+**Action Name:** Lua - Load Function to Place Unit Randomly  
+[Click here for code](/code/place-unit-randomly.txt)
+
+**Action Name:** Lua - Load Functions for Deploying Recon units from Subs/ships/helos  
+[Click here for code](/code/deploy-recon-team.txt)
+
+**Action Name:** Lua - Subtype Converter  
+[Click here for code](/code/subtype-converter.txt)
+
+----
+
+If you want to use the Survivors code you need the actions below as well:
+
+**ActionName:** Lua - Load Function for SAR Pickup  
+```lua
+----Start SAR - Scen loaded/repeats
+if ScenEdit_UnitX() then
+    StartSARTargetPickup(ScenEdit_UnitX())
+end
+```
+
+**Action Name:** Lua - Load Function for Survivors  
+[Click here for code](/code/survivors.txt)
+
+----
+
+If you want to do scoring with lua, this is a starting point - create 2 events:
+
+**Event Name:** Blue Unit Destroyed  
+**Trigger - Unit Destroyed *Blue***  
+**Action Name:** Lua - Scoring - Blue Unit Destroyed  
+[Click here for code](/code/scoring-blue-unit-destroyed.txt)
+
+**Event Name:** Red Unit Destroyed  
+**Trigger - Unit Destroyed *Red***  
+**Action Name:** Lua - Scoring - Red Unit Destroyed  
+[Click here for code](/code/scoring-red-unit-destroyed.txt)
+
+Bonus points, add some info into the lua history log for crazy people who want more info during the game:
+
+**Event Name:** Unit Damaged logger  
+**Trigger:** Unit Damaged  
+**ActionName:** Lua - Damaged Unit Logger  
+```lua
+local unit = ScenEdit_UnitX()
+if unit.type == "Weapon" then
+return --exit if destroyed unit is really a weapon
+end
+if unit.damage.dp > 1 then
+print("["..unit.side.." Unit Damaged] "..unit.name.. " ("..UnitX().classname..")")
+end
+```
+

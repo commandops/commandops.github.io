@@ -15,7 +15,7 @@ local lostOverSeaDBID = 2553  -- must be ship
 local survivorSide = "Survivors" --side for survivors, can't be your own or over water they will pick themselves up - must exist
 local maxPickupSpeed = 56
 local maxPickupAltitude = 101
-local crewSurvivalPercentage = 6 -- between 1 and 9, higher is more likely to survive
+local crewSurvivalPercentage =5 -- between 1 and 9, higher is more likely to survive
 local survivorTimeToRescue = 35 -- amount of time in seconds rescuers must remain in the area to recover each survivor - multiplied by the number of survivors
 --------------------------------------------------------------------------------------------------------------------------------
 -- SAR Target GUID Helpers
@@ -110,7 +110,7 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
     
      if triggerUnit and not SARTargetGUIDExists(triggerUnit.guid) then
         print("------attempting to create survivors-----")
-        print("Subtype: "..triggerUnit.subtype)
+       -- print("Subtype: "..triggerUnit.subtype)
         print("unit.condition: "..triggerUnit.condition)
         local worldElevation = World_GetElevation({latitude= triggerUnit.latitude, longitude=triggerUnit.longitude})
         if triggerUnit.type == "Aircraft" and (triggerUnit.altitude - worldElevation) < 5 then --check f AC is on the ground
@@ -146,7 +146,7 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
             if passengers == 0 then --if 0 is passed in as the crew count then quit
                 return
             end
-            print("Passengers: " ..passengers)
+            print("Crew: " ..passengers)
             numberWhoSurvived = math.floor(passengers * (didAnyoneSurvive/10))
             if numberWhoSurvived < 1 then
                 numberWhoSurvived = 1
@@ -156,9 +156,9 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
             print("Time needed to rescue: "..timeToRescue)
             timeToRescueMinutes = math.ceil(timeToRescue/ 60)
             end
-            print(unitType.." "..numberWhoSurvived.." Survivor(s) of "..triggerUnit.name.." dbid: "..unitLostDBID)
+           -- print(unitType.." "..numberWhoSurvived.." Survivor(s) of "..triggerUnit.name.." dbid: "..unitLostDBID)
         local downedPilot = ScenEdit_AddUnit({type=unitType, name =numberWhoSurvived.." Survivor(s) of "..triggerUnit.name, side = survivorSide, DBID = unitLostDBID, Latitude=triggerUnit.latitude  + 0.001, Longitude=triggerUnit.longitude + 0.001})
-        print("guid of survivor unit: "..downedPilot.guid)    
+       -- print("guid of survivor unit: "..downedPilot.guid)    
         -- Set Attributes
         downedPilot.manualSpeed  = 0
         
@@ -209,7 +209,7 @@ function CreateDownedPilotFromTriggerUnit(triggerUnit,passengers)
                 elseif timeToLive > 36000 then
                     timeToLiveMessage = "Surviving crew members are in good condition, likely to survive for at least 10 hours."  
                 end
-            print("Time they will survive in seconds: "..timeToLive)    
+            --print("Time they will survive in seconds: "..timeToLive)    
             local randInterval = timeFromNowDotNetTime(timeToLive)
             -- Add Create Trigger
             local addedTrigger = ScenEdit_SetTrigger({mode="add", type="Time", name="Trigger - Cancel Pilot"..downedPilot.guid, Time= randInterval})

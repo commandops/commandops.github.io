@@ -16,9 +16,6 @@
 - text: Command Theater AI - Ares v1.0 (forum post)
   url:  http://www.matrixgames.com/forums/tm.asp?m=4382966&mpage=1&key= 
 
-- text: Lua Helper Functions
-  url: https://github.com/rjstone/cmano-lua-helpers  
-
 - text: Downed Pilot/Survivor Script
   url: /posts/survivors-script/
   
@@ -30,3 +27,6 @@
 
 - text: Starter Scenario
   url: /posts/starter-scen/
+
+- text: Special Actions
+  url: /posts/special-actions/

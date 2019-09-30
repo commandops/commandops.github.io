@@ -1,0 +1,41 @@
+local side = ScenEdit_PlayerSide() -- put the side that you are keeping track of scoring for here
+local currentScore = ScenEdit_GetScore(side) -- get the current score
+local points = 0 --default amount of points to award, set to zero so only explicitly set scores are used
+local unit = ScenEdit_UnitX() --get the unit wrapper for the unit that was destroyed
+local pointMultiplier = 1 --default score goes down unit lost is not ours
+if unit.side ~= side then -- if it is not our unit lost then score goes up (could be playing as red)
+  pointMultiplier = -1 
+end
+---Create Survivor
+local crew = 1 --default survivors, survivors function call is below and disabled by default, ok to leave this in as is
+
+if unit.type == "Weapon" then
+return --exit if destroyed unit is really a weapon
+end
+
+if -- initial score setup, defaults, edit as needed
+unit.type == "Aircraft" then points = -15
+elseif 
+unit.type == "Facility" then points = -10
+crew = 0 -- no survivors 
+elseif 
+unit.type == "Ship" then points = -50
+crew = 10 -- some survivors
+elseif 
+unit.type == "Submarine" then points = -50
+crew = 0 -- no survivors 
+end
+
+--list higher or lower value units here to be more specific edit as needed (disabled, uncomment to enable)
+--if unit.name == "Air Force 1" then points = -1000
+--	elseif
+--string.match(unit.classname, "F%-15") then points = -17 --% is to escape the dash which is an illegal character in stringmatch
+--elseif
+---string.match(unit.classname, "DDG") then points = -150 crew = 200 --set points and crew/survivors
+-- end
+
+points = points*pointMultiplier
+currentScore = currentScore + points
+print("["..unit.side.." Unit Destroyed] "..unit.name.. " ("..UnitX().classname.." Sub Type: "..unit.subtype.." ) Points:  "..points)
+ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed, Points:  "..points)
+--CreateDownedPilotFromTriggerUnit(ScenEdit_UnitX(),crew) --comment out to disable

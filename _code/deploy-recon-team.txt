@@ -1,0 +1,130 @@
+diveTeamDBID = 1910 --1910 US Navy SEAL reco with laser designator, change as needed. 1947 is spetsnaz w laser, 885 SEAL saboteurs, 2957 SEAL w laser and saboteur
+diveTeamName = 'SEAL Recon Unit ' -- change as needed, will have random number and letter appended to it below
+
+--for helo drops
+reconTeamDBID = 1910 --1910 US Navy SEAL reco with laser designator, change as needed. 1947 is spetsnaz w laser, 885 SEAL saboteurs, 2957 SEAL w laser and saboteur
+reconTeamName = 'Recon Unit ' -- change as needed, will have random number and letter appended to it below
+
+function W_GetPointOnLandWithinRange(subGUID,rangeInt,bearing)
+	local unit = ScenEdit_GetUnit({guid=subGUID})
+    local ctr, distance, bearing = 0, 0, bearing
+	local position
+    repeat
+        ctr = ctr + 1
+        --bearing = (bearing + 5) % 360
+        --if bearing == 0 then
+            distance = distance + 0.27
+        --end
+        position = World_GetPointFromBearing({
+            latitude= unit.latitude, 
+            longitude= unit.longitude, 
+            distance = distance, 
+            bearing = bearing})
+        positionElev = World_GetElevation(position)
+    until not W_OverWater(position.latitude,position.longitude) 
+		or distance > rangeInt
+
+    if not W_OverWater(position.latitude,position.longitude) then
+		return position
+    else
+        ScenEdit_MsgBox('No suitable position found. \n\nMake sure '..unit.name..' is within '..rangeInt..'nm of land, and that the bearing is between 0 and 359.',0)
+		return nil
+    end
+end
+
+function W_DeployDiversFromSubmarine(subGUID, miles,bearing)
+	local unit = ScenEdit_GetUnit({guid=subGUID})
+	local deploymentPoint = W_GetPointOnLandWithinRange(subGUID, miles,bearing)
+	if deploymentPoint ~= nil then
+	    diveTeamName = diveTeamName..math.random(1,20)..W_RandomLetter()
+		ScenEdit_AddUnit({
+		side=ScenEdit_PlayerSide(),
+		name=diveTeamName,
+		type='Facility',
+		dbid=diveTeamDBID,
+		latitude=deploymentPoint.latitude,
+		longitude=deploymentPoint.longitude,
+		proficiency=math.random(3,4)})
+		ScenEdit_SetKeyValue('Swimmers_'..subGUID,'deployed')
+		end -- if deployment possible
+end
+
+function W_SubmarineSelectionIsValidForDivers()
+	local selection = ScenEdit_SelectedUnits()
+	local result, selectedUnit = false, ScenEdit_GetUnit({guid=selection.units[1].guid})
+	local deploymentCheck = ScenEdit_GetKeyValue('Swimmers_'..selectedUnit.guid)
+	if  selectedUnit.type == 'Submarine' or selectedUnit.type == 'Ship' then
+		
+	if #selection.units == 1 --make sure the user selected one unit not group
+		and selectedUnit ~= nil
+		and selectedUnit.speed < 6
+		and selectedUnit.altitude > -31
+		and deploymentCheck ~= 'deployed' then
+			return true
+	else
+		return false
+	end -- end check speed, altitude etc
+    else --must be something other than ship or sub
+	return false
+	end --end check if sub or ship
+end --end function
+
+function W_DeployDiversFromSelectedSub(miles)
+	if type(miles) ~= 'number' then miles= 2.5 end --miles is optional, default to 2.5 miles
+	print('Miles: '..miles)
+	local selection = ScenEdit_SelectedUnits().units[1]
+	local selectedSubmarine = ScenEdit_GetUnit({guid=selection.guid})
+	if W_SubmarineSelectionIsValidForDivers() and W_ConfirmSpecialAction('Deploying Recon team from '..selectedSubmarine.name) then
+		local bearingForReconUnit = ScenEdit_InputBox('What bearing do you want the Recon Team to take when they go ashore? 0 is north, 90 is east, 180 is south etc. Must be between 0 and 359.') 
+			bearingForReconUnit = tonumber(bearingForReconUnit) --numbers come in as strings, convert then check if number
+			print(type(bearingForReconUnit))
+		if type(bearingForReconUnit) ~= 'number' then return end	
+		W_DeployDiversFromSubmarine(selectedSubmarine.guid,miles,bearingForReconUnit)
+	else
+		if 			
+			ScenEdit_GetKeyValue('Swimmers_'..selectedSubmarine.guid) == 'deployed' then 
+			ScenEdit_MsgBox('Request failed, already Deployed Recon team from this unit',0)
+		elseif
+			selectedSubmarine.speed > 6 or selectedSubmarine.altitude < -30 then 
+			ScenEdit_MsgBox('Request failed, unit is not a Ship or Sub, or is going too fast, or is too deep. Unit should be going less than 6 kts and subs need to be no deeper than -30m.',0)	
+		else
+		ScenEdit_MsgBox('There was a problem with your selection.\n\nEnsure that you have selected a single submarine or ship that has not yet deployed a Recon team.',0)
+	end --end if deployed
+end
+end
+
+function W_DeployReconTeamFromHelo()
+local selection = ScenEdit_SelectedUnits().units[1]
+    local selectedHelo = ScenEdit_GetUnit({guid=selection.guid})
+    print(selectedHelo.name)
+    if selectedHelo.side == ScenEdit_PlayerSide() and W_ConfirmSpecialAction('Deploying Recon team from '..selectedHelo.name)
+        then
+            if W_OverWater(selectedHelo.latitude,selectedHelo.longitude) then --check if over water, return if south
+               ScenEdit_MsgBox('Cannot deploy over water',1)
+                return
+                end
+            if
+                ScenEdit_GetKeyValue('Recon_'..selectedHelo.guid) == 'deployed' then 
+                ScenEdit_MsgBox('Request failed, already Deployed Recon team from this unit',0)
+               return
+              end
+            if
+                W_UnitAltitudeAboveGround(selectedHelo.guid) < 25 and W_UnitAltitudeAboveGround(selectedHelo.guid) > 2 and selectedHelo.speed < 20 then
+                    local TeamName = reconTeamName..math.random(1,40)..W_RandomLetter()
+                    ScenEdit_AddUnit({
+                    side=ScenEdit_PlayerSide(),
+                    name=TeamName,
+                    type='Facility',
+                    dbid=reconTeamDBID,
+                    latitude=selectedHelo.latitude,
+                    longitude=selectedHelo.longitude,
+                    proficiency=math.random(3,4)})
+                    ScenEdit_SetKeyValue('Recon_'..selectedHelo.guid,'deployed')
+                else
+                ScenEdit_MsgBox('Unit is not at minimum altitude or is not hovering',1)
+                end    
+    else 
+      ScenEdit_MsgBox('unit is not a helicopter',1)
+        return    
+    end --if helo check        
+end --function end

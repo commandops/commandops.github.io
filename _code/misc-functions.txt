@@ -1,0 +1,375 @@
+function ww(unitTable)
+return ScenEdit_GetUnit(unitTable)
+end
+function W_GetUnitProps(unitName)
+if unitName == nil then 
+print("You did not pass a unit name in")
+end
+local u
+if (type(unitName)) == 'table' then
+u = ScenEdit_GetUnit(unitName)
+else
+u = ScenEdit_GetUnit({name=unitName})
+end
+local tables = {}
+for k,v in pairs(u.fields) do
+    local t = string.find(v," , ")
+    local t2 = (string.sub(v,2,t-1))
+    if type(u[t2]) ~= 'table' and type(u[t2]) ~= 'userdata' then
+    print(t2..': '..tostring(u[t2]))
+    elseif type(u[t2]) == 'table' then
+    table.insert(tables, t2)
+    elseif type(u[t2]) == 'userdata' then
+    print('Possible Function: '..t2..': '..tostring(u[t2]))
+    end --end check type
+end -- end main pairs loop
+print('===== Table Data =================================================')
+for k,v in pairs(tables) do
+print('===== '..v..' Table Data =========================================')
+    print(v..': ')
+    for k,v in pairs(u[v]) do
+    print(k)
+    print(v)
+    end --inner table
+print('---- End '..v..' Table Data --------------------------------------')
+print('-----------------------------------------------------------------------')
+end --end tables loop
+end --function
+-- either way should work:
+--GetUnitProperties({name='F-14D Tomcat', guid='78407e18-3841-4f63-bcc2-df202cc3dc3c'})
+--GetUnitProperties('F-14D Tomcat')
+
+function W_GetSideProps(side)
+local u = VP_GetSide({side=side})
+local tables = {}
+for k,v in pairs(u.fields) do
+local t = string.find(v," , ") -- location of first comma - v example:'.fuel , table, false' just need the key part - fuel
+local t2=(string.sub(v,2,t-1))  --t finds the location of the first comma - 6, and then gets characters 2-5 which should equal fuel
+    if type(u[t2]) ~= 'table' and type(u[t2]) ~= 'userdata' then --check if it is not a table
+    print(t2..': '.. tostring(u[t2])) --need tostring for booleans for some reason
+    elseif type(u[t2]) == 'userdata' then
+    print('Possible Function: '..t2..': '..tostring(u[t2]))
+    elseif type(u[t2]) == 'table' then
+   table.insert(tables, t2) -- do tables later to make it easier to read
+    end --end first try - strings, numbers, nils and booleans
+end
+    print('-----------------------------------------------------------------------')
+    print('------------- Table Data ----------------------------------------------')
+    print('-----------------------------------------------------------------------')
+for k,v in pairs(tables) do --display table info
+print('===== '..v..' Table Data =========================================')
+    for k,v in pairs(u[v]) do
+    print(k)
+    print(v)
+    end --item table loop
+    print('---- End '..v..' Table Data --------------------------------')
+    print('-----------------------------------------------------------------------')
+
+end --tables loop
+print('-----end---------')
+end
+
+function W_GetSideUnitTotals(side)
+local a = VP_GetSide({Side =side})  -- put your side name here
+print("===== Total Number of Units for "..side.." side: "..#a.units.." =========================================")
+local Ships, AC, Subs, Facilities = 0,0,0,0 --create empty array(table) to store group guids
+for i = 1, #a.units do -- loops thru all units on the side
+local u = ScenEdit_GetUnit({guid = a.units[i].guid}) --convert VP guid to Unit wrapper
+if u.type == 'Ship' then -- check if group, if so add the group guid to the table
+    if tonumber(u.subtype) < 9003 then --only count if subtype is not a buoy,platform sonar array etc
+    Ships=Ships+1 
+    end
+elseif u.type == 'Aircraft' then -- check if group, if so add the group guid to the table
+    AC=AC+1
+elseif u.type == 'Submarine' then -- check if group, if so add the group guid to the table
+    Subs=Subs+1 
+elseif u.type == 'Facility' then -- check if group, if so add the group guid to the table
+    Facilities=Facilities+1 
+end
+end
+print("Ships: "..Ships..", Aircraft: "..AC..", Submarines: "..Subs..", Facilities: "..Facilities)
+print('Please note that this function may use a lot of memory if there are a lot of units, you may need to restart soon.')
+print('==================================================================================================================')
+return AC, Ships, Subs
+end -- function end
+
+function W_GetSideUnitTotalsTable(side) --returns 4 tables for subs, ships, ac and facilities - memory hog
+local a = VP_GetSide({Side =side})  -- put your side name here
+print("===== Total Number of Units for "..side.." side: "..#a.units.." ===== this function also returns a table of guids for each type for AC/Ships/Subs (in that order) ==========")
+print("===== if you don't need the tables of guids use W_GetSideUnitTotals(side) instead as it just returns the totals, less memory intensive ==================================")
+local Ships = {} --create empty array(table) to store group guids
+local AC = {}
+local Subs = {}
+local Facilities = {}
+for i = 1, #a.units do -- loops thru all units on the side
+local u = ScenEdit_GetUnit({guid = a.units[i].guid}) --convert VP guid to Unit wrapper
+if u.type == 'Ship' and u.subtype ~='9004' then -- check if ship and not buoy, if so add to the table
+    table.insert(Ships, u.guid) 
+elseif u.type == 'Aircraft' then -- check if AC, if so to the table
+    table.insert(AC, u.guid) 
+elseif u.type == 'Submarine' then -- check if sub, if so add 
+    table.insert(Subs, u.guid) 
+elseif u.type == 'Facility' then -- check if sub, if so add 
+    table.insert(Facilities, u.guid)     
+end
+end
+print("Ships: "..#Ships..", Aircraft: "..#AC..", Submarines: "..#Subs..", Facilities: "..#Facilities)
+print('Please note that this function may use a lot of memory if there are a lot of units, you may need to restart soon.')
+print('==================================================================================================================')
+return AC,Ships,Subs,Facilities
+end -- function end
+
+function W_GetTableCount(tab)
+    local count = 0
+    for k,v in ipairs(tab) do
+        count = count + 1
+    end
+    return count
+end
+
+function W_ApplyToTableItems(tab, func)
+    for i, v in ipairs(tab) do
+        func(v)
+    end
+end
+
+function W_DrawRPCircle(sidename, location, radius, numpts, nameprefix, firstindex)
+    if numpts == nil then numpts = 12 end
+    local nonumber = false
+    if firstindex == nil then
+        nonumber = true
+        firstindex = 0
+    end
+    if nameprefix == nil then
+        if nonumber then
+            nameprefix =  "C"
+        else
+            nameprefix = ""
+        end
+    end
+    local clat, clon =  location.latitude, location.longitude
+    local r = radius / 60
+    local lastindex = firstindex + numpts - 1
+    local th, rlat, rlon, rp
+    local rpname = nameprefix
+    local area = {}
+    for i = firstindex, lastindex do
+        th = 2 * math.pi * i / numpts
+        rlat = clat + r * math.cos(th)
+        rlon = clon + r * math.sin(th) / math.cos(math.rad(clat))
+        if nonumber == false then
+            rpname = nameprefix .. i
+        end
+        rp = ScenEdit_AddReferencePoint({
+            side = sidename,
+            lat = rlat,
+            lon = rlon,
+            name = rpname,
+            highlighted = true})
+            table.insert(area, rp)
+    end
+end
+
+function W_DrawRPCircleAroundUnit(sidename, unit_name, radius, numpts, nameprefix, firstindex)
+    local unit = ScenEdit_GetUnit({side=sidename, name=unit_name})
+    return W_DrawRPCircle(sidename, {latitude=unit.latitude, longitude=unit.longitude}, radius, numpts, nameprefix, firstindex)
+end
+
+function W_DeleteReferencePointsByPrefix(sidename, prefix, firstindex, lastindex)
+    for i = firstindex, lastindex do
+        ScenEdit_DeleteReferencePoint({ side=sidename, name=prefix .. i})
+    end
+end
+
+function W_AssignUnitsToMission(nameprefix, startcount, endcount, missionname)
+    for i = startcount, endcount do
+        ScenEdit_AssignUnitToMission(nameprefix .. i,  missionname)
+    end
+end
+
+function W_ChangeLoadout(nameprefix, startcount, endcount,loadout,readytime)   
+    for i = startcount, endcount do
+print(nameprefix .. i)
+            ScenEdit_SetLoadout({UnitName=nameprefix .. i, LoadoutID=loadout, TimeToReady_Minutes = readytime})
+    end
+end
+
+-- Set mission to start n minutes from current game time "now"
+function W_SetMissionStartTime(sideName,missionName,minutesFromNow)
+    local currentTime = ScenEdit_CurrentTime()
+    local currentMission = ScenEdit_GetMission(sideName,missionName)
+    currentTime = currentTime + 5 * 60 * 60 + minutesFromNow * 60
+    currentMission.isactive = false
+    currentMission.starttime = os.date("%m/%d/%Y %I:%M %p", currentTime)
+end
+
+-- Set a mission active by side,name.
+function W_ActivateMission(sideName,missionName)
+    local currentMission = ScenEdit_GetMission(sideName,missionName)
+    currentMission.isactive = true
+end
+
+-- Set mission inactive by side,name.
+function W_DeactivateMission(sideName,missionName)
+    local currentMission = ScenEdit_GetMission(sideName,missionName)
+    currentMission.isactive = false
+end
+
+function W_RefuelUnitIfLow(side, name, minfuel, fueltype)
+    if fueltype == nil then fueltype = 2001 end
+    local u = ScenEdit_GetUnit({side=side, name=name})
+    local newfuel = u.fuel
+    if newfuel[fueltype].current < minfuel then
+        newfuel[fueltype].current = newfuel[fueltype].max
+        u.fuel = newfuel
+    end
+end
+
+function W_PathOffset() --provides tiny offset to lat/lon
+  local offset = math.random(300,699)
+  print('offset before manipulation: '..offset)
+  offset = (offset- 500)/20000
+  print('offset after (subtract 500, divide by 20000: '..offset)
+  return offset
+end --end function
+
+function W_EscapeFromPort(unitx,newCourse)
+    local u = ScenEdit_GetUnit({guid = unitx.guid})
+    if u.condition == 'Returning to base' then
+        print(u.name.. ' is returning to base')
+    else
+        print(u.name.. ' is leaving port, assigning new course')
+        print('waypoints: '..#newCourse)
+        for i = 1, #newCourse do
+        --print(newCourse[i].longitude)
+        newCourse[i].latitude = newCourse[i].latitude + W_PathOffset()
+        newCourse[i].longitude = newCourse[i].longitude + W_PathOffset()
+        end --end table loop
+    u.course = newCourse    
+    ScenEdit_SetDoctrine({side=unitx.side, unitname=u.name}, {ignore_plotted_course= "no" })
+    end --end condition check
+end --end function
+
+function W_ConfirmSpecialAction(actionDescription)
+    local choice = ScenEdit_MsgBox('Are you sure you want to execute the special action: \n \n'..actionDescription, 4)
+    if choice == 'Yes' then
+        return true
+    else
+        --ScenEdit_MsgBox('Event Cancelled')
+        return false
+    end
+end
+
+function W_OverWater (latitude, longitude)
+    local pointElevation = World_GetElevation({
+        latitude = latitude,
+        longitude = longitude})
+    if pointElevation < 0 then
+        return true
+    else
+        return false
+    end
+end
+
+function W_RandomLetter()
+    local alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'}
+    return string.upper(alphabet[math.random(1,#alphabet)])
+end
+
+function W_GetCourse(side,unitName)
+local u = ScenEdit_GetUnit({side=side, name=unitName})
+print(u.course)
+return u.course
+end --end function
+
+function W_UnitAltitudeAboveGround(side, unitguid) --should only be used on AC, returns value in meters
+   local u = SE_GetUnit({side=side, guid=unitguid})
+   local worldAltitude =  World_GetElevation({latitude = u.latitude, longitude= u.longitude})
+   if worldAltitude < 0 then worldAltitude = 0 end
+   return math.floor(u.altitude - worldAltitude)
+end
+
+function W_SetGroupAutodetectable(side,groupName, trueOrFalse, onlyUnitsWithName)
+local u = ScenEdit_GetUnit({name=groupName, side=side})
+unitsToChange = u.group.unitlist
+for i = 1, #unitsToChange
+do
+local uu = SE_GetUnit({guid=unitsToChange[i]}) 
+if onlyUnitsWithName == nil or string.match(uu.name, onlyUnitsWithName) then
+uu.autodetectable = trueOrFalse
+print(uu.name..' is it autodetectable? '..tostring(uu.autodetectable))
+else
+print(uu.name..' is it autodetectable? '..tostring(uu.autodetectable))
+end --if name used
+end --loop
+end --function end
+
+function W_SetGroupSide(oldSide, groupName, newSide)
+local u = ScenEdit_GetUnit({side=oldSide, name=groupName})
+unitsToChange = u.group.unitlist
+for i = 1, #unitsToChange
+do
+local uu = SE_GetUnit({guid=unitsToChange[i]}) 
+ScenEdit_SetUnitSide({side=oldSide, Name=unitsToChange[i], newside=newSide})
+uu.group = groupName
+end --loop
+end --function end
+
+function W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangers, ammopads,detectable)
+local lat=latlonTable['latitude']
+local lon=latlonTable['longitude']
+for i=1,runways do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name='Runway '..i, dbid=55, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.004
+end --runways
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .002
+for i=1,taxiways do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name='Taxiway '..i, dbid=1424, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.004
+end
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .004
+for i=1,accesspoints do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name='Access Point '..i, dbid=353, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.002
+end
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .006
+for i=1,tarmacspaces do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name='Tarmac Space '..i, dbid=344, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.002
+end
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .008
+for i=1,ammopads do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name='Ammo Pad '..i, dbid=1496, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.002
+end
+lon=latlonTable['longitude'] - .002
+for i=1,hangers do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name='Hanger '..i, dbid=9, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat -.002
+end
+end --function end
+
+function W_ProficiencyIncrement(proficiency,increment)
+if proficiency == 'Ace' then proficiency=4
+elseif proficiency == 'Veteran' then proficiency=3
+elseif proficiency =='Regular' then proficiency=2
+elseif proficiency =='Cadet' then proficiency=1
+elseif proficiency == 'Novice' then proficiency=0
+end --ifs
+if increment == nil then increment =1 end --if increment not set use 1
+local new = proficiency + increment
+print(new)
+if new >4 then new =4 end
+if new <0 then new = 0 end
+return new
+end --function

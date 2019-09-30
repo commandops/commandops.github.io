@@ -1,0 +1,33 @@
+local side = ScenEdit_PlayerSide() -- put the side that you are keeping track of scoring for here
+local currentScore = ScenEdit_GetScore(side) -- get the current score
+local points = 0 --default amount of points to award, set to zero so only explicitly set scores are used
+local unit = ScenEdit_UnitX() --get the unit wrapper for the unit that was destroyed
+local pointMultiplier = 1 --default score goes up unit lost is not ours
+if unit.side == side then -- if it is our unit lost then score goes down (could be playing as red)
+  pointMultiplier = -1 
+end
+
+if unit.type == "Weapon" then
+return --exit if destroyed unit is really a weapon
+end
+
+if -- initial score setup, defaults, edit as needed
+unit.type == "Aircraft" then points = 15
+elseif 
+unit.type == "Facility" then points = 10
+elseif 
+unit.type == "Ship" then points = 50
+elseif 
+unit.type == "Submarine" then points = 50
+end
+
+--list higher or lower value units here to be more specific edit as needed
+if unit.name == "Air Force 1" then points =  1000
+	end
+if string.match(unit.classname, "F%-15") then points = 17 --% is to escape the dash which is an illegal character in stringmatch
+end
+
+points = points*pointMultiplier
+currentScore = currentScore + points
+print("["..unit.side.." Unit Destroyed] "..unit.name.. " ("..UnitX().classname.." Sub Type: "..unit.subtype.." ) Points:  "..points)
+ScenEdit_SetScore(side, currentScore, unit.name.. " ("..unit.classname.." Sub Type: "..unit.subtype.." ) Destroyed, Points:  "..points)

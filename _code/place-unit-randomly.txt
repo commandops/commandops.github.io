@@ -1,0 +1,84 @@
+-- Function to move unit semi randomly up to a limit of distance from start, in bearing of optional choosing
+-- and to optionally set depth or altitude semi randomly
+-- side: (string) side name of unit; REQUIRED
+-- ship: (string) name of unit;  REQUIRED
+-- distance: (number) max nm distance to randomly try. 1-12000; default = 100
+-- bmin: (number) min bearing to try from 1-360; default 1
+-- bmax: (number) max bearing to try from 1-360; default 360
+-- mindepth:(negative number) when searching for a location for a sub or ship apply this minimum -elevation check; default -20meters
+-- randomalt: (boolean) defaults to false
+-- To users:
+-- Script function is primarly meant to be placed with other 'global' scripts in a scenario-onstartup\load event.
+-- so that you run it once and use it everywhere, though technically speaking you can use it as a fragment.
+function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)
+    if (side == nil or side=='') or (ship == nil or ship =='') then
+      print('PlaceUnitRandomly() missing side or ship or unit name. Aborting call.');
+      return
+    end
+    if (bmin == nil or bmin < 0 or bmin > 360) then bmin = 1 end --if missing or invaid use 1 as default
+    if (bmax == nil or bmax < 0 or bmax > 360) then bmax = 360 end -- if missing or invalid use 360 as default
+    if (mindepth == nil or mindepth < -10000 or mindepth > 0) then mindepth = -20 end -- if missing or invalid use -2m default
+    if (distance == nil or distance < 1 or distance > 12000) then distance = 100 end -- if missing or invalid use 100nm default
+    randomalt = randomalt or false;
+    math.randomseed(os.time());
+    local u = ScenEdit_GetUnit({name=ship});
+    if u ~= nil then
+        for i = 1,25 do
+          local d = math.random(1,distance);
+          local b 
+          if bmin > bmax then --check if they want a bearing roughly north ex between 350 and 10
+              local angle = 360 - (bmin - bmax) --get actual angle of possiblity
+              print(angle)
+              b = math.random(angle) + bmin -- random angle and then add back to bmin
+            --print(b)
+            if b > 360 then --if that goes over 360 then subtract 360
+            b = b - 360
+            end -- if b>360
+          else
+                b = math.random(bmin,bmax) --normal bmin and bmax, bmin < bmax
+          end --bmin > bmax check   
+          --print(b)     
+          local point = ScenEdit_AddReferencePoint( {side=side, name='possible' .. tostring(i), RelativeTo=ship, bearing=b ,distance=d });
+          -- using addRP's ability to set the points bearing and distance relative to an existing unit as the new location for the unit
+          ScenEdit_DeleteReferencePoint ({side=side, name='possible' .. tostring(i)}); --should be ok to delete, just need the values
+          elevation = World_GetElevation({latitude=point.latitude, longitude=point.longitude}); -- get elevation of new RP to see if it is suitable
+          --print(elevation)
+          if u.type == 'Aircraft' then 
+            --print('moving an aircraft')
+            u.latitude = point.latitude;
+            u.longitude = point.longitude;
+            if (randomalt) then 
+                local ralt = math.random(305,10975.7); -- ~ 1000 to 36000 ft
+                u.altitude = ralt; --set alt
+                --ScenEdit_SetUnit({side=side, unitname=ship, moveto=true,altitude=ralt}) --set desired alt to current. (not working with this line?)
+            end
+            return; --exit as we are done
+          elseif (u.type == 'Facility' and u.subtype ~= '4001') then
+            if (elevation > 0) then
+                -- facility that is not sosus bottom array? and needs to be above ground level; could be other subtypes to flag??.
+                --print('moving an non submerged facility')
+                u.latitude = point.latitude;
+                u.longitude = point.longitude;
+                return --exit as we are done only if elevation was > 0'
+            end
+          elseif (elevation < mindepth) then -- check if the new points depth is ok, if so assign the unit to the RPs lat/long
+            --print('moving an ship, sub or submerged facility')
+            u.latitude = point.latitude;
+            u.longitude = point.longitude;
+            if (randomalt and u.type == 'Submarine') then
+                if (elevation < -450 ) then elevation = -450 end; --cap max depth at like ~1475ft when it's much deeper.
+                if (elevation >= mindepth) then mindepth = -3 end; --reset min depth to like 10ft if elevation > min depth; change to 0 if want chance of surfaced subs.
+                local ralt = math.random(elevation,mindepth);  --grab rando betweeen bottom and mindepth;
+                --print('changing altitude on ' .. ship .. ' to ' .. tostring(ralt) );
+                u.altitude = ralt; --set alt
+                ScenEdit_SetUnit({side=side, unitname=ship,moveto=true, depth=(ralt * -1)}); --set desired depth to current depth req postive
+            end
+            return; --exit as we are done
+          end 
+        end
+        print ('unit was not able to find a suitable spot for placement, ship not moved'); -- if we got here then we've exceeded try count.
+    else
+        print("Unit does not exist");
+    end
+--endfunc
+end
