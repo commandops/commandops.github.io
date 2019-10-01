@@ -79,18 +79,19 @@ The potential number of survivors can be controlled by the number of crew passed
 Make sure you are on the bios side when you run it.  
 It is best to use the random bios by doing everything as variables so it is easier to read like:
 
-Tool_EmulateNoConsole(true) --needed if running in console, ideally you should run it as a script loaded at Scen load but not repeated, that way they are always random.
-local side = 'Biologics'
-local topLeftPoint = 'RP-5'
-local topRightPoint = 'RP-6'
-local bottomRightPoint = 'RP-7'
-local bottomLeftPoint = 'RP-8'
-local spacingInMiles = 20
-local minDepth = 1500 --ok to be positive, will be switched to negative
-local distanceJitter = 5
-local angleJitter = 5
-local chance = .5 --between 0 and 1, likelihood of any one bio being created
-W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter,chance)
+Tool_EmulateNoConsole(true) --needed if running in console, ideally you should run it as a script loaded at Scen load but not repeated, that way they are always random.  
+local side = 'Biologics'  
+local topLeftPoint = 'RP-5'  
+local topRightPoint = 'RP-6'  
+local bottomRightPoint = 'RP-7'  
+local bottomLeftPoint = 'RP-8'  
+local spacingInMiles = 20  
+local minDepth = 1500 --ok to be positive, will be switched to negative  
+local distanceJitter = 5  
+local angleJitter = 5  
+local chance = .5 --between 0 and 1, likelihood of any one bio being created  
+
+W_RandomBios(side,topLeftPoint,topRightPoint,bottomRightPoint,bottomLeftPoint,spacingInMiles,minDepth,distanceJitter,angleJitter,chance)  
 
 ###### function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)  
 -- side and ship are only required parameters, if you need one at the end then you have to set all previous ones  
@@ -211,17 +212,17 @@ You can also use it with a specific unit by passing in a table with the guid - n
 
 This is best used with a list of variables like:
 
-local basename = 'Big Base'
-local side = 'Blue'
-local latlonTable = {latitude='30.2702990404277', longitude='-82.9672648214299'}
-local runways = 2
-local taxiways =2
-local accesspoints = 4
-local tarmacspaces = 6
-local hangars = 5
-local ammopads = 4
-local detectable = true
-local DB3000orCWDB = 'CWDB' --either CWDB or DB3000
+local basename = 'Big Base'  
+local side = 'Blue'  
+local latlonTable = {latitude='30.2702990404277', longitude='-82.9672648214299'}  
+local runways = 2  
+local taxiways =2  
+local accesspoints = 4  
+local tarmacspaces = 6  
+local hangars = 5  
+local ammopads = 4  
+local detectable = true  
+local DB3000orCWDB = 'CWDB' --either CWDB or DB3000  
 
 W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangars, ammopads,detectable,DB3000orCWDB)
 
