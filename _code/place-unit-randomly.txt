@@ -8,7 +8,7 @@
 -- mindepth:(negative number) when searching for a location for a sub or ship apply this minimum -elevation check; default -20meters
 -- randomalt: (boolean) defaults to false
 -- To users:
--- Script function is primarly meant to be placed with other 'global' scripts in a scenario-onstartup\load event.
+-- Script function is primarily meant to be placed with other 'global' scripts in a scenario-onstartup\load event.
 -- so that you run it once and use it everywhere, though technically speaking you can use it as a fragment.
 function W_PlaceUnitRandomly(side, ship, distance, bmin, bmax, mindepth,randomalt)
     if (side == nil or side=='') or (ship == nil or ship =='') then

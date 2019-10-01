@@ -7,8 +7,6 @@ layout: default
 Link to [Starter Scen for DB3000](/assets/scens/StarterScenario-DB3000.scen)  
 Link to [Starter Scen for CWDB](/assets/scens/StarterScen-CWDB-Version.scen)
 
-(CWDB Scen not ready yet, you cannot change the DB from one to the other)
-
 Reference for what is included:
 
 ## Before You Do Anything Else:
@@ -207,9 +205,27 @@ You can also use it with a specific unit by passing in a table with the guid - n
 -- change a group and its units from one side to another  
 -- W_SetGroupSide('red','Group 355', 'blue')  
 
-###### function W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangers, ammopads,detectable)
+###### function W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangars, ammopads, detectable, DB3000orCWDB)
 -- create an airbase by passing in some stuff
 -- W_CreateAirBase('Big Base','Blue',{latitude='30.2702990404277', longitude='-82.9672648214299'}, 2, 2, 6, 12, 3, 5,true)
+
+This is best used with a list of variables like:
+
+local basename = 'Big Base'
+local side = 'Blue'
+local latlonTable = {latitude='30.2702990404277', longitude='-82.9672648214299'}
+local runways = 2
+local taxiways =2
+local accesspoints = 4
+local tarmacspaces = 6
+local hangars = 5
+local ammopads = 4
+local detectable = true
+local DB3000orCWDB = 'CWDB' --either CWDB or DB3000
+
+W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangars, ammopads,detectable,DB3000orCWDB)
+
+*If you end up with a bunch of weird units you probably do not have the last parameter for DB type set correctly*
 
 ###### function W_ProficiencyIncrement(proficiency,increment)
 -- use this to change a units proficiency up or down 1 increment (use 1 or -1 for increment)

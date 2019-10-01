@@ -315,48 +315,94 @@ uu.group = groupName
 end --loop
 end --function end
 
-function W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangers, ammopads,detectable)
+function W_CreateAirBase(basename,side,latlonTable, runways, taxiways, accesspoints, tarmacspaces, hangars, ammopads,detectable,DB3000orCWDB)
 local lat=latlonTable['latitude']
 local lon=latlonTable['longitude']
+
+if DB3000orCWDB == 'DB3000' then --for DB3000
 for i=1,runways do
-local u = ScenEdit_AddUnit({side=side, type='Facility', name='Runway '..i, dbid=55, autodetectable=detectable, Lat=lat, Lon=lon})
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Runway '..i, dbid=55, autodetectable=detectable, Lat=lat, Lon=lon})
 u.group =basename 
 lat=lat +.004
 end --runways
 lat=latlonTable['latitude'] --reset lat and add to lon
 lon=latlonTable['longitude'] + .002
 for i=1,taxiways do
-local u = ScenEdit_AddUnit({side=side, type='Facility', name='Taxiway '..i, dbid=1424, autodetectable=detectable, Lat=lat, Lon=lon})
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Taxiway '..i, dbid=1424, autodetectable=detectable, Lat=lat, Lon=lon})
 u.group =basename 
 lat=lat +.004
 end
 lat=latlonTable['latitude'] --reset lat and add to lon
 lon=latlonTable['longitude'] + .004
 for i=1,accesspoints do
-local u = ScenEdit_AddUnit({side=side, type='Facility', name='Access Point '..i, dbid=353, autodetectable=detectable, Lat=lat, Lon=lon})
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Access Point '..i, dbid=353, autodetectable=detectable, Lat=lat, Lon=lon})
 u.group =basename 
 lat=lat +.002
 end
 lat=latlonTable['latitude'] --reset lat and add to lon
 lon=latlonTable['longitude'] + .006
 for i=1,tarmacspaces do
-local u = ScenEdit_AddUnit({side=side, type='Facility', name='Tarmac Space '..i, dbid=344, autodetectable=detectable, Lat=lat, Lon=lon})
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Tarmac Space '..i, dbid=344, autodetectable=detectable, Lat=lat, Lon=lon})
 u.group =basename 
 lat=lat +.002
 end
 lat=latlonTable['latitude'] --reset lat and add to lon
 lon=latlonTable['longitude'] + .008
 for i=1,ammopads do
-local u = ScenEdit_AddUnit({side=side, type='Facility', name='Ammo Pad '..i, dbid=1496, autodetectable=detectable, Lat=lat, Lon=lon})
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Ammo Pad '..i, dbid=1496, autodetectable=detectable, Lat=lat, Lon=lon})
 u.group =basename 
 lat=lat +.002
 end
 lon=latlonTable['longitude'] - .002
-for i=1,hangers do
-local u = ScenEdit_AddUnit({side=side, type='Facility', name='Hanger '..i, dbid=9, autodetectable=detectable, Lat=lat, Lon=lon})
+for i=1,hangars do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Hangar '..i, dbid=9, autodetectable=detectable, Lat=lat, Lon=lon})
 u.group =basename 
 lat=lat -.002
 end
+
+elseif DB3000orCWDB == 'CWDB' then
+for i=1,runways do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Runway '..i, dbid=309, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.004
+end --runways
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .002
+for i=1,taxiways do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Taxiway '..i, dbid=413, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.004
+end
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .004
+for i=1,accesspoints do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Access Point '..i, dbid=451, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.002
+end
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .006
+for i=1,tarmacspaces do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Tarmac Space '..i, dbid=443, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.002
+end
+lat=latlonTable['latitude'] --reset lat and add to lon
+lon=latlonTable['longitude'] + .008
+for i=1,ammopads do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Ammo Pad '..i, dbid=48, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat +.002
+end
+lon=latlonTable['longitude'] - .002
+for i=1,hangars do
+local u = ScenEdit_AddUnit({side=side, type='Facility', name=basename..'Hangar '..i, dbid=438, autodetectable=detectable, Lat=lat, Lon=lon})
+u.group =basename 
+lat=lat -.002
+end
+else
+ ScenEdit_MsgBox ('You did not specify the DB type - the last parameter should be either DB3000 or CWDB',1)
+end --DB3000-orCWDB check    
 end --function end
 
 function W_ProficiencyIncrement(proficiency,increment)
