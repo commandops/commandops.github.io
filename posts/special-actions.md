@@ -48,7 +48,7 @@ This code is part of the Starter Scen, all you need in the Special Action code p
 W_DeployDiversFromSelectedSub(6) -- number in parens is the max distance allowed from land.
 ```
 
-## Create a target from a Selected Ref Point
+## Create a Target from a Selected Ref Point
 
 Requires a side named `Targets`.
 

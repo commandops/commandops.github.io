@@ -5,6 +5,22 @@ description: Just some random CMANO stuff
 active: yes
 ---
 
+### Remove Sensors from all Air Units with a Specific DBID
+
+```lua
+local a,b,c,d = W_GetSideUnitTotalsTable('Blue') --special function in starter scen
+for k,v in ipairs(a) do
+local u = ScenEdit_GetUnit({guid=v})
+if u.dbid == 310 then
+print(u.name)
+ScenEdit_UpdateUnit({guid=v,mode='remove_sensor',dbid=937})
+ScenEdit_UpdateUnit({guid=v,mode='remove_sensor',dbid=444})
+end
+--print(u.name) 
+end
+
+```
+
 ### Create a handful of sides via script
 
 ```lua
